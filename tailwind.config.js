@@ -1,35 +1,30 @@
-const colors = require("tailwindcss/colors")
-const defaultTheme = require("tailwindcss/defaultTheme")
-
 module.exports = {
-  content: [
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./pages/**/*.{html,js,tsx}", "./components/**/*.{html,js,tsx}"],
   theme: {
     container: {
+      center: true,
+      padding: {
+        DEFAULT: '0',
+        sm: '0',
+        lg: '0',
+      },
       screens: {
         sm: "100%",
-        md: "100%",
-        lg: "100%",
+        md: "776px",
+        lg: "776px",
       },
     },
     colors: {
       primary: {
-        light: "var(--primary-light)",
-        DEFAULT: "var(--primary)",
-        dark: "var(--primary-dark)",
+        light: "#b3b7ff",
+        DEFAULT: "#666EFF",
+        dark: "#333780",
       },
       contrast: "var(--contrast)",
-      transparent: "transparent",
-      black: "#101111",
-      white: "#fff",
+      transparent: 'transparent',
+      black: '#101111',
+      white: '#fff',
       gray: {
-        // 100: "#f8f8f8",
-        // 300: "#E6E6E6",
-        // 400: "#C4C4C4",
-        // 500: "#8D8D8D",
-        // 600: "#666666",
         50: "#f8f8f8",
         100: "#EDEEEE",
         200: "#E6E7E7",
@@ -56,52 +51,22 @@ module.exports = {
     fontFamily: {
       sans: ["Manrope", "ui-sans-serif", "sans-serif"],
     },
-    borderColor: (theme) => ({
-      ...theme("colors"),
-      DEFAULT: theme("colors.gray.200", "currentColor"),
-    }),
+    borderColor: theme => ({
+      ...theme('colors'),
+       DEFAULT: theme('colors.gray.200', 'currentColor'),
+     }),
     extend: {
-      fontSize: {
-        md: "0.938rem",
-        ss: "0.813rem",
-        xxs: "0.75rem",
-      },
-      backgroundSize: {
-        16: "1rem",
-      },
-      width: {
-        22: "5.75rem",
-      },
-      minHeight: {
-        inherit: "inherit",
-      },
-      flex: {
-        75: "0 0 75px",
-        85: "0 0 85px",
-      },
-      margin: {
-        30: "7.5rem",
-      },
       boxShadow: {
-        bottom: "0 2px 0 0 rgba(0, 0, 0, 0.05)",
-        inner: "0 0 0px 1000px #fff inset",
-        top: "0px -4px 1px 0px rgb(0, 0, 0, 0.025)",
+        subtle: "0 2px 0 0 rgba(0, 0, 0, 0.025)",
       },
       transitionProperty: {
-        bg: "background",
-      },
-    },
-  },
-  variants: {
-    extend: {
-      textColor: ["group-focus"],
-      maxHeight: ["group-focus"],
+        'bg': 'background',
+      }
     },
   },
   plugins: [
     require("@tailwindcss/forms")({
       strategy: "class",
     }),
-    require("@tailwindcss/line-clamp"),
   ],
 }
