@@ -9,7 +9,7 @@ import tw from "twin.macro"
 import { ButtonCss } from "components/ui/Button"
 
 export const Thumb = styled(SkuField)`
-  ${tw`h-36 border rounded-md w-full object-cover mb-2`}
+  ${tw`h-36 rounded-md w-full object-cover border border-gray-100`}
 `
 
 export const StyledAddToCartButton = styled(AddToCartButton)`
@@ -17,7 +17,21 @@ export const StyledAddToCartButton = styled(AddToCartButton)`
 `
 
 export const Card = styled.div`
-  ${tw`shadow p-4 bg-white relative sm:w-1/2 lg:w-1/3`}
+  ${tw`shadow-subtle rounded-lg flex gap-4 p-4 bg-white relative mb-4`}
+`
+export const CardBody = styled.div`
+  ${tw`relative`}
+`
+
+export const CardImage = styled.figure`
+  ${tw`relative w-7/12`}
+`
+export const CardTitle = styled.h3`
+  ${tw`text-2xl`}
+`
+
+export const CardDesc = styled.p`
+  ${tw`text-sm text-gray-600`}
 `
 
 // const StyledAvailabilityTemplate = styled(AvailabilityTemplate)(
@@ -28,13 +42,17 @@ export const Card = styled.div`
 //   ]
 // )
 
-export const StyledAvailabilityTemplate = styled(AvailabilityTemplate)`
-  ${tw`font-bold my-3 text-sm text-green-400`}
+export const CardStock = styled.div`
+  ${tw`flex text-gray-400 items-center gap-2 text-xs mt-4`}
 `
 
 export const CardFooter = styled.div`
-  ${tw`bg-gray-50 flex rounded mt-4 flex justify-center`}
+  ${tw`flex flex-col mt-4`}
 `
+export const CardPrice = styled.div`
+  ${tw`flex justify-between`}
+`
+
 export const Divider = styled.hr`
   ${tw`my-4`}
 `
