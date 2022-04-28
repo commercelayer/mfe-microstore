@@ -14,13 +14,7 @@ export const Footer: React.FC = () => {
 }
 
 const Wrapper = styled.div`
-  ${tw`md:flex fixed w-full bottom-0 justify-start items-center border-t -mx-5 px-5 py-2 text-xs text-gray-400 bg-gray-50 z-30 md:(bottom-0 sticky p-0 py-3 m-0 mt-20)`}
-
-  &::before {
-    ${tw`hidden md:(block top-0 absolute left-0 w-full z-10 h-2)`}
-
-    content: "";
-  }
+  ${tw`md:flex w-full bottom-0 justify-start items-center border-t p-8 text-xs text-gray-400 md:(p-0 py-8 mt-4)`}
 `
 const LogoWrapper = styled.div`
   ${tw`flex items-center`}
