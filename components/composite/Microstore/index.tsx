@@ -1,6 +1,6 @@
 import { SkusContainer, Skus } from "@commercelayer/react-components"
 
-import { DiscountBanner } from "components/composite/DiscountBanner"
+import { Hero } from "components/composite/Hero"
 import { Product } from "components/composite/Product"
 
 interface Props {
@@ -13,15 +13,13 @@ export const Microstore = ({ skus = [], couponCode }: Props) => {
 
   return (
     <>
-      <DiscountBanner couponCode={couponCode} />
+      <Hero couponCode={couponCode} />
       {
-        <div className="flex flex-wrap">
-          <SkusContainer skus={skus}>
-            <Skus>
-              <Product />
-            </Skus>
-          </SkusContainer>
-        </div>
+        <SkusContainer skus={skus}>
+          <Skus>
+            <Product />
+          </Skus>
+        </SkusContainer>
       }
     </>
   )
