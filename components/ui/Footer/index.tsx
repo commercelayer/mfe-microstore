@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
 }
 
 const Wrapper = styled.div`
-  ${tw`md:flex w-full bottom-0 justify-start items-center border-t p-8 text-xs text-gray-400 md:(p-0 py-8 mt-4)`}
+  ${tw`md:flex w-full bottom-0 justify-start items-center border-t p-8 text-xs text-gray-400 lg:(p-0 py-8 mt-4)`}
 `
 const LogoWrapper = styled.div`
   ${tw`flex items-center`}
