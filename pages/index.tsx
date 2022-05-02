@@ -11,6 +11,8 @@ const Home: NextPage = () => {
 
   const { settings, retryOnError, isLoading } = useSettings()
   const [skusArray, setSkusArray] = useState<string[]>([])
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
   const [couponCode, setCouponCode] = useState("")
 
   console.log(settings, retryOnError, isLoading)
@@ -21,6 +23,12 @@ const Home: NextPage = () => {
       console.log("skus", skus)
       if (skus) {
         setSkusArray((skus as string).split(","))
+      }
+      if (router.query.title) {
+        setTitle(router.query.title as string)
+      }
+      if (router.query.description) {
+        setDescription(router.query.description as string)
       }
       if (coupon_code) {
         setCouponCode(coupon_code as string)
@@ -44,7 +52,12 @@ const Home: NextPage = () => {
   return (
     <>
       <MicrostoreContainer settings={{ ...settings, couponCode }}>
-        <Microstore skus={skusArray} couponCode={couponCode} />
+        <Microstore
+          skus={skusArray}
+          couponCode={couponCode}
+          title={title}
+          description={description}
+        />
       </MicrostoreContainer>
     </>
   )

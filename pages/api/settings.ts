@@ -1,10 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { TypeAccepted } from "@commercelayer/react-components/lib/utils/getLineItemsCount"
 import CommerceLayer, {
   CommerceLayerStatic,
   CommerceLayerClient,
   Organization,
-  Order,
 } from "@commercelayer/sdk"
 import retry from "async-retry"
 import jwt_decode from "jwt-decode"

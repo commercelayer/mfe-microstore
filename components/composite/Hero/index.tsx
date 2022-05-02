@@ -1,15 +1,18 @@
 import { DiscountBanner } from "../DiscountBanner"
 
-import { Title, Wrapper } from "./styled"
+import { Title, Description, Wrapper } from "./styled"
 
 interface Props {
   couponCode?: string
+  title?: string
+  description?: string
 }
 
-export const Hero = ({ couponCode }: Props) => {
+export const Hero = ({ title, description, couponCode }: Props) => {
   return (
     <Wrapper>
-      <Title>Hello,</Title>
+      {title && <Title>{title}</Title>}
+      {description && <Description> {description}</Description>}
       <DiscountBanner couponCode={couponCode} />
     </Wrapper>
   )

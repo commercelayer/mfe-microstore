@@ -7,15 +7,22 @@ import { Wrapper } from "./styled"
 
 interface Props {
   skus?: string[]
+  title?: string
+  description?: string
   couponCode?: string
 }
 
-export const Microstore = ({ skus = [], couponCode }: Props) => {
+export const Microstore = ({
+  skus = [],
+  title,
+  description,
+  couponCode,
+}: Props) => {
   if (skus.length === 0) return null
 
   return (
     <>
-      <Hero couponCode={couponCode} />
+      <Hero title={title} description={description} couponCode={couponCode} />
       {
         <Wrapper>
           <SkusContainer skus={skus}>

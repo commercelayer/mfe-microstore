@@ -1,8 +1,4 @@
-import {
-  SkuField,
-  AddToCartButton,
-  AvailabilityTemplate,
-} from "@commercelayer/react-components"
+import { SkuField, AddToCartButton } from "@commercelayer/react-components"
 import styled from "styled-components"
 import tw from "twin.macro"
 

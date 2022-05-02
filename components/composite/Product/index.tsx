@@ -56,11 +56,11 @@ export const Product = () => {
             </ItemContainer>
             <AvailabilityContainer>
               <AvailabilityTemplate>
-                {({ quantity, text }) => {
+                {({ quantity, min, max, text }) => {
                   return (
                     <CardStock>
                       <span className="block w-2 h-2 bg-green-400 rounded-full" />
-                      {text}
+                      {text} min{min.days} max{max.days} q{quantity}
                     </CardStock>
                   )
                 }}
