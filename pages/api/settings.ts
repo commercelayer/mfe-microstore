@@ -155,7 +155,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     logoUrl: organization.logo_url,
     companyName: organization.name || "Test company",
     primaryColor: hex2hsl(organization.primary_color as string) || BLACK_COLOR,
-    favicon: organization.favicon_url || "/favicon.png",
+    favicon: organization.favicon_url || "/microstore/favicon.png",
   }
 
   return res
