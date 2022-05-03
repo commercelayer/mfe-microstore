@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 
 import { Microstore } from "components/composite/Microstore"
 import MicrostoreContainer from "components/composite/MicrostoreContainer"
+import SkeletonLoader from "components/composite/SkeletonLoader"
 import { useSettings } from "components/hooks/useSettings"
 
 const Home: NextPage = () => {
@@ -36,7 +37,7 @@ const Home: NextPage = () => {
     }
   }, [router])
 
-  if (isLoading || (!settings && !retryOnError)) return <p>loading skeleton</p>
+  if (isLoading || (!settings && !retryOnError)) return <SkeletonLoader />
 
   if (!settings) {
     if (retryOnError) {
