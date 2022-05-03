@@ -1,4 +1,4 @@
-const shouldAnalyzeBundles = process.env.ANALYZE === "true";
+const shouldAnalyzeBundles = process.env.ANALYZE === "true"
 
 const securityHeaders = [
   {
@@ -9,7 +9,7 @@ const securityHeaders = [
     key: "Strict-Transport-Security",
     value: "max-age=63072000",
   },
-];
+]
 
 let nextConfig = {
   async headers() {
@@ -19,21 +19,22 @@ let nextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
-    ];
+    ]
   },
   eslint: {},
+  basePath: "/microstore",
   poweredByHeader: false,
   swcMinify: true,
   webpack: (config) => {
-    return config;
+    return config
   },
-};
+}
 
 if (shouldAnalyzeBundles) {
   const withBundleAnalyzer = require("@next/bundle-analyzer")({
     enabled: true,
-  });
-  nextConfig = withBundleAnalyzer(nextConfig);
+  })
+  nextConfig = withBundleAnalyzer(nextConfig)
 }
 
-module.exports = nextConfig;
+module.exports = nextConfig
