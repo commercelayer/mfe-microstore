@@ -53,7 +53,6 @@ export const Product = () => {
                 </CardPriceWrapper>
                 <StyledAddToCartButton buyNowMode label="Buy Now" />
               </CardPrice>
-            </ItemContainer>
             <AvailabilityContainer>
               <AvailabilityTemplate>
                 {({ quantity, text }) => {
@@ -70,6 +69,7 @@ export const Product = () => {
                 }}
               </AvailabilityTemplate>
             </AvailabilityContainer>
+            </ItemContainer>
           </CardFooter>
         </CardBody>
       </Card>
