@@ -23,7 +23,6 @@ export const useSettings = (): UseSettings => {
     { revalidateOnFocus: false }
   )
 
-  console.log("hooks", data, error)
   if (!data && !error) {
     return { isLoading: true, settings: undefined }
   }

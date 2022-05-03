@@ -22,8 +22,6 @@ const MicrostoreContainer: React.FC<Props> = ({
   couponCode,
   children,
 }) => {
-  console.log(settings)
-
   const returnUrl = window.location.href
   return (
     <Base>

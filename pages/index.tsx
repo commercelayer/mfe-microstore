@@ -16,12 +16,9 @@ const Home: NextPage = () => {
   const [description, setDescription] = useState("")
   const [couponCode, setCouponCode] = useState("")
 
-  console.log(settings, retryOnError, isLoading)
-
   useEffect(() => {
     if (router.isReady) {
       const { skus, coupon_code } = router.query
-      console.log("skus", skus)
       if (skus) {
         setSkusArray((skus as string).split(","))
       }

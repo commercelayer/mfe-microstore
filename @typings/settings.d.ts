@@ -14,9 +14,6 @@ interface Settings {
   companyName: string
   primaryColor: HSLProps
   favicon: string
-  gtmId?: string
-  supportEmail?: string
-  supportPhone?: string
   skus?: string[]
   couponCode?: string
 }
@@ -30,7 +27,4 @@ type MicrostorePageContextProps = Pick<
   | "language"
   | "primaryColor"
   | "favicon"
-  | "gtmId"
-  | "supportEmail"
-  | "supportPhone"
 >

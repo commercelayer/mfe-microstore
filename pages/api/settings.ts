@@ -76,10 +76,6 @@ async function getOrganization(
           "name",
           "primary_color",
           "favicon_url",
-          "gtm_id",
-          "gtm_id_test",
-          "support_email",
-          "support_phone",
         ],
       },
     })
@@ -160,9 +156,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     companyName: organization.name || "Test company",
     primaryColor: hex2hsl(organization.primary_color as string) || BLACK_COLOR,
     favicon: organization.favicon_url || "/favicon.png",
-    gtmId: isTest ? organization.gtm_id_test : organization.gtm_id,
-    supportEmail: organization.support_email,
-    supportPhone: organization.support_phone,
   }
 
   return res
