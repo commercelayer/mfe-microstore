@@ -17,7 +17,7 @@ export const useSettings = (): UseSettings => {
 
   const { data, error } = useSWR(
     router.isReady
-      ? [`/api/settings?accessToken=${accessToken}`, random]
+      ? [`/microstore/api/settings?accessToken=${accessToken}`, random]
       : null,
     fetcher,
     { revalidateOnFocus: false }
