@@ -25,7 +25,7 @@ export const CardImage = styled.figure`
 export const CardTitle = styled.h3`
   ${tw`text-2xl`}
 `
-export const CardDesc = styled.p`
+export const CardDesc = styled.div`
   ${tw`text-sm text-gray-600 border-t border-gray-100 pt-4 mt-4`}
 `
 
