@@ -16,9 +16,9 @@ module.exports = {
     },
     colors: {
       primary: {
-        light: "#b3b7ff",
-        DEFAULT: "#666EFF",
-        dark: "#333780",
+        light: "var(--primary-light)",
+        DEFAULT: "var(--primary)",
+        dark: "var(--primary-dark)",
       },
       contrast: "var(--contrast)",
       transparent: 'transparent',
