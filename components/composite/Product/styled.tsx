@@ -16,11 +16,11 @@ export const Card = styled.div`
   ${tw`shadow-subtle flex flex-col gap-6 p-8 bg-white relative my-8 md:(p-6 flex-row rounded-lg)`}
 `
 export const CardBody = styled.div`
-  ${tw`relative`}
+  ${tw`relative flex-1`}
 `
 
 export const CardImage = styled.figure`
-  ${tw`relative w-full md:(w-7/12)`}
+  ${tw`relative w-full md:(w-32)`}
 `
 export const CardTitle = styled.h3`
   ${tw`text-2xl`}
