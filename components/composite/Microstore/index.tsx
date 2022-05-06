@@ -1,4 +1,10 @@
-import { SkusContainer, Skus } from "@commercelayer/react-components"
+import {
+  SkusContainer,
+  Skus,
+  ItemContainer,
+  PricesContainer,
+  AvailabilityContainer,
+} from "@commercelayer/react-components"
 
 import { Hero } from "components/composite/Hero"
 import { Product } from "components/composite/Product"
@@ -26,9 +32,15 @@ export const Microstore = ({
       {
         <Wrapper>
           <SkusContainer skus={skus}>
-            <Skus>
-              <Product />
-            </Skus>
+            <ItemContainer>
+              <PricesContainer>
+                <AvailabilityContainer>
+                  <Skus>
+                    <Product />
+                  </Skus>
+                </AvailabilityContainer>
+              </PricesContainer>
+            </ItemContainer>
           </SkusContainer>
         </Wrapper>
       }
