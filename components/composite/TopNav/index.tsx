@@ -4,6 +4,7 @@ import {
 } from "@commercelayer/react-components"
 import { FC } from "react"
 import styled from "styled-components"
+import tw from "twin.macro"
 
 import { Container } from "components/ui/Container"
 import { Header } from "components/ui/Header"
@@ -19,18 +20,14 @@ export const TopNav: FC<Props> = ({ logoUrl, companyName, cartUrl }) => {
   return (
     <Header>
       <Container>
-        <Nav className="flex justify-between">
+        <Nav>
           <Logo logoUrl={logoUrl} companyName={companyName} />
           <a href={cartUrl} className="relative">
             <CartIcon />
             <LineItemsContainer>
               <LineItemsCount>
                 {({ quantity }) =>
-                  quantity ? (
-                    <div className="absolute bottom-0 right-0 px-2 py-1 leading-none rounded-full text-[10px] bg-primary text-contrast">
-                      {quantity}
-                    </div>
-                  ) : null
+                  quantity ? <Badge>{quantity}</Badge> : null
                 }
               </LineItemsCount>
             </LineItemsContainer>
@@ -41,7 +38,15 @@ export const TopNav: FC<Props> = ({ logoUrl, companyName, cartUrl }) => {
   )
 }
 
-const Nav = styled.div``
+const Nav = styled.div`
+  ${tw`flex justify-between`}
+`
+
+const Badge = styled.div`
+  ${tw`absolute px-2 py-1 leading-none rounded-full text-[10px] bg-primary text-contrast`}
+  bottom: -4px;
+  right: -6px;
+`
 
 const CartIcon = () => {
   return (

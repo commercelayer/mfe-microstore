@@ -11,8 +11,6 @@ import GlobalStylesProvider from "components/data/GlobalStylesProvider"
 import { Base } from "components/ui/Base"
 import { Container } from "components/ui/Container"
 import { Footer } from "components/ui/Footer"
-import { Header } from "components/ui/Header"
-import { Logo } from "components/ui/Logo"
 
 interface Props {
   settings: Settings
