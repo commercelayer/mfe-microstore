@@ -4,6 +4,8 @@ import {
   OrderStorage,
 } from "@commercelayer/react-components"
 
+import { TopNav } from "../TopNav"
+
 import { MicrostoreHead } from "components/composite/MicrostoreHead"
 import GlobalStylesProvider from "components/data/GlobalStylesProvider"
 import { Base } from "components/ui/Base"
@@ -23,35 +25,40 @@ const MicrostoreContainer: React.FC<Props> = ({
   children,
 }) => {
   const returnUrl = window.location.href
+  const cartUrl = window.location.href // TODO: add proper cart url
+
   return (
-    <Base>
-      <MicrostoreHead title={settings.companyName} favicon={settings.favicon} />
-      <Header>
-        <Container>
-          <Logo logoUrl={settings.logoUrl} companyName={settings.companyName} />
-        </Container>
-      </Header>
-      <Container>
-        <CommerceLayer
-          accessToken={settings.accessToken}
-          endpoint={settings.endpoint}
+    <CommerceLayer
+      accessToken={settings.accessToken}
+      endpoint={settings.endpoint}
+    >
+      <GlobalStylesProvider primaryColor={settings.primaryColor} />
+      <OrderStorage persistKey="your-persist-key">
+        <OrderContainer
+          attributes={{
+            coupon_code: couponCode,
+            cart_url: cartUrl,
+            return_url: returnUrl,
+          }}
         >
-          <GlobalStylesProvider primaryColor={settings.primaryColor} />
-          <OrderStorage persistKey="your-persist-key">
-            <OrderContainer
-              attributes={{
-                coupon_code: couponCode,
-                cart_url: returnUrl,
-                return_url: returnUrl,
-              }}
-            >
+          <Base>
+            <MicrostoreHead
+              title={settings.companyName}
+              favicon={settings.favicon}
+            />
+            <TopNav
+              logoUrl={settings.logoUrl}
+              companyName={settings.companyName}
+              cartUrl={cartUrl}
+            />
+            <Container>
               {children}
               <Footer />
-            </OrderContainer>
-          </OrderStorage>
-        </CommerceLayer>
-      </Container>
-    </Base>
+            </Container>
+          </Base>
+        </OrderContainer>
+      </OrderStorage>
+    </CommerceLayer>
   )
 }
 
