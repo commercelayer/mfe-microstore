@@ -1,4 +1,5 @@
 import { AddToCartButton as AddToCartButtonComponent } from "@commercelayer/react-components"
+import { useRouter } from "next/router"
 import { FC, useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import tw from "twin.macro"
@@ -6,6 +7,9 @@ import tw from "twin.macro"
 import { ButtonCss } from "components/ui/Button"
 
 export const AddToCardButton: FC = () => {
+  const { query } = useRouter()
+  const isCartEnabled = Boolean(query.cart)
+
   const [justAdded, setJustAdded] = useState(false)
   const timeoutId = useRef<NodeJS.Timeout | null>(null)
 
@@ -24,12 +28,12 @@ export const AddToCardButton: FC = () => {
     }
   }, [justAdded])
 
-  return (
+  return isCartEnabled ? (
     <div>
-      <AddToCartButtonComponent>
+      <StyledAddToCartButton>
         {({ handleClick, ...rest }) => {
           return (
-            <StyledAddToCartButton
+            <button
               {...rest}
               disabled={justAdded}
               onClick={() => {
@@ -39,16 +43,18 @@ export const AddToCardButton: FC = () => {
               }}
             >
               Add to cart
-            </StyledAddToCartButton>
+            </button>
           )
         }}
-      </AddToCartButtonComponent>
+      </StyledAddToCartButton>
       {justAdded && <StyledFeedback>Item added to cart!</StyledFeedback>}
     </div>
+  ) : (
+    <StyledAddToCartButton buyNowMode label="Buy Now" />
   )
 }
 
-const StyledAddToCartButton = styled.button`
+const StyledAddToCartButton = styled(AddToCartButtonComponent)`
   ${ButtonCss}
 `
 

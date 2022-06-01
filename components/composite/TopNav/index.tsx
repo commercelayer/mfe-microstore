@@ -13,25 +13,37 @@ import { Logo } from "components/ui/Logo"
 type Props = {
   logoUrl?: string
   companyName: string
-  cartUrl: string
+  showCartIcon?: boolean
+  cartUrl?: string
 }
 
-export const TopNav: FC<Props> = ({ logoUrl, companyName, cartUrl }) => {
+export const TopNav: FC<Props> = ({
+  logoUrl,
+  companyName,
+  showCartIcon,
+  cartUrl,
+}) => {
   return (
     <Header>
       <Container>
         <Nav>
           <Logo logoUrl={logoUrl} companyName={companyName} />
-          <a href={cartUrl} className="relative">
-            <CartIcon />
-            <LineItemsContainer>
-              <LineItemsCount>
-                {({ quantity }) =>
-                  quantity ? <Badge>{quantity}</Badge> : null
-                }
-              </LineItemsCount>
-            </LineItemsContainer>
-          </a>
+          {showCartIcon ? (
+            <a
+              href={cartUrl}
+              title={cartUrl ? "View cart" : "Your cart is empty"}
+              className="relative"
+            >
+              <CartIcon />
+              <LineItemsContainer>
+                <LineItemsCount>
+                  {({ quantity }) =>
+                    quantity ? <Badge>{quantity}</Badge> : null
+                  }
+                </LineItemsCount>
+              </LineItemsContainer>
+            </a>
+          ) : null}
         </Nav>
       </Container>
     </Header>
