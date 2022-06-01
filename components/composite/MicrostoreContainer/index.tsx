@@ -31,7 +31,7 @@ const MicrostoreContainer: React.FC<Props> = ({
       endpoint={settings.endpoint}
     >
       <GlobalStylesProvider primaryColor={settings.primaryColor} />
-      <OrderStorage persistKey="your-persist-key">
+      <OrderStorage persistKey={`cl:${settings.slug}:orderId`}>
         <OrderContainer
           attributes={{
             coupon_code: couponCode,
