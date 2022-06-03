@@ -24,7 +24,7 @@ export class MicrostorePage {
 
     const querystring = new URLSearchParams(params)
 
-    const url = `/?${querystring}`
+    const url = `microstore/?${querystring}`
 
     await this.page.goto(`${url}`, {
       waitUntil: "networkidle",
@@ -32,7 +32,7 @@ export class MicrostorePage {
   }
 
   async expectAppTitle() {
-    await expect(this.page.locator("text=Microstore")).toBeVisible()
+    await this.page.waitForFunction(() => document.title.includes("Microstore"))
   }
 
   async expectErrorPage() {

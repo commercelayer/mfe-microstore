@@ -23,7 +23,5 @@ test.describe("with skus", () => {
 
   test("should navigate to microstore", async ({ microstorePage }) => {
     await microstorePage.expectAppTitle()
-    // const element = microstorePage.page.locator("[data-test-id=initial-step]")
-    // await expect(element).toHaveCount(1)
   })
 })
