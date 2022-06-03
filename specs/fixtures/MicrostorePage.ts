@@ -1,7 +1,8 @@
-import { Page, expect } from "@playwright/test"
+import { Page, expect, Locator } from "@playwright/test"
 
 interface GoToProps {
   accessToken?: string
+  cart?: boolean
 }
 
 interface AttributesProps {
@@ -12,11 +13,21 @@ interface AttributesProps {
 export class MicrostorePage {
   readonly page: Page
   readonly attributes?: AttributesProps
+  readonly buyNowButton: Locator
+  readonly addToCartButton: Locator
+  readonly cartItemsCount: Locator
 
   constructor(page: Page, attributes?: AttributesProps) {
     this.page = page
 
     this.attributes = attributes || {}
+    this.buyNowButton = this.page
+      .locator("[data-test-id=button-buy-now]")
+      .first()
+    this.addToCartButton = this.page
+      .locator("[data-test-id=button-add-to-cart]")
+      .first()
+    this.cartItemsCount = this.page.locator("[data-test-id=cart-items-count]")
   }
 
   async goto(props: GoToProps) {
@@ -33,6 +44,29 @@ export class MicrostorePage {
 
   async expectAppTitle() {
     await this.page.waitForFunction(() => document.title.includes("Microstore"))
+  }
+
+  async expectBuyNowButton() {
+    await expect(this.buyNowButton).toBeVisible()
+  }
+
+  async expectAddToCartButton() {
+    await expect(this.addToCartButton).toBeVisible()
+  }
+
+  async addItemToCart() {
+    await this.addToCartButton.click()
+  }
+
+  async checkCartItemsCount(total: number) {
+    await expect(this.cartItemsCount).toHaveText(`${total}`)
+  }
+
+  async expectCartLinkOnTop({ hasOrder }: { hasOrder: boolean }) {
+    const linkTitle = hasOrder ? "View cart" : "Your cart is empty"
+    await expect(
+      this.page.locator(`[data-test-id=link-view-cart][title='${linkTitle}']`)
+    ).toBeVisible()
   }
 
   async expectErrorPage() {

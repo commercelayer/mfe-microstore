@@ -23,5 +23,6 @@ test.describe("with skus", () => {
 
   test("should navigate to microstore", async ({ microstorePage }) => {
     await microstorePage.expectAppTitle()
+    await microstorePage.expectBuyNowButton()
   })
 })

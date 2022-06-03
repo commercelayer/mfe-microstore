@@ -33,12 +33,15 @@ export const TopNav: FC<Props> = ({
               href={cartUrl}
               title={cartUrl ? "View cart" : "Your cart is empty"}
               className="relative"
+              data-test-id="link-view-cart"
             >
               <CartIcon />
               <LineItemsContainer>
                 <LineItemsCount>
                   {({ quantity }) =>
-                    quantity ? <Badge>{quantity}</Badge> : null
+                    quantity ? (
+                      <Badge data-test-id="cart-items-count">{quantity}</Badge>
+                    ) : null
                   }
                 </LineItemsCount>
               </LineItemsContainer>

@@ -35,6 +35,7 @@ export const AddToCardButton: FC = () => {
           return (
             <button
               {...rest}
+              data-test-id="button-add-to-cart"
               disabled={justAdded}
               onClick={() => {
                 handleClick().then(({ success }) => {
@@ -50,7 +51,11 @@ export const AddToCardButton: FC = () => {
       {justAdded && <StyledFeedback>Item added to cart!</StyledFeedback>}
     </div>
   ) : (
-    <StyledAddToCartButton buyNowMode label="Buy Now" />
+    <StyledAddToCartButton
+      data-test-id="button-buy-now"
+      buyNowMode
+      label="Buy Now"
+    />
   )
 }
 
