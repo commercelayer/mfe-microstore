@@ -27,8 +27,22 @@ const MicrostoreContainer: React.FC<Props> = ({
 }) => {
   const { query } = useRouter()
   const isCartEnabled = Boolean(query.cart)
-  const [cartUrl, setCartUrl] = useState<string>()
   const returnUrl = window.location.href
+
+  // we set cart url as internal state. In this way, once we get the order id
+  // the <OrderContainer> will receive the proper url and will update the order
+  const [cartUrl, setCartUrl] = useState<string>()
+  const updateCartUrl = (orderId?: string) => {
+    if (!cartUrl && orderId && isCartEnabled) {
+      setCartUrl(
+        makeCartUrl({
+          basePath: "cart",
+          orderId,
+          accessToken: settings.accessToken,
+        })
+      )
+    }
+  }
 
   return (
     <CommerceLayer
@@ -44,16 +58,7 @@ const MicrostoreContainer: React.FC<Props> = ({
             return_url: returnUrl,
           }}
           fetchOrder={(order) => {
-            if (!cartUrl && order.id && isCartEnabled) {
-              // setting cart url as internal state so it will be passed to `<OrderContainer>` attributes
-              setCartUrl(
-                makeCartUrl({
-                  basePath: "cart",
-                  orderId: order.id,
-                  accessToken: settings.accessToken,
-                })
-              )
-            }
+            updateCartUrl(order.id)
           }}
         >
           <Base>
