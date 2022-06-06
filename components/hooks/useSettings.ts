@@ -15,27 +15,23 @@ export const useSettings = (): UseSettings => {
   const router = useRouter()
   const { accessToken } = router.query
 
-  const { data, error } = useSWR(
+  const { data: settings, error } = useSWR(
     router.isReady
       ? [`/microstore/api/settings?accessToken=${accessToken}`, random]
       : null,
     fetcher,
     { revalidateOnFocus: false }
   )
+  const isLoading = !settings && !error
 
-  if (!data && !error) {
-    return { isLoading: true, settings: undefined }
-  }
-
-  if (error || (data && !data.valid)) {
-    if (!data?.retryOnError) {
+  if (error || (settings && !settings.valid)) {
+    if (!settings?.retryOnError) {
       router.push("/404")
     }
-    return { settings: undefined, retryOnError: true, isLoading: false }
   }
 
   return {
-    settings: data,
-    isLoading: false,
+    settings,
+    isLoading,
   }
 }

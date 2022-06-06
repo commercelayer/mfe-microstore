@@ -14,8 +14,6 @@ interface Settings {
   companyName: string
   primaryColor: HSLProps
   favicon: string
-  skus?: string[]
-  couponCode?: string
 }
 
 type MicrostorePageContextProps = Pick<
