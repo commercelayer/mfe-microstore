@@ -33,7 +33,6 @@ export const TopNav: FC<Props> = ({
             <CartLink
               href={cartUrl}
               title={cartUrl ? "View cart" : "Your cart is empty"}
-              className="relative"
               data-test-id="link-view-cart"
             >
               <CartIcon />
