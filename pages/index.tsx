@@ -7,10 +7,16 @@ import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 import { useSettings } from "components/hooks/useSettings"
 
 const Home: NextPage = () => {
-  const { settings, isLoading } = useSettings()
+  const { settings, isLoading, retryOnError } = useSettings()
   const { skus, couponCode, description, title } = useDataFromUrl()
 
-  if (isLoading || !settings) return <SkeletonLoader />
+  if (retryOnError) {
+    return <div>Connectivity error. Retry!</div>
+  }
+
+  if (isLoading || !settings) {
+    return <SkeletonLoader />
+  }
 
   return (
     <>

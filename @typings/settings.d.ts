@@ -6,7 +6,7 @@ interface HSLProps {
 
 interface Settings {
   accessToken: string
-  valid: boolean
+  valid: true
   endpoint: string
   domain: string
   slug: string
