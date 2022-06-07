@@ -1,5 +1,6 @@
 import type { NextPage } from "next"
 
+import { ErrorContainer } from "components/composite/ErrorContainer"
 import { Microstore } from "components/composite/Microstore"
 import MicrostoreContainer from "components/composite/MicrostoreContainer"
 import SkeletonLoader from "components/composite/SkeletonLoader"
@@ -11,7 +12,12 @@ const Home: NextPage = () => {
   const { skus, couponCode, description, title } = useDataFromUrl()
 
   if (retryOnError) {
-    return <div>Connectivity error. Retry!</div>
+    return (
+      <ErrorContainer
+        errorCode="Connectivity issues"
+        errorMessage="Try to reload the page"
+      />
+    )
   }
 
   if (isLoading || !settings) {
