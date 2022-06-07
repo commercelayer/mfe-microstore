@@ -136,7 +136,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     organization: slug,
     accessToken: accessToken,
     domain,
-    timeout: 100,
   })
 
   const organizationResource = await getOrganization(cl)
