@@ -514,10 +514,10 @@
     client-oauth2 "^4.3.3"
     tslib "^2.3.1"
 
-"@commercelayer/react-components@^3.13.0":
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/@commercelayer/react-components/-/react-components-3.13.0.tgz#631cc3260d639d509bf674446afec41d3fc9e660"
-  integrity sha512-AVIeYoZxQM6z8XPB9qTvcajIJNQVk7clSKUqW7I+ep0fWIEN2uM4PBCB9zvudib2LsCKybAmnhlaeQvLCmfFKA==
+"@commercelayer/react-components@^3.14.0-beta.1":
+  version "3.14.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@commercelayer/react-components/-/react-components-3.14.0-beta.1.tgz#60994c92c4ead423b84085f768fab88f320e0fbd"
+  integrity sha512-sF0QP8Ba46gtkAPqpVRjz45FYCNb1G/cWmsQrC8I6Vx6p7CyXovZue+24g1SbiINr9VNMUJ2s5ljV/fK8XlLtw==
   dependencies:
     "@ac-dev/countries-service" "^1.2.0"
     "@ac-dev/states-service" "^1.1.0"

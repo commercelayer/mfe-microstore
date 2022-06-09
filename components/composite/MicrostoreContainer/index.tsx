@@ -26,7 +26,7 @@ const MicrostoreContainer: React.FC<Props> = ({
   children,
 }) => {
   const { query } = useRouter()
-  const isCartEnabled = Boolean(query.cart)
+  const isCartEnabled = query.cart === "true"
   const returnUrl = window.location.href
 
   // we set cart url as internal state. In this way, once we get the order id
