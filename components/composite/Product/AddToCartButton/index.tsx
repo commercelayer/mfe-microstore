@@ -7,9 +7,9 @@ import { AddAndCart } from "./AddAndCart"
 import { AddAndCheckout } from "./AddAndCheckout"
 import { AddAndStay } from "./AddAndStay"
 
-type Experiece = "addAndStay" | "addAndCart" | "addAndCheckout"
+type Experience = "addAndStay" | "addAndCart" | "addAndCheckout"
 
-const getExperience = (query: ParsedUrlQuery): Experiece => {
+const getExperience = (query: ParsedUrlQuery): Experience => {
   const isCartEnabled = query.cart === "true"
   const isAddAndStay = query.addAndStay === "true"
 
@@ -20,13 +20,13 @@ const getExperience = (query: ParsedUrlQuery): Experiece => {
     : "addAndCheckout"
 }
 
-const ButtonExperiences: Record<Experiece, JSX.Element> = {
+const ButtonExperiences: Record<Experience, JSX.Element> = {
   addAndStay: <AddAndStay />,
   addAndCart: <AddAndCart />,
   addAndCheckout: <AddAndCheckout />,
 }
 
-export const AddToCardButton: FC = () => {
+export const AddToCartButton: FC = () => {
   const { query } = useRouter()
   const activeExperience = getExperience(query)
 

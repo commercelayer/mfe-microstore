@@ -7,7 +7,7 @@ import {
   AvailabilityTemplate,
 } from "@commercelayer/react-components"
 
-import { AddToCardButton } from "./AddToCartButton"
+import { AddToCartButton } from "./AddToCartButton"
 import { DiscountBadge } from "./DiscountBadge"
 import {
   Card,
@@ -46,7 +46,7 @@ export const Product = () => {
                   compareClassName="text-gray-400 line-through mr-2"
                 />
               </CardPriceWrapper>
-              <AddToCardButton />
+              <AddToCartButton />
             </CardPrice>
             <AvailabilityTemplate>
               {({ quantity, text }) => {
