@@ -70,7 +70,6 @@ const MicrostoreContainer: React.FC<Props> = ({
               logoUrl={settings.logoUrl}
               companyName={settings.companyName}
               showCartIcon={isCartEnabled}
-              cartUrl={cartUrl}
             />
             <Container>
               {children}

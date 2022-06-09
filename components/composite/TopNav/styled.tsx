@@ -1,3 +1,4 @@
+import { CartLink } from "@commercelayer/react-components"
 import styled from "styled-components"
 import tw from "twin.macro"
 
@@ -5,7 +6,7 @@ export const Nav = styled.div`
   ${tw`flex justify-between items-center`}
 `
 
-export const CartLink = styled.a`
+export const CartLinkStyled = styled(CartLink)`
   ${tw`block relative`}
 `
 
