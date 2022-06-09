@@ -5,6 +5,7 @@ test.describe("With cart feature enabled", () => {
     defaultParams: {
       skus: "APPTESLA",
       cart: true,
+      addAndStay: true,
     },
   })
 
@@ -12,8 +13,8 @@ test.describe("With cart feature enabled", () => {
     await microstorePage.expectAddToCartButton()
   })
 
-  test("should see a disabled cart link on top", async ({ microstorePage }) => {
-    await microstorePage.expectCartLinkOnTop({ hasOrder: false })
+  test("should see an empty cart link on top", async ({ microstorePage }) => {
+    await microstorePage.expectCartLinkOnTop()
   })
 
   test("view cart link shold be enabled once one product has been added to cart", async ({
@@ -21,7 +22,7 @@ test.describe("With cart feature enabled", () => {
   }) => {
     await microstorePage.addItemToCart()
     await microstorePage.checkCartItemsCount(1)
-    await microstorePage.expectCartLinkOnTop({ hasOrder: true })
+    await microstorePage.expectCartLinkOnTop()
   })
 
   test("view cart link should have a proper cart URL", async ({

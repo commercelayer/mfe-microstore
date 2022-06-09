@@ -62,10 +62,9 @@ export class MicrostorePage {
     await expect(this.cartItemsCount).toHaveText(`${total}`)
   }
 
-  async expectCartLinkOnTop({ hasOrder }: { hasOrder: boolean }) {
-    const linkTitle = hasOrder ? "View cart" : "Your cart is empty"
+  async expectCartLinkOnTop() {
     await expect(
-      this.page.locator(`[data-test-id=link-view-cart][title='${linkTitle}']`)
+      this.page.locator(`[data-test-id=link-view-cart]`)
     ).toBeVisible()
   }
 

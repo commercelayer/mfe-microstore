@@ -11,7 +11,9 @@ test("should navigate to the 404 page with wrong url", async ({ page }) => {
 })
 
 test("should navigate to no skus", async ({ microstorePage }) => {
-  await expect(microstorePage.page.locator("text=No skus")).toBeVisible()
+  await expect(
+    microstorePage.page.locator("data-test-id=no-skus-found")
+  ).toBeVisible()
 })
 
 test.describe("with skus", () => {

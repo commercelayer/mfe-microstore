@@ -26,7 +26,7 @@ export const Microstore = ({
 }: Props) => {
   if (skus.length === 0)
     return (
-      <div className="py-10 font-bold">
+      <div className="py-10 font-bold" data-test-id="no-skus-found">
         We could not find any products to display. Please check your URL and try
         again.
       </div>
