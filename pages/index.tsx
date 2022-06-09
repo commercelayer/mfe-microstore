@@ -1,57 +1,34 @@
 import type { NextPage } from "next"
-import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
 
+import { ErrorContainer } from "components/composite/ErrorContainer"
 import { Microstore } from "components/composite/Microstore"
 import MicrostoreContainer from "components/composite/MicrostoreContainer"
 import SkeletonLoader from "components/composite/SkeletonLoader"
+import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 import { useSettings } from "components/hooks/useSettings"
 
 const Home: NextPage = () => {
-  const router = useRouter()
+  const { settings, isLoading, retryOnError } = useSettings()
+  const { skus, couponCode, description, title } = useDataFromUrl()
 
-  const { settings, retryOnError, isLoading } = useSettings()
-  const [skusArray, setSkusArray] = useState<string[]>([])
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [couponCode, setCouponCode] = useState("")
-
-  useEffect(() => {
-    if (router.isReady) {
-      const { skus, coupon_code } = router.query
-      if (skus) {
-        setSkusArray((skus as string).split(","))
-      }
-      if (router.query.title) {
-        setTitle(router.query.title as string)
-      }
-      if (router.query.description) {
-        setDescription(router.query.description as string)
-      }
-      if (coupon_code) {
-        setCouponCode(coupon_code as string)
-      }
-    }
-  }, [router])
-
-  if (isLoading || (!settings && !retryOnError)) return <SkeletonLoader />
-
-  if (!settings) {
-    if (retryOnError) {
-      return <p>retry</p>
-    }
-    return <p>retry</p>
+  if (retryOnError) {
+    return (
+      <ErrorContainer
+        errorCode="Connectivity issues"
+        errorMessage="Try to reload the page"
+      />
+    )
   }
 
-  if (skusArray.length === 0) {
-    return <p>No skus</p>
+  if (isLoading || !settings) {
+    return <SkeletonLoader />
   }
 
   return (
     <>
-      <MicrostoreContainer settings={{ ...settings, couponCode }}>
+      <MicrostoreContainer settings={{ ...settings }} couponCode={couponCode}>
         <Microstore
-          skus={skusArray}
+          skus={skus}
           couponCode={couponCode}
           title={title}
           description={description}

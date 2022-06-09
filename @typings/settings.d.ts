@@ -6,7 +6,7 @@ interface HSLProps {
 
 interface Settings {
   accessToken: string
-  valid: boolean
+  valid: true
   endpoint: string
   domain: string
   slug: string
@@ -14,8 +14,6 @@ interface Settings {
   companyName: string
   primaryColor: HSLProps
   favicon: string
-  skus?: string[]
-  couponCode?: string
 }
 
 type MicrostorePageContextProps = Pick<
