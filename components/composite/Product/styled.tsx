@@ -1,15 +1,9 @@
-import { SkuField, AddToCartButton } from "@commercelayer/react-components"
+import { SkuField } from "@commercelayer/react-components"
 import styled from "styled-components"
 import tw from "twin.macro"
 
-import { ButtonCss } from "components/ui/Button"
-
 export const Thumb = styled(SkuField)`
   ${tw`h-48 rounded-md w-full object-scale-down self-start p-1 border border-gray-100 md:(h-36)`}
-`
-
-export const StyledAddToCartButton = styled(AddToCartButton)`
-  ${ButtonCss}
 `
 
 export const Card = styled.div`

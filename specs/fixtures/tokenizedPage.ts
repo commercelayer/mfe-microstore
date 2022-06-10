@@ -12,6 +12,8 @@ export interface DefaultParamsProps {
   accessToken?: string
   market?: string
   skus?: string
+  cart?: boolean
+  addAndStay?: boolean
 }
 
 type FixtureType = {

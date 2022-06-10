@@ -3,14 +3,17 @@ import {
   OrderContainer,
   OrderStorage,
 } from "@commercelayer/react-components"
+import { useRouter } from "next/router"
+import { useState } from "react"
+
+import { TopNav } from "../TopNav"
 
 import { MicrostoreHead } from "components/composite/MicrostoreHead"
 import GlobalStylesProvider from "components/data/GlobalStylesProvider"
 import { Base } from "components/ui/Base"
 import { Container } from "components/ui/Container"
 import { Footer } from "components/ui/Footer"
-import { Header } from "components/ui/Header"
-import { Logo } from "components/ui/Logo"
+import { makeCartUrl } from "components/utils/makeCartUrl"
 
 interface Props {
   settings: Settings
@@ -22,36 +25,60 @@ const MicrostoreContainer: React.FC<Props> = ({
   couponCode,
   children,
 }) => {
+  const { query } = useRouter()
+  const isCartEnabled = query.cart === "true"
   const returnUrl = window.location.href
+
+  // we set cart url as internal state. In this way, once we get the order id
+  // the <OrderContainer> will receive the proper url and will update the order
+  const [cartUrl, setCartUrl] = useState<string>()
+  const updateCartUrl = (orderId?: string) => {
+    if (!cartUrl && orderId && isCartEnabled) {
+      setCartUrl(
+        makeCartUrl({
+          basePath: "cart",
+          orderId,
+          accessToken: settings.accessToken,
+        })
+      )
+    }
+  }
+
   return (
-    <Base>
-      <MicrostoreHead title={settings.companyName} favicon={settings.favicon} />
-      <Header>
-        <Container>
-          <Logo logoUrl={settings.logoUrl} companyName={settings.companyName} />
-        </Container>
-      </Header>
-      <Container>
-        <CommerceLayer
-          accessToken={settings.accessToken}
-          endpoint={settings.endpoint}
+    <CommerceLayer
+      accessToken={settings.accessToken}
+      endpoint={settings.endpoint}
+    >
+      <GlobalStylesProvider primaryColor={settings.primaryColor} />
+      <OrderStorage persistKey={`cl:${settings.slug}:orderId`}>
+        <OrderContainer
+          attributes={{
+            coupon_code: couponCode,
+            cart_url: cartUrl,
+            return_url: returnUrl,
+          }}
+          fetchOrder={(order) => {
+            updateCartUrl(order.id)
+          }}
         >
-          <GlobalStylesProvider primaryColor={settings.primaryColor} />
-          <OrderStorage persistKey="your-persist-key">
-            <OrderContainer
-              attributes={{
-                coupon_code: couponCode,
-                cart_url: returnUrl,
-                return_url: returnUrl,
-              }}
-            >
+          <Base>
+            <MicrostoreHead
+              title={settings.companyName}
+              favicon={settings.favicon}
+            />
+            <TopNav
+              logoUrl={settings.logoUrl}
+              companyName={settings.companyName}
+              showCartIcon={isCartEnabled}
+            />
+            <Container>
               {children}
               <Footer />
-            </OrderContainer>
-          </OrderStorage>
-        </CommerceLayer>
-      </Container>
-    </Base>
+            </Container>
+          </Base>
+        </OrderContainer>
+      </OrderStorage>
+    </CommerceLayer>
   )
 }
 
