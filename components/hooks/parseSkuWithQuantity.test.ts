@@ -49,4 +49,16 @@ describe("parse optional quantity form sku in url", () => {
     expect(skuCode).toBe("SKUCODE")
     expect(quantity).toBe(0)
   })
+
+  test("should accept positive padded number", () => {
+    const { skuCode, quantity } = parseSkuWithQuantity("SKUCODE:0001")
+    expect(skuCode).toBe("SKUCODE")
+    expect(quantity).toBe(1)
+  })
+
+  test("should accept zero padded number", () => {
+    const { skuCode, quantity } = parseSkuWithQuantity("SKUCODE:000")
+    expect(skuCode).toBe("SKUCODE")
+    expect(quantity).toBe(0)
+  })
 })

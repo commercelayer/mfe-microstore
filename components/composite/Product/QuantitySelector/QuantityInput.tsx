@@ -24,6 +24,7 @@ export const QuantityInput: FC<Props> = ({ defaultValue }) => {
               setValue(parseInt(e.currentTarget.value, 10))
               handleChange(e as unknown as MouseEvent<HTMLInputElement>)
             }}
+            data-test-id="quantity-selector"
           >
             {options.map((i) => (
               <option key={i} value={i}>
