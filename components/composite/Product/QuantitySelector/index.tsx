@@ -9,8 +9,7 @@ export const QuantitySelector = () => {
 
   return (
     <SkuField attribute="code" tagElement="span">
-      {/* TODO: wait for fix release in react-componnet */}
-      {({ element: skuCode }) => {
+      {({ attributeValue: skuCode }) => {
         const defaultQuantity = skus.find(
           (o) => skuCode === o.skuCode
         )?.quantity

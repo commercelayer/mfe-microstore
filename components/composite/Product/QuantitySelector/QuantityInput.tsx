@@ -14,7 +14,8 @@ export const QuantityInput: FC<Props> = ({ defaultValue }) => {
 
   return (
     <QuantitySelector value={value.toString()}>
-      {({ handleChange, max = MAX_OPTIONS }) => {
+      {({ handleChange, max = MAX_OPTIONS, ...rest }) => {
+        console.log("rest", rest)
         const options = createSelectOptions(max)
 
         return options.length > 0 ? (
