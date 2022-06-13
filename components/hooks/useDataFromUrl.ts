@@ -32,7 +32,7 @@ const parseQueryValue = (
   return value
 }
 
-const parseQuerySkuValue = (
+export const parseQuerySkuValue = (
   value: string | string[] | undefined
 ): SkuWithQuantity[] => {
   if (!value || Array.isArray(value)) {
@@ -40,11 +40,12 @@ const parseQuerySkuValue = (
   }
 
   const skuList = (value || "").split(",").filter((v) => !!v)
-
-  return (skuList || []).map(parseSkuWithQuantity)
+  return skuList.map(parseSkuWithQuantity).filter(({ skuCode }) => !!skuCode)
 }
 
-const parseSkuWithQuantity = (skuWithQuantity: string): SkuWithQuantity => {
+export const parseSkuWithQuantity = (
+  skuWithQuantity: string
+): SkuWithQuantity => {
   const parsed = skuWithQuantity.trim().split(":") as
     | [string, string]
     | [string]
