@@ -1,13 +1,6 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
-type UrlData = {
-  skus: string[]
-  description?: string
-  title?: string
-  couponCode?: string
-}
-
 export const useDataFromUrl = () => {
   const router = useRouter()
   const [data, setData] = useState<UrlData>({
@@ -39,10 +32,27 @@ const parseQueryValue = (
   return value
 }
 
-const parseQuerySkuValue = (value: string | string[] | undefined): string[] => {
+const parseQuerySkuValue = (
+  value: string | string[] | undefined
+): SkuWithQuantity[] => {
   if (!value || Array.isArray(value)) {
     return []
   }
 
-  return (value || "").split(",").filter((v) => !!v)
+  const skuList = (value || "").split(",").filter((v) => !!v)
+
+  return (skuList || []).map(parseSkuWithQuantity)
+}
+
+const parseSkuWithQuantity = (skuWithQuantity: string): SkuWithQuantity => {
+  const parsed = skuWithQuantity.trim().split(":") as
+    | [string, string]
+    | [string]
+  const skuCode = parsed[0].trim()
+  const quantity = parseInt((parsed[1] && parsed[1].trim()) || "0")
+
+  return {
+    skuCode,
+    quantity: isNaN(quantity) ? 0 : quantity,
+  }
 }
