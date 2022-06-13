@@ -54,6 +54,6 @@ export const parseSkuWithQuantity = (
 
   return {
     skuCode,
-    quantity: isNaN(quantity) ? 0 : quantity,
+    quantity: isNaN(quantity) ? 0 : quantity > 0 ? quantity : 0,
   }
 }
