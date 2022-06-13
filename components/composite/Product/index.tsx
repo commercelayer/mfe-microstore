@@ -1,14 +1,12 @@
 import {
   SkuField,
-  AvailabilityContainer,
-  ItemContainer,
-  PricesContainer,
   Price,
   AvailabilityTemplate,
 } from "@commercelayer/react-components"
 
 import { AddToCartButton } from "./AddToCartButton"
 import { DiscountBadge } from "./DiscountBadge"
+import { QuantitySelector } from "./QuantitySelector"
 import {
   Card,
   CardBody,
@@ -46,7 +44,10 @@ export const Product = () => {
                   compareClassName="text-gray-400 line-through mr-2"
                 />
               </CardPriceWrapper>
-              <AddToCartButton />
+              <div className="flex gap-2">
+                <QuantitySelector />
+                <AddToCartButton />
+              </div>
             </CardPrice>
             <AvailabilityTemplate>
               {({ quantity, text }) => {
