@@ -2,7 +2,7 @@ import { SkuField } from "@commercelayer/react-components"
 
 import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 
-import { QuanityInput } from "./QuanityInput"
+import { QuantityInput } from "./QuantityInput"
 
 export const QuantitySelector = () => {
   const { skus } = useDataFromUrl()
@@ -20,7 +20,7 @@ export const QuantitySelector = () => {
           return null
         }
 
-        return <QuanityInput defaultValue={defaultQuantity} />
+        return <QuantityInput defaultValue={defaultQuantity} />
       }}
     </SkuField>
   )

@@ -9,7 +9,7 @@ interface Props {
 
 const MAX_OPTIONS = 10
 
-export const QuanityInput: FC<Props> = ({ defaultValue }) => {
+export const QuantityInput: FC<Props> = ({ defaultValue }) => {
   const [value, setValue] = useState(defaultValue)
 
   return (
