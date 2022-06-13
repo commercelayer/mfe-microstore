@@ -13,7 +13,7 @@ export const QuantityInput: FC<Props> = ({ defaultValue }) => {
   const [value, setValue] = useState(defaultValue)
 
   return (
-    <QuantitySelector>
+    <QuantitySelector value={value.toString()}>
       {({ handleChange, max = MAX_OPTIONS }) => {
         const options = createSelectOptions(max)
 
