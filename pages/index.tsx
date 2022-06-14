@@ -9,7 +9,7 @@ import { useSettings } from "components/hooks/useSettings"
 
 const Home: NextPage = () => {
   const { settings, isLoading, retryOnError } = useSettings()
-  const { skus, couponCode, description, title } = useDataFromUrl()
+  const { skus, couponCode, description, title, buyAll } = useDataFromUrl()
 
   if (retryOnError) {
     return (
@@ -32,6 +32,8 @@ const Home: NextPage = () => {
           couponCode={couponCode}
           title={title}
           description={description}
+          settings={settings}
+          showBuyAll={buyAll}
         />
       </MicrostoreContainer>
     </>

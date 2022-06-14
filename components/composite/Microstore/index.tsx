@@ -6,6 +6,8 @@ import {
   AvailabilityContainer,
 } from "@commercelayer/react-components"
 
+import { BuyAllButton } from "../BuyAllButton"
+
 import { Hero } from "components/composite/Hero"
 import { Product } from "components/composite/Product"
 
@@ -16,6 +18,8 @@ interface Props {
   title?: string
   description?: string
   couponCode?: string
+  settings: Settings
+  showBuyAll?: boolean
 }
 
 export const Microstore = ({
@@ -23,6 +27,8 @@ export const Microstore = ({
   title,
   description,
   couponCode,
+  settings,
+  showBuyAll,
 }: Props) => {
   if (skus.length === 0)
     return (
@@ -35,6 +41,14 @@ export const Microstore = ({
   return (
     <>
       <Hero title={title} description={description} couponCode={couponCode} />
+
+      {showBuyAll && (
+        <BuyAllButton
+          settings={settings}
+          onSuccess={(order) => (window.location.href = order.cart_url || "")}
+        />
+      )}
+
       {
         <Wrapper>
           <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>

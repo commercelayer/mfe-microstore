@@ -11,4 +11,5 @@ type UrlData = {
   accessToken?: string
   cart?: boolean
   inline?: boolean
+  all?: boolean // buy all
 }
