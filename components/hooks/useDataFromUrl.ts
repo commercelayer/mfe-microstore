@@ -9,17 +9,44 @@ export const useDataFromUrl = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      const { skus, coupon_code, title, description } = router.query
+      const {
+        skus,
+        couponCode,
+        title,
+        description,
+        accessToken,
+        cart,
+        inline,
+      } = router.query
       setData({
         skus: parseQuerySkuValue(skus),
         description: parseQueryValue(description),
         title: parseQueryValue(title),
-        couponCode: parseQueryValue(coupon_code),
+        couponCode: parseQueryValue(couponCode),
+        accessToken: parseQueryValue(accessToken),
+        cart: parseBooleanValue(cart),
+        inline: parseBooleanValue(inline),
       })
     }
   }, [router])
 
-  return data
+  const syncUrl = (urlDataToSync: Partial<UrlData>) => {
+    const newUrlData = { ...data, ...urlDataToSync }
+    router.push(
+      {
+        query: transformUrlDataToQueryObject(newUrlData),
+      },
+      undefined,
+      {
+        scroll: false,
+      }
+    )
+  }
+
+  return {
+    ...data,
+    syncUrl,
+  }
 }
 
 const parseQueryValue = (
@@ -30,6 +57,14 @@ const parseQueryValue = (
   }
 
   return value
+}
+
+const parseBooleanValue = (value: string | string[] | undefined): boolean => {
+  if (!value || Array.isArray(value) || value !== "true") {
+    return false
+  }
+
+  return true
 }
 
 export const parseQuerySkuValue = (
@@ -56,4 +91,25 @@ export const parseSkuWithQuantity = (
     skuCode,
     quantity: isNaN(quantity) ? 0 : quantity > 0 ? quantity : 0,
   }
+}
+
+export const transformUrlDataToQueryObject = (urlData: UrlData) => {
+  const newQuery = {
+    skus: urlData.skus.map((s) => `${s.skuCode}:${s.quantity}`).join(","),
+    description: urlData.description,
+    title: urlData.title,
+    couponCode: urlData.couponCode,
+    accessToken: urlData.accessToken,
+    cart: urlData.cart,
+    inline: urlData.inline,
+  }
+
+  Object.keys(newQuery).forEach((k) => {
+    const paramName = k as keyof typeof newQuery
+    if (newQuery[paramName] === undefined) {
+      delete newQuery[paramName]
+    }
+  })
+
+  return newQuery
 }

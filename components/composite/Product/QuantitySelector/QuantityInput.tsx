@@ -1,30 +1,53 @@
 import { QuantitySelector } from "@commercelayer/react-components"
-import { FC, useState, MouseEvent } from "react"
+import { useRouter } from "next/router"
+import { FC, useState, MouseEvent, ChangeEvent, useEffect } from "react"
+
+import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 
 import { createSelectOptions } from "./createSelectOptions"
 
 interface Props {
   defaultValue: number
+  itemCode: string
 }
 
 const MAX_OPTIONS = 10
 
-export const QuantityInput: FC<Props> = ({ defaultValue }) => {
-  const [value, setValue] = useState(defaultValue)
+export const QuantityInput: FC<Props> = ({ defaultValue, itemCode }) => {
+  const [quantityValue, setQuantityValue] = useState(defaultValue)
+  const { skus, syncUrl } = useDataFromUrl()
+
+  useEffect(
+    function keepUrlInSyncWithQuantity() {
+      if (skus?.length && quantityValue !== defaultValue) {
+        syncUrl({
+          skus: skus.map((s) =>
+            s.skuCode === itemCode
+              ? {
+                  ...s,
+                  quantity: quantityValue,
+                }
+              : s
+          ),
+        })
+      }
+    },
+    [quantityValue]
+  )
 
   return (
-    <QuantitySelector value={value.toString()}>
-      {({ handleChange, max = MAX_OPTIONS, ...rest }) => {
-        console.log("rest", rest)
+    <QuantitySelector value={quantityValue.toString()}>
+      {({ handleChange, max = MAX_OPTIONS }) => {
         const options = createSelectOptions(max)
+        const onQuantityChange = (e: ChangeEvent<HTMLSelectElement>) => {
+          setQuantityValue(parseInt(e.currentTarget.value, 10))
+          handleChange(e as unknown as MouseEvent<HTMLInputElement>)
+        }
 
         return options.length > 0 ? (
           <select
-            value={value}
-            onChange={(e) => {
-              setValue(parseInt(e.currentTarget.value, 10))
-              handleChange(e as unknown as MouseEvent<HTMLInputElement>)
-            }}
+            value={quantityValue}
+            onChange={onQuantityChange}
             data-test-id="quantity-selector"
           >
             {options.map((i) => (

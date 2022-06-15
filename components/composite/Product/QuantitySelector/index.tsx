@@ -19,7 +19,12 @@ export const QuantitySelector = () => {
           return null
         }
 
-        return <QuantityInput defaultValue={defaultQuantity} />
+        return (
+          <QuantityInput
+            defaultValue={defaultQuantity}
+            itemCode={`${skuCode}`}
+          />
+        )
       }}
     </SkuField>
   )
