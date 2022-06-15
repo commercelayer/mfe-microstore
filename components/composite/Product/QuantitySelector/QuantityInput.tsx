@@ -1,5 +1,4 @@
 import { QuantitySelector } from "@commercelayer/react-components"
-import { useRouter } from "next/router"
 import { FC, useState, MouseEvent, ChangeEvent, useEffect } from "react"
 
 import { useDataFromUrl } from "components/hooks/useDataFromUrl"

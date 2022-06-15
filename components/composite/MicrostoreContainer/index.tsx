@@ -3,12 +3,10 @@ import {
   OrderContainer,
   OrderStorage,
 } from "@commercelayer/react-components"
-import { useRouter } from "next/router"
 import { useState } from "react"
 
-import { TopNav } from "../TopNav"
-
 import { MicrostoreHead } from "components/composite/MicrostoreHead"
+import { TopNav } from "components/composite/TopNav"
 import GlobalStylesProvider from "components/data/GlobalStylesProvider"
 import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 import { Base } from "components/ui/Base"
