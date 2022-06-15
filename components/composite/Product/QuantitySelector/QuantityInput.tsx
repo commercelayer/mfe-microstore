@@ -2,6 +2,7 @@ import { QuantitySelector } from "@commercelayer/react-components"
 import { FC, useState, MouseEvent, ChangeEvent, useEffect } from "react"
 
 import { useDataFromUrl } from "components/hooks/useDataFromUrl"
+import { Select } from "components/ui/Select"
 
 import { createSelectOptions } from "./createSelectOptions"
 
@@ -44,7 +45,7 @@ export const QuantityInput: FC<Props> = ({ defaultValue, itemCode }) => {
         }
 
         return options.length > 0 ? (
-          <select
+          <Select
             value={quantityValue}
             onChange={onQuantityChange}
             data-test-id="quantity-selector"
@@ -58,7 +59,7 @@ export const QuantityInput: FC<Props> = ({ defaultValue, itemCode }) => {
             {!options.includes(defaultValue) ? (
               <option value={defaultValue}> {defaultValue}</option>
             ) : null}
-          </select>
+          </Select>
         ) : null
       }}
     </QuantitySelector>

@@ -44,7 +44,7 @@ export const Product = () => {
                   compareClassName="text-gray-400 line-through mr-2"
                 />
               </CardPriceWrapper>
-              <div className="flex gap-2">
+              <div className="flex items-center gap-2">
                 <QuantitySelector />
                 <AddToCartButton />
               </div>
