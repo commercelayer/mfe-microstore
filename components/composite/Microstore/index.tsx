@@ -5,6 +5,7 @@ import {
   PricesContainer,
   AvailabilityContainer,
 } from "@commercelayer/react-components"
+import { useState } from "react"
 
 import { BuyAllButton } from "../BuyAllButton"
 
@@ -30,6 +31,8 @@ export const Microstore = ({
   settings,
   showBuyAll,
 }: Props) => {
+  const [isBuyingAll, setIsBuyingAll] = useState(false)
+
   if (skus.length === 0)
     return (
       <div className="py-10 font-bold" data-test-id="no-skus-found">
@@ -45,7 +48,13 @@ export const Microstore = ({
       {showBuyAll && (
         <BuyAllButton
           settings={settings}
+          onStart={() => {
+            setIsBuyingAll(true)
+          }}
           onSuccess={(order) => (window.location.href = order.cart_url || "")}
+          onError={() => {
+            setIsBuyingAll(false)
+          }}
         />
       )}
 
@@ -56,7 +65,7 @@ export const Microstore = ({
               <PricesContainer>
                 <AvailabilityContainer>
                   <Skus>
-                    <Product />
+                    <Product isEnabled={!isBuyingAll} />
                   </Skus>
                 </AvailabilityContainer>
               </PricesContainer>

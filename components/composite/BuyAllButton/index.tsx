@@ -8,11 +8,17 @@ import { buyAllSkus } from "components/utils/buyAllSkus"
 
 interface Props {
   settings: Settings
-  onSuccess: (order: Order) => void
+  onStart?: () => void
+  onSuccess?: (order: Order) => void
   onError?: () => void
 }
 
-export const BuyAllButton: FC<Props> = ({ settings, onSuccess, onError }) => {
+export const BuyAllButton: FC<Props> = ({
+  settings,
+  onSuccess,
+  onError,
+  onStart,
+}) => {
   const [isBuyingAll, setIsBuyingAll] = useState(false)
   const { skus } = useDataFromUrl()
   const skusWithQuantity = skus.map((s) => ({
@@ -22,6 +28,7 @@ export const BuyAllButton: FC<Props> = ({ settings, onSuccess, onError }) => {
 
   const buyAllHandler = async () => {
     setIsBuyingAll(true)
+    onStart && onStart()
     try {
       const order = await buyAllSkus({
         skus: skusWithQuantity,
@@ -29,10 +36,10 @@ export const BuyAllButton: FC<Props> = ({ settings, onSuccess, onError }) => {
         domain: settings.domain,
         slug: settings.slug,
       })
-      onSuccess(order)
+      onSuccess && onSuccess(order)
     } catch {
       onError && onError()
-      setIsBuyingAll(true)
+      setIsBuyingAll(false)
     }
   }
 

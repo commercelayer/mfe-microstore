@@ -3,7 +3,11 @@ import { FC } from "react"
 import { StyledAddToCartButton, StyledFeedback } from "./styled"
 import { useAddToCartFeedback } from "./useAddToCartFeedback"
 
-export const AddInlineButton: FC = () => {
+interface Props {
+  disabled?: boolean
+}
+
+export const AddInlineButton: FC<Props> = ({ disabled }) => {
   const { justAdded, handleOnAddFeedback } = useAddToCartFeedback()
   return (
     <div>
@@ -13,7 +17,7 @@ export const AddInlineButton: FC = () => {
             <button
               {...rest}
               data-test-id="button-add-to-cart"
-              disabled={justAdded}
+              disabled={disabled || justAdded}
               onClick={() => handleOnAddFeedback(handleClick)}
             >
               Add to cart
