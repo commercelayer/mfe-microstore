@@ -1,39 +1,18 @@
 import { QuantitySelector } from "@commercelayer/react-components"
-import { FC, useState, MouseEvent, ChangeEvent, useEffect } from "react"
+import { FC, useState, MouseEvent, ChangeEvent } from "react"
 
-import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 import { Select } from "components/ui/Select"
 
 import { createSelectOptions } from "./createSelectOptions"
 
 interface Props {
   defaultValue: number
-  itemCode: string
 }
 
 const MAX_OPTIONS = 10
 
-export const QuantityInput: FC<Props> = ({ defaultValue, itemCode }) => {
+export const QuantityInput: FC<Props> = ({ defaultValue }) => {
   const [quantityValue, setQuantityValue] = useState(defaultValue)
-  const { skus, syncUrl } = useDataFromUrl()
-
-  useEffect(
-    function keepUrlInSyncWithQuantity() {
-      if (skus?.length && quantityValue !== defaultValue) {
-        syncUrl({
-          skus: skus.map((s) =>
-            s.skuCode === itemCode
-              ? {
-                  ...s,
-                  quantity: quantityValue,
-                }
-              : s
-          ),
-        })
-      }
-    },
-    [quantityValue]
-  )
 
   return (
     <QuantitySelector value={quantityValue.toString()}>

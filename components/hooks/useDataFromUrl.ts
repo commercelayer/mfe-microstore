@@ -30,23 +30,7 @@ export const useDataFromUrl = () => {
     }
   }, [router])
 
-  const syncUrl = (urlDataToSync: Partial<UrlData>) => {
-    const newUrlData = { ...data, ...urlDataToSync }
-    router.push(
-      {
-        query: transformUrlDataToQueryObject(newUrlData),
-      },
-      undefined,
-      {
-        scroll: false,
-      }
-    )
-  }
-
-  return {
-    ...data,
-    syncUrl,
-  }
+  return data
 }
 
 const parseQueryValue = (
@@ -91,25 +75,4 @@ export const parseSkuWithQuantity = (
     skuCode,
     quantity: isNaN(quantity) ? 0 : quantity > 0 ? quantity : 0,
   }
-}
-
-export const transformUrlDataToQueryObject = (urlData: UrlData) => {
-  const newQuery = {
-    skus: urlData.skus.map((s) => `${s.skuCode}:${s.quantity}`).join(","),
-    description: urlData.description,
-    title: urlData.title,
-    couponCode: urlData.couponCode,
-    accessToken: urlData.accessToken,
-    cart: urlData.cart,
-    inline: urlData.inline,
-  }
-
-  Object.keys(newQuery).forEach((k) => {
-    const paramName = k as keyof typeof newQuery
-    if (newQuery[paramName] === undefined) {
-      delete newQuery[paramName]
-    }
-  })
-
-  return newQuery
 }
