@@ -7,30 +7,28 @@ import { Select } from "components/ui/Select"
 import { createSelectOptions } from "./createSelectOptions"
 
 interface Props {
-  defaultValue: number
   skuCode: string
 }
 
 const MAX_OPTIONS = 10
 
-export const QuantityInput: FC<Props> = ({ defaultValue, skuCode }) => {
-  const [quantityValue, setQuantityValue] = useState(defaultValue)
+export const QuantityInput: FC<Props> = ({ skuCode }) => {
+  const { updateQuantity, skus } = useBuyAll()
+  const quantityValue = skus.find((o) => skuCode === o.skuCode)?.quantity || 0
 
-  // keep buy all quantity in sync
-  const { updateQuantity } = useBuyAll()
-  useEffect(() => {
-    if (quantityValue && quantityValue !== defaultValue) {
-      updateQuantity({ skuCode, quantity: quantityValue })
-    }
-  }, [quantityValue])
+  if (!quantityValue) {
+    return null
+  }
 
   return (
     <QuantitySelector defaultValue={quantityValue.toString()}>
       {({ handleChange, max = MAX_OPTIONS }) => {
         const options = createSelectOptions(max)
         const onQuantityChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-          const newQty = parseInt(e.currentTarget.value, 10)
-          setQuantityValue(newQty)
+          updateQuantity({
+            skuCode,
+            quantity: parseInt(e.currentTarget.value, 10),
+          })
           handleChange(e as unknown as MouseEvent<HTMLInputElement>)
         }
 
@@ -46,8 +44,8 @@ export const QuantityInput: FC<Props> = ({ defaultValue, skuCode }) => {
               </option>
             ))}
             {/* appending default value if not in options range */}
-            {!options.includes(defaultValue) ? (
-              <option value={defaultValue}> {defaultValue}</option>
+            {!options.includes(quantityValue) ? (
+              <option value={quantityValue}>{quantityValue}</option>
             ) : null}
           </Select>
         ) : null

@@ -26,13 +26,7 @@ export const Microstore = ({
   description,
   couponCode,
 }: Props) => {
-  const { isBuyingAll, showBuyAllButton, buyAll } = useBuyAll()
-  const onBuyAllClick = async () => {
-    const order = await buyAll()
-    if (order?.cart_url) {
-      // window.location.href = order.cart_url
-    }
-  }
+  const { isBuyingAll, showBuyAllButton, buyAllSkus } = useBuyAll()
 
   if (skus.length === 0)
     return (
@@ -45,27 +39,28 @@ export const Microstore = ({
   return (
     <>
       <Hero title={title} description={description} couponCode={couponCode} />
+
       {showBuyAllButton && (
-        <Button disabled={isBuyingAll} onClick={onBuyAllClick}>
-          Buy all
-        </Button>
+        <div className="flex justify-end">
+          <Button disabled={isBuyingAll} onClick={() => buyAllSkus()}>
+            Buy all
+          </Button>
+        </div>
       )}
 
-      {
-        <Wrapper>
-          <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>
-            <ItemContainer>
-              <PricesContainer>
-                <AvailabilityContainer>
-                  <Skus>
-                    <Product />
-                  </Skus>
-                </AvailabilityContainer>
-              </PricesContainer>
-            </ItemContainer>
-          </SkusContainer>
-        </Wrapper>
-      }
+      <Wrapper>
+        <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>
+          <ItemContainer>
+            <PricesContainer>
+              <AvailabilityContainer>
+                <Skus>
+                  <Product />
+                </Skus>
+              </AvailabilityContainer>
+            </PricesContainer>
+          </ItemContainer>
+        </SkusContainer>
+      </Wrapper>
     </>
   )
 }

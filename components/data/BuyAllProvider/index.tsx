@@ -1,4 +1,3 @@
-import { Order } from "@commercelayer/sdk"
 import {
   createContext,
   FC,
@@ -14,24 +13,29 @@ import { buyAllSkus } from "components/utils/buyAllSkus"
 type BuyAllProviderValue = {
   showBuyAllButton: boolean
   isBuyingAll: boolean
-  buyAll: () => Promise<Order | undefined>
+  buyAllSkus: () => Promise<void>
   updateQuantity: (sku?: SkuWithQuantity) => void
+  skus: SkuWithQuantity[]
 }
 
-export const BuyAllContext = createContext<BuyAllProviderValue>({
-  showBuyAllButton: false,
-  isBuyingAll: false,
-  buyAll: async () => undefined,
-  updateQuantity: () => undefined,
-})
-
-interface Props {
+interface BuyAllProviderProps {
   children: ((props: BuyAllProviderValue) => ReactNode) | ReactNode
   settings: Settings
 }
 
-export const BuyAllProvider: FC<Props> = ({ children, settings }) => {
-  const { skus, all } = useDataFromUrl()
+const BuyAllContext = createContext<BuyAllProviderValue>({
+  showBuyAllButton: false,
+  isBuyingAll: false,
+  buyAllSkus: async () => undefined,
+  skus: [],
+  updateQuantity: () => undefined,
+})
+
+export const BuyAllProvider: FC<BuyAllProviderProps> = ({
+  children,
+  settings,
+}) => {
+  const { skus, all, cart } = useDataFromUrl()
   const [internalSkus, setInteralSkus] = useState<SkuWithQuantity[]>([])
   const [isBuyingAll, setIsBuyingAll] = useState(false)
   const [showBuyAllButton, setShowBuyAllButton] = useState(false)
@@ -44,10 +48,9 @@ export const BuyAllProvider: FC<Props> = ({ children, settings }) => {
     setInteralSkus(skus)
   }, [skus])
 
-  const buyAll = async () => {
+  const buyAllHandler = async () => {
     setIsBuyingAll(true)
     try {
-      console.log("internalSkus", internalSkus)
       const order = await buyAllSkus({
         skus: internalSkus,
         accessToken: settings.accessToken,
@@ -55,7 +58,15 @@ export const BuyAllProvider: FC<Props> = ({ children, settings }) => {
         slug: settings.slug,
       })
 
-      return order
+      if (cart && order?.cart_url) {
+        window.location.href = order.cart_url
+        return
+      }
+
+      if (order?.checkout_url) {
+        window.location.href = order.checkout_url
+        return
+      }
     } catch {
       setIsBuyingAll(false)
     }
@@ -71,9 +82,10 @@ export const BuyAllProvider: FC<Props> = ({ children, settings }) => {
   }
   const value: BuyAllProviderValue = {
     showBuyAllButton,
-    buyAll,
+    buyAllSkus: buyAllHandler,
     isBuyingAll,
     updateQuantity,
+    skus: internalSkus,
   }
   return (
     <BuyAllContext.Provider value={value}>
