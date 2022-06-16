@@ -9,6 +9,7 @@ import {
 
 import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 import { buyAllSkus } from "components/utils/buyAllSkus"
+import { makeCartUrl } from "components/utils/makeCartUrl"
 
 type BuyAllProviderValue = {
   showBuyAllButton: boolean
@@ -52,18 +53,20 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
     setIsBuyingAll(true)
     try {
       const order = await buyAllSkus({
-        skus: internalSkus,
+        skus: setMinQuantityIfMissing(internalSkus),
         accessToken: settings.accessToken,
         domain: settings.domain,
         slug: settings.slug,
+        setCartUrl: Boolean(cart),
       })
 
-      if (cart && order?.cart_url) {
+      if (cart && order.cart_url) {
         window.location.href = order.cart_url
         return
       }
 
-      if (order?.checkout_url) {
+      // TODO: check how to set checkout_url with sdk
+      if (order.checkout_url) {
         window.location.href = order.checkout_url
         return
       }
@@ -98,3 +101,14 @@ export const useBuyAll = (): BuyAllProviderValue => {
   const ctx = useContext(BuyAllContext)
   return ctx
 }
+
+// when quantity selector is disabled, default quantity is 0
+const setMinQuantityIfMissing = (skus: SkuWithQuantity[]) =>
+  skus.map((s) =>
+    s.quantity <= 0
+      ? {
+          ...s,
+          quantity: 1,
+        }
+      : s
+  )

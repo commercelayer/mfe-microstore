@@ -3,6 +3,7 @@ import CommerceLayer from "@commercelayer/sdk"
 import { createLineItems } from "./createLineItems"
 import { getOrCreateOrderId } from "./getOrCreateOrderId"
 import { makeCartUrl } from "./makeCartUrl"
+import { removeAllLineItems } from "./removeAllLineItems"
 import { updateOrderAttributes } from "./updateOrderAttributes"
 
 export const buyAllSkus = async ({
@@ -10,11 +11,13 @@ export const buyAllSkus = async ({
   accessToken,
   slug,
   domain,
+  setCartUrl,
 }: {
   skus: { skuCode: string; quantity: number }[]
   accessToken: string
   slug: string
   domain: string
+  setCartUrl?: boolean
 }) => {
   const client = CommerceLayer({
     organization: slug,
@@ -25,12 +28,15 @@ export const buyAllSkus = async ({
   const orderId = await getOrCreateOrderId(client, slug)
 
   await updateOrderAttributes({ client, orderId, autorefresh: false })
+  await removeAllLineItems({ client, orderId })
   await createLineItems({ client, skus, orderId })
   const updatedOrder = await updateOrderAttributes({
     client,
     orderId,
     autorefresh: true,
-    cartUrl: makeCartUrl({ basePath: "cart", orderId, accessToken }),
+    cartUrl: setCartUrl
+      ? makeCartUrl({ basePath: "cart", orderId, accessToken })
+      : undefined,
     returnUrl: window.location.href,
   })
 

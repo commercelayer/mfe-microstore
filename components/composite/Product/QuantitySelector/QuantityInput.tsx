@@ -1,5 +1,5 @@
 import { QuantitySelector } from "@commercelayer/react-components"
-import { FC, useState, MouseEvent, ChangeEvent, useEffect } from "react"
+import { FC, MouseEvent, ChangeEvent } from "react"
 
 import { useBuyAll } from "components/data/BuyAllProvider"
 import { Select } from "components/ui/Select"
