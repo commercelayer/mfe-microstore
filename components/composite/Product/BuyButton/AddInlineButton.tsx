@@ -3,7 +3,7 @@ import { FC } from "react"
 import { StyledAddToCartButton, StyledFeedback } from "./styled"
 import { useAddToCartFeedback } from "./useAddToCartFeedback"
 
-export const AddAndStay: FC = () => {
+export const AddInlineButton: FC = () => {
   const { justAdded, handleOnAddFeedback } = useAddToCartFeedback()
   return (
     <div>

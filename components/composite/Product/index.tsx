@@ -4,7 +4,7 @@ import {
   AvailabilityTemplate,
 } from "@commercelayer/react-components"
 
-import { AddToCartButton } from "./AddToCartButton"
+import { BuyButton } from "./BuyButton"
 import { DiscountBadge } from "./DiscountBadge"
 import { QuantitySelector } from "./QuantitySelector"
 import {
@@ -46,7 +46,7 @@ export const Product = () => {
               </CardPriceWrapper>
               <div className="flex items-center gap-2">
                 <QuantitySelector />
-                <AddToCartButton />
+                <BuyButton />
               </div>
             </CardPrice>
             <AvailabilityTemplate>
