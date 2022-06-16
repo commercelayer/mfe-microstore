@@ -5,12 +5,11 @@ import {
   PricesContainer,
   AvailabilityContainer,
 } from "@commercelayer/react-components"
-import { useState } from "react"
-
-import { BuyAllButton } from "../BuyAllButton"
 
 import { Hero } from "components/composite/Hero"
 import { Product } from "components/composite/Product"
+import { useBuyAll } from "components/data/BuyAllProvider"
+import { Button } from "components/ui/Button"
 
 import { Wrapper } from "./styled"
 
@@ -19,8 +18,6 @@ interface Props {
   title?: string
   description?: string
   couponCode?: string
-  settings: Settings
-  showBuyAll?: boolean
 }
 
 export const Microstore = ({
@@ -28,10 +25,14 @@ export const Microstore = ({
   title,
   description,
   couponCode,
-  settings,
-  showBuyAll,
 }: Props) => {
-  const [isBuyingAll, setIsBuyingAll] = useState(false)
+  const { isBuyingAll, showBuyAllButton, buyAll } = useBuyAll()
+  const onBuyAllClick = async () => {
+    const order = await buyAll()
+    if (order?.cart_url) {
+      // window.location.href = order.cart_url
+    }
+  }
 
   if (skus.length === 0)
     return (
@@ -44,18 +45,10 @@ export const Microstore = ({
   return (
     <>
       <Hero title={title} description={description} couponCode={couponCode} />
-
-      {showBuyAll && (
-        <BuyAllButton
-          settings={settings}
-          onStart={() => {
-            setIsBuyingAll(true)
-          }}
-          onSuccess={(order) => (window.location.href = order.cart_url || "")}
-          onError={() => {
-            setIsBuyingAll(false)
-          }}
-        />
+      {showBuyAllButton && (
+        <Button disabled={isBuyingAll} onClick={onBuyAllClick}>
+          Buy all
+        </Button>
       )}
 
       {
@@ -65,7 +58,7 @@ export const Microstore = ({
               <PricesContainer>
                 <AvailabilityContainer>
                   <Skus>
-                    <Product isEnabled={!isBuyingAll} />
+                    <Product />
                   </Skus>
                 </AvailabilityContainer>
               </PricesContainer>

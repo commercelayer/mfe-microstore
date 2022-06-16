@@ -3,7 +3,7 @@ import {
   Price,
   AvailabilityTemplate,
 } from "@commercelayer/react-components"
-import { FC, ReactNode } from "react"
+import { FC } from "react"
 
 import { BuyButton } from "./BuyButton"
 import { DiscountBadge } from "./DiscountBadge"
@@ -22,11 +22,7 @@ import {
   Thumb,
 } from "./styled"
 
-interface Props {
-  isEnabled: boolean
-}
-
-export const Product: FC<Props> = ({ isEnabled }) => {
+export const Product: FC = () => {
   return (
     <>
       <Card>
