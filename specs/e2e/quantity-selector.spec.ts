@@ -7,7 +7,7 @@ test.describe("With quantity selector, for specific sku", () => {
     defaultParams: {
       skus: `APPTESLA:${defaultQuantity}`,
       cart: true,
-      addAndStay: true,
+      inline: true,
     },
   })
 
@@ -30,7 +30,7 @@ test.describe("No quantity selector if no quantity is passed in url", () => {
     defaultParams: {
       skus: `APPTESLA:0,TSHIRTMS000000FFFFFFLXXX`,
       cart: true,
-      addAndStay: true,
+      inline: true,
     },
   })
 

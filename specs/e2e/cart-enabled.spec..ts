@@ -5,7 +5,7 @@ test.describe("With cart feature enabled", () => {
     defaultParams: {
       skus: "APPTESLA",
       cart: true,
-      addAndStay: true,
+      inline: true,
     },
   })
 
