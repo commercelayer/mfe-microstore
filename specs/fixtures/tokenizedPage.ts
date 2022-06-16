@@ -13,7 +13,7 @@ export interface DefaultParamsProps {
   market?: string
   skus?: string
   cart?: boolean
-  addAndStay?: boolean
+  inline?: boolean
 }
 
 type FixtureType = {

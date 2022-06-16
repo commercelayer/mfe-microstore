@@ -3,13 +3,12 @@ import {
   OrderContainer,
   OrderStorage,
 } from "@commercelayer/react-components"
-import { useRouter } from "next/router"
 import { useState } from "react"
 
-import { TopNav } from "../TopNav"
-
 import { MicrostoreHead } from "components/composite/MicrostoreHead"
+import { TopNav } from "components/composite/TopNav"
 import GlobalStylesProvider from "components/data/GlobalStylesProvider"
+import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 import { Base } from "components/ui/Base"
 import { Container } from "components/ui/Container"
 import { Footer } from "components/ui/Footer"
@@ -25,15 +24,14 @@ const MicrostoreContainer: React.FC<Props> = ({
   couponCode,
   children,
 }) => {
-  const { query } = useRouter()
-  const isCartEnabled = query.cart === "true"
+  const { cart } = useDataFromUrl()
   const returnUrl = window.location.href
 
   // we set cart url as internal state. In this way, once we get the order id
   // the <OrderContainer> will receive the proper url and will update the order
   const [cartUrl, setCartUrl] = useState<string>()
   const updateCartUrl = (orderId?: string) => {
-    if (!cartUrl && orderId && isCartEnabled) {
+    if (!cartUrl && orderId && cart) {
       setCartUrl(
         makeCartUrl({
           basePath: "cart",
@@ -69,7 +67,7 @@ const MicrostoreContainer: React.FC<Props> = ({
             <TopNav
               logoUrl={settings.logoUrl}
               companyName={settings.companyName}
-              showCartIcon={isCartEnabled}
+              showCartIcon={cart}
             />
             <Container>
               {children}

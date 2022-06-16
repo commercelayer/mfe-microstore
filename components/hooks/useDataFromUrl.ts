@@ -1,13 +1,6 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
-type UrlData = {
-  skus: string[]
-  description?: string
-  title?: string
-  couponCode?: string
-}
-
 export const useDataFromUrl = () => {
   const router = useRouter()
   const [data, setData] = useState<UrlData>({
@@ -16,12 +9,23 @@ export const useDataFromUrl = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      const { skus, coupon_code, title, description } = router.query
+      const {
+        skus,
+        couponCode,
+        title,
+        description,
+        accessToken,
+        cart,
+        inline,
+      } = router.query
       setData({
         skus: parseQuerySkuValue(skus),
         description: parseQueryValue(description),
         title: parseQueryValue(title),
-        couponCode: parseQueryValue(coupon_code),
+        couponCode: parseQueryValue(couponCode),
+        accessToken: parseQueryValue(accessToken),
+        cart: parseBooleanValue(cart),
+        inline: parseBooleanValue(inline),
       })
     }
   }, [router])
@@ -39,10 +43,36 @@ const parseQueryValue = (
   return value
 }
 
-const parseQuerySkuValue = (value: string | string[] | undefined): string[] => {
+const parseBooleanValue = (value: string | string[] | undefined): boolean => {
+  if (!value || Array.isArray(value) || value !== "true") {
+    return false
+  }
+
+  return true
+}
+
+export const parseQuerySkuValue = (
+  value: string | string[] | undefined
+): SkuWithQuantity[] => {
   if (!value || Array.isArray(value)) {
     return []
   }
 
-  return (value || "").split(",").filter((v) => !!v)
+  const skuList = (value || "").split(",").filter((v) => !!v)
+  return skuList.map(parseSkuWithQuantity).filter(({ skuCode }) => !!skuCode)
+}
+
+export const parseSkuWithQuantity = (
+  skuWithQuantity: string
+): SkuWithQuantity => {
+  const parsed = skuWithQuantity.trim().split(":") as
+    | [string, string]
+    | [string]
+  const skuCode = parsed[0].trim()
+  const quantity = parseInt((parsed[1] && parsed[1].trim()) || "0")
+
+  return {
+    skuCode,
+    quantity: isNaN(quantity) ? 0 : quantity > 0 ? quantity : 0,
+  }
 }

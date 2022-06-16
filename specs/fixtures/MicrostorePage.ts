@@ -16,6 +16,7 @@ export class MicrostorePage {
   readonly buyNowButton: Locator
   readonly addToCartButton: Locator
   readonly cartItemsCount: Locator
+  readonly quantitySelector: Locator
 
   constructor(page: Page, attributes?: AttributesProps) {
     this.page = page
@@ -28,6 +29,9 @@ export class MicrostorePage {
       .locator("[data-test-id=button-add-to-cart]")
       .first()
     this.cartItemsCount = this.page.locator("[data-test-id=cart-items-count]")
+    this.quantitySelector = this.page
+      .locator("[data-test-id=quantity-selector]")
+      .first()
   }
 
   async goto(props: GoToProps) {

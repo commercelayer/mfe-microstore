@@ -12,7 +12,7 @@ import { Product } from "components/composite/Product"
 import { Wrapper } from "./styled"
 
 interface Props {
-  skus?: string[]
+  skus?: SkuWithQuantity[]
   title?: string
   description?: string
   couponCode?: string
@@ -37,7 +37,7 @@ export const Microstore = ({
       <Hero title={title} description={description} couponCode={couponCode} />
       {
         <Wrapper>
-          <SkusContainer skus={skus}>
+          <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>
             <ItemContainer>
               <PricesContainer>
                 <AvailabilityContainer>
