@@ -46,6 +46,10 @@ export const CardPriceWrapper = styled.div`
   ${tw`flex flex-row-reverse items-center self-start md:(self-center)`}
 `
 
+export const QuantityAndButtonWrapper = styled.div`
+  ${tw`flex flex-col sm:flex-row sm:items-center gap-2`}
+`
+
 export const SKU = styled(SkuField)`
   ${tw`font-bold text-gray-400`}
 `

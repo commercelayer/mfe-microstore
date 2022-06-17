@@ -19,6 +19,7 @@ import {
   CardPriceWrapper,
   CardStock,
   CardTitle,
+  QuantityAndButtonWrapper,
   Thumb,
 } from "./styled"
 
@@ -45,10 +46,10 @@ export const Product: FC = () => {
                   compareClassName="text-gray-400 line-through mr-2"
                 />
               </CardPriceWrapper>
-              <div className="flex items-center gap-2">
+              <QuantityAndButtonWrapper>
                 <QuantitySelector />
                 <BuyButton />
-              </div>
+              </QuantityAndButtonWrapper>
             </CardPrice>
             <AvailabilityTemplate>
               {({ quantity, text }) => {
