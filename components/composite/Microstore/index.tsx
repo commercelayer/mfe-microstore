@@ -6,10 +6,10 @@ import {
   AvailabilityContainer,
 } from "@commercelayer/react-components"
 
+import { ButtonBuyAll } from "../ButtonBuyAll"
+
 import { Hero } from "components/composite/Hero"
 import { Product } from "components/composite/Product"
-import { useBuyAll } from "components/data/BuyAllProvider"
-import { Button } from "components/ui/Button"
 
 import { Wrapper } from "./styled"
 
@@ -26,9 +26,6 @@ export const Microstore = ({
   description,
   couponCode,
 }: Props) => {
-  const { isBuyingAll, showBuyAllButton, buyAllSkus, errorMessage } =
-    useBuyAll()
-
   if (skus.length === 0)
     return (
       <div className="py-10 font-bold" data-test-id="no-skus-found">
@@ -40,17 +37,7 @@ export const Microstore = ({
   return (
     <>
       <Hero title={title} description={description} couponCode={couponCode} />
-
-      {showBuyAllButton && (
-        <div className="flex flex-col items-end">
-          <Button disabled={isBuyingAll} onClick={() => buyAllSkus()}>
-            Buy all
-          </Button>
-          {errorMessage && (
-            <div className="text-sm text-red-400">{errorMessage}</div>
-          )}
-        </div>
-      )}
+      <ButtonBuyAll />
 
       <Wrapper>
         <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>
