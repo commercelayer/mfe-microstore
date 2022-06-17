@@ -17,6 +17,7 @@ type BuyAllProviderValue = {
   buyAllSkus: () => Promise<void>
   updateQuantity: (sku?: SkuWithQuantity) => void
   skus: SkuWithQuantity[]
+  errorMessage?: string
 }
 
 interface BuyAllProviderProps {
@@ -40,6 +41,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
   const [internalSkus, setInteralSkus] = useState<SkuWithQuantity[]>([])
   const [isBuyingAll, setIsBuyingAll] = useState(false)
   const [showBuyAllButton, setShowBuyAllButton] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | undefined>()
 
   useEffect(() => {
     setShowBuyAllButton(!!all)
@@ -51,6 +53,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
 
   const buyAllHandler = async () => {
     setIsBuyingAll(true)
+    setErrorMessage(undefined)
     try {
       const order = await buyAllSkus({
         skus: setMinQuantityIfMissing(internalSkus),
@@ -59,6 +62,13 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
         slug: settings.slug,
         setCartUrl: Boolean(cart),
       })
+
+      if (!order) {
+        setErrorMessage(
+          "Something is wrong, please check your URL or refresh the page and try again"
+        )
+        return
+      }
 
       if (cart) {
         window.location.href =
@@ -79,6 +89,9 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
       })
     } catch {
       setIsBuyingAll(false)
+      setErrorMessage(
+        "Something is wrong, please check your URL or refresh the page and try again"
+      )
     }
   }
 
@@ -96,6 +109,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
     isBuyingAll,
     updateQuantity,
     skus: internalSkus,
+    errorMessage,
   }
   return (
     <BuyAllContext.Provider value={value}>

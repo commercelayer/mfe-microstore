@@ -26,7 +26,8 @@ export const Microstore = ({
   description,
   couponCode,
 }: Props) => {
-  const { isBuyingAll, showBuyAllButton, buyAllSkus } = useBuyAll()
+  const { isBuyingAll, showBuyAllButton, buyAllSkus, errorMessage } =
+    useBuyAll()
 
   if (skus.length === 0)
     return (
@@ -41,10 +42,13 @@ export const Microstore = ({
       <Hero title={title} description={description} couponCode={couponCode} />
 
       {showBuyAllButton && (
-        <div className="flex justify-end">
+        <div className="flex flex-col items-end">
           <Button disabled={isBuyingAll} onClick={() => buyAllSkus()}>
             Buy all
           </Button>
+          {errorMessage && (
+            <div className="text-sm text-red-400">{errorMessage}</div>
+          )}
         </div>
       )}
 
