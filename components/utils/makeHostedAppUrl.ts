@@ -1,9 +1,9 @@
-export const makeCartUrl = ({
+export const makeHostedAppUrl = ({
   basePath,
   accessToken,
   orderId,
 }: {
-  basePath: string
+  basePath: "cart" | "checkout"
   accessToken: string
   orderId: string
 }) => {

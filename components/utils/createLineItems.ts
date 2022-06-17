@@ -1,6 +1,5 @@
 import { CommerceLayerClient, LineItem } from "@commercelayer/sdk"
 
-// TODO: how to handle bundles?
 export const createLineItems = async ({
   client,
   skus,

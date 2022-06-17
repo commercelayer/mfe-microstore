@@ -2,7 +2,7 @@ import CommerceLayer from "@commercelayer/sdk"
 
 import { createLineItems } from "./createLineItems"
 import { getOrCreateOrderId } from "./getOrCreateOrderId"
-import { makeCartUrl } from "./makeCartUrl"
+import { makeHostedAppUrl } from "./makeHostedAppUrl"
 import { removeAllLineItems } from "./removeAllLineItems"
 import { updateOrderAttributes } from "./updateOrderAttributes"
 
@@ -35,7 +35,7 @@ export const buyAllSkus = async ({
     orderId,
     autorefresh: true,
     cartUrl: setCartUrl
-      ? makeCartUrl({ basePath: "cart", orderId, accessToken })
+      ? makeHostedAppUrl({ basePath: "cart", orderId, accessToken })
       : undefined,
     returnUrl: window.location.href,
   })

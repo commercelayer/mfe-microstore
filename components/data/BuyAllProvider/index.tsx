@@ -9,7 +9,7 @@ import {
 
 import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 import { buyAllSkus } from "components/utils/buyAllSkus"
-import { makeCartUrl } from "components/utils/makeCartUrl"
+import { makeHostedAppUrl } from "components/utils/makeHostedAppUrl"
 
 type BuyAllProviderValue = {
   showBuyAllButton: boolean
@@ -60,16 +60,23 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
         setCartUrl: Boolean(cart),
       })
 
-      if (cart && order.cart_url) {
-        window.location.href = order.cart_url
+      if (cart) {
+        window.location.href =
+          order.cart_url ||
+          makeHostedAppUrl({
+            basePath: "cart",
+            orderId: order.id,
+            accessToken: settings.accessToken,
+          })
         return
       }
 
-      // TODO: check how to set checkout_url with sdk
-      if (order.checkout_url) {
-        window.location.href = order.checkout_url
-        return
-      }
+      // when cart is not enable it's ok to take user directy to checkout
+      window.location.href = makeHostedAppUrl({
+        basePath: "checkout",
+        orderId: order.id,
+        accessToken: settings.accessToken,
+      })
     } catch {
       setIsBuyingAll(false)
     }

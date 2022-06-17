@@ -12,7 +12,7 @@ import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 import { Base } from "components/ui/Base"
 import { Container } from "components/ui/Container"
 import { Footer } from "components/ui/Footer"
-import { makeCartUrl } from "components/utils/makeCartUrl"
+import { makeHostedAppUrl } from "components/utils/makeHostedAppUrl"
 
 interface Props {
   settings: Settings
@@ -33,7 +33,7 @@ const MicrostoreContainer: React.FC<Props> = ({
   const updateCartUrl = (orderId?: string) => {
     if (!cartUrl && orderId && cart) {
       setCartUrl(
-        makeCartUrl({
+        makeHostedAppUrl({
           basePath: "cart",
           orderId,
           accessToken: settings.accessToken,
