@@ -15,7 +15,6 @@ export const updateOrderAttributes = async ({
 }) => {
   return await client.orders.update({
     id: orderId,
-    _refresh: true,
     autorefresh,
     cart_url: cartUrl,
     return_url: returnUrl,
