@@ -6,7 +6,7 @@ type Props = SelectHTMLAttributes<HTMLSelectElement>
 
 export const Select: FC<Props> = ({ children, ...rest }) => {
   return (
-    <div className="relative min-w-">
+    <div className="relative">
       <Wrapper>
         <StyledSelect {...rest}>{children}</StyledSelect>
         <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">

@@ -17,7 +17,9 @@ export const useDataFromUrl = () => {
         accessToken,
         cart,
         inline,
+        all,
       } = router.query
+
       setData({
         skus: parseQuerySkuValue(skus),
         description: parseQueryValue(description),
@@ -26,6 +28,7 @@ export const useDataFromUrl = () => {
         accessToken: parseQueryValue(accessToken),
         cart: parseBooleanValue(cart),
         inline: parseBooleanValue(inline),
+        all: parseBooleanValue(all),
       })
     }
   }, [router])

@@ -1,32 +1,41 @@
 import { QuantitySelector } from "@commercelayer/react-components"
-import { FC, useState, MouseEvent, ChangeEvent } from "react"
+import { FC, MouseEvent, ChangeEvent } from "react"
 
+import { useBuyAll } from "components/data/BuyAllProvider"
 import { Select } from "components/ui/Select"
 
 import { createSelectOptions } from "./createSelectOptions"
 
 interface Props {
-  defaultValue: number
+  skuCode: string
 }
 
 const MAX_OPTIONS = 10
 
-export const QuantityInput: FC<Props> = ({ defaultValue }) => {
-  const [quantityValue, setQuantityValue] = useState(defaultValue)
+export const QuantityInput: FC<Props> = ({ skuCode }) => {
+  const { updateQuantity, skus } = useBuyAll()
+  const quantityValue = skus.find((o) => skuCode === o.skuCode)?.quantity || 0
+
+  if (!quantityValue) {
+    return null
+  }
 
   return (
-    <QuantitySelector value={quantityValue.toString()}>
+    <QuantitySelector defaultValue={quantityValue.toString()}>
       {({ handleChange, max = MAX_OPTIONS }) => {
         const options = createSelectOptions(max)
-        const onQuantityChange = (e: ChangeEvent<HTMLSelectElement>) => {
-          setQuantityValue(parseInt(e.currentTarget.value, 10))
+        const onQuantityChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+          updateQuantity({
+            skuCode,
+            quantity: parseInt(e.currentTarget.value, 10),
+          })
           handleChange(e as unknown as MouseEvent<HTMLInputElement>)
         }
 
         return options.length > 0 ? (
           <Select
             value={quantityValue}
-            onChange={onQuantityChange}
+            onChange={onQuantityChangeHandler}
             data-test-id="quantity-selector"
           >
             {options.map((i) => (
@@ -35,8 +44,8 @@ export const QuantityInput: FC<Props> = ({ defaultValue }) => {
               </option>
             ))}
             {/* appending default value if not in options range */}
-            {!options.includes(defaultValue) ? (
-              <option value={defaultValue}> {defaultValue}</option>
+            {!options.includes(quantityValue) ? (
+              <option value={quantityValue}>{quantityValue}</option>
             ) : null}
           </Select>
         ) : null

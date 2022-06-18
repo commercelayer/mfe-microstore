@@ -6,6 +6,8 @@ import {
   AvailabilityContainer,
 } from "@commercelayer/react-components"
 
+import { ButtonBuyAll } from "../ButtonBuyAll"
+
 import { Hero } from "components/composite/Hero"
 import { Product } from "components/composite/Product"
 
@@ -35,21 +37,21 @@ export const Microstore = ({
   return (
     <>
       <Hero title={title} description={description} couponCode={couponCode} />
-      {
-        <Wrapper>
-          <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>
-            <ItemContainer>
-              <PricesContainer>
-                <AvailabilityContainer>
-                  <Skus>
-                    <Product />
-                  </Skus>
-                </AvailabilityContainer>
-              </PricesContainer>
-            </ItemContainer>
-          </SkusContainer>
-        </Wrapper>
-      }
+      <ButtonBuyAll />
+
+      <Wrapper>
+        <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>
+          <ItemContainer>
+            <PricesContainer>
+              <AvailabilityContainer>
+                <Skus>
+                  <Product />
+                </Skus>
+              </AvailabilityContainer>
+            </PricesContainer>
+          </ItemContainer>
+        </SkusContainer>
+      </Wrapper>
     </>
   )
 }

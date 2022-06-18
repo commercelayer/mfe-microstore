@@ -3,6 +3,7 @@ import {
   Price,
   AvailabilityTemplate,
 } from "@commercelayer/react-components"
+import { FC } from "react"
 
 import { BuyButton } from "./BuyButton"
 import { DiscountBadge } from "./DiscountBadge"
@@ -18,10 +19,11 @@ import {
   CardPriceWrapper,
   CardStock,
   CardTitle,
+  QuantityAndButtonWrapper,
   Thumb,
 } from "./styled"
 
-export const Product = () => {
+export const Product: FC = () => {
   return (
     <>
       <Card>
@@ -44,10 +46,10 @@ export const Product = () => {
                   compareClassName="text-gray-400 line-through mr-2"
                 />
               </CardPriceWrapper>
-              <div className="flex items-center gap-2">
+              <QuantityAndButtonWrapper>
                 <QuantitySelector />
                 <BuyButton />
-              </div>
+              </QuantityAndButtonWrapper>
             </CardPrice>
             <AvailabilityTemplate>
               {({ quantity, text }) => {
