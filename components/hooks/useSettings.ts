@@ -33,6 +33,11 @@ export const useSettings = (): UseSettings => {
   // we take them to 404 page and remove all query string data
   if (is404) {
     router.push("/404")
+    return {
+      settings: undefined,
+      retryOnError: false,
+      isLoading: false,
+    }
   }
 
   // checkout is invalid, but there's a chance to retry by refreshing the page

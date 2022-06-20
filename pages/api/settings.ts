@@ -26,6 +26,7 @@ interface JWTProps {
 interface FetchResource<T> {
   object: T | undefined
   success: boolean
+  retryOnError?: boolean
 }
 
 function isProduction(env: string): boolean {
@@ -33,12 +34,12 @@ function isProduction(env: string): boolean {
 }
 
 async function retryCall<T>(
-  f: Promise<T>
+  f: () => Promise<T>
 ): Promise<FetchResource<T> | undefined> {
   return await retry(
     async (bail, number) => {
       try {
-        const object = await f
+        const object = await f()
         return {
           object: object as unknown as T,
           success: true,
@@ -46,13 +47,20 @@ async function retryCall<T>(
       } catch (e: unknown) {
         if (CommerceLayerStatic.isApiError(e) && e.status === 401) {
           console.log("Not authorized")
-          bail(e)
-          return
+          // bail(e)
+          // we always return an object instead of bailing a response (that will throw an uncatched error)
+          // in this way our `api/settings` endpoint can return 200 but with invalid settings (see `invalidateSettings`)
+          return {
+            object: undefined,
+            success: false,
+            retryOnError: false,
+          }
         }
         if (number === RETRIES + 1) {
           return {
             object: undefined,
             success: false,
+            retryOnError: true,
           }
         }
         throw e
@@ -67,7 +75,7 @@ async function retryCall<T>(
 async function getOrganization(
   cl: CommerceLayerClient
 ): Promise<FetchResource<Organization> | undefined> {
-  return retryCall<Organization>(
+  return retryCall<Organization>(() =>
     cl.organization.retrieve({
       fields: {
         organizations: [
@@ -103,7 +111,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const domain = DOMAIN || "commercelayer.io"
 
-  function invalidateCheckout(retry?: boolean) {
+  function invalidateSettings(retry?: boolean) {
     res.statusCode = 200
     console.log("access token:")
     console.log(accessToken)
@@ -111,7 +119,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (!accessToken) {
-    return invalidateCheckout()
+    return invalidateSettings()
   }
 
   const subdomain = req.headers.host?.split(":")[0].split(".")[0]
@@ -119,7 +127,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { slug, kind, isTest } = getTokenInfo(accessToken)
 
   if (!slug) {
-    return invalidateCheckout()
+    return invalidateSettings()
   }
 
   if (
@@ -127,9 +135,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     !!HOSTED &&
     (subdomain !== slug || kind !== "sales_channel")
   ) {
-    return invalidateCheckout()
+    return invalidateSettings()
   } else if (kind !== "sales_channel") {
-    return invalidateCheckout()
+    return invalidateSettings()
   }
 
   const cl = CommerceLayer({
@@ -144,7 +152,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (!organizationResource?.success || !organization?.id) {
     console.log("Invalid: organization")
-    return invalidateCheckout(true)
+    // if `retryOnError:true` it means `getOrganization` has been retried n times with no success
+    return invalidateSettings(organizationResource?.retryOnError)
   }
   const appSettings: Settings = {
     accessToken,
