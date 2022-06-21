@@ -11,13 +11,11 @@ export const buyAllSkus = async ({
   accessToken,
   slug,
   domain,
-  setCartUrl,
 }: {
   skus: { skuCode: string; quantity: number }[]
   accessToken: string
   slug: string
   domain: string
-  setCartUrl?: boolean
 }) => {
   const client = CommerceLayer({
     organization: slug,
@@ -34,9 +32,6 @@ export const buyAllSkus = async ({
     client,
     orderId,
     autorefresh: true,
-    cartUrl: setCartUrl
-      ? makeHostedAppUrl({ basePath: "cart", orderId, accessToken })
-      : undefined,
     returnUrl: window.location.href,
   })
 
