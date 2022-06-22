@@ -27,21 +27,6 @@ const MicrostoreContainer: React.FC<Props> = ({
   const { cart } = useDataFromUrl()
   const returnUrl = window.location.href
 
-  // we set cart url as internal state. In this way, once we get the order id
-  // the <OrderContainer> will receive the proper url and will update the order
-  const [cartUrl, setCartUrl] = useState<string>()
-  const updateCartUrl = (orderId?: string) => {
-    if (!cartUrl && orderId && cart) {
-      setCartUrl(
-        makeHostedAppUrl({
-          basePath: "cart",
-          orderId,
-          accessToken: settings.accessToken,
-        })
-      )
-    }
-  }
-
   return (
     <CommerceLayer
       accessToken={settings.accessToken}
@@ -52,11 +37,7 @@ const MicrostoreContainer: React.FC<Props> = ({
         <OrderContainer
           attributes={{
             coupon_code: couponCode,
-            cart_url: cartUrl,
             return_url: returnUrl,
-          }}
-          fetchOrder={(order) => {
-            updateCartUrl(order.id)
           }}
         >
           <Base>

@@ -60,7 +60,6 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
         accessToken: settings.accessToken,
         domain: settings.domain,
         slug: settings.slug,
-        setCartUrl: Boolean(cart),
       })
 
       if (!order) {
@@ -71,13 +70,11 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
       }
 
       if (cart) {
-        window.location.href =
-          order.cart_url ||
-          makeHostedAppUrl({
-            basePath: "cart",
-            orderId: order.id,
-            accessToken: settings.accessToken,
-          })
+        window.location.href = makeHostedAppUrl({
+          basePath: "cart",
+          orderId: order.id,
+          accessToken: settings.accessToken,
+        })
         return
       }
 
