@@ -19,7 +19,7 @@ export const useSettings = (): UseSettings => {
     Settings | { valid: false; retryOnError: boolean }
   >(
     router.isReady
-      ? [`/microstore/api/settings?accessToken=${accessToken}`, random]
+      ? [`${router.basePath}/api/settings?accessToken=${accessToken}`, random]
       : null,
     fetcher,
     { revalidateOnFocus: false }
@@ -31,8 +31,15 @@ export const useSettings = (): UseSettings => {
 
   // checkout is invalid and there is no reason for the user to retry
   // we take them to 404 page and remove all query string data
+  // do not use `router.push('/404)` since nextjs will mount 404.tsx as valid component
+  // and you'll get a 200 status code with a 404 UI
   if (is404) {
-    router.push("/404")
+    window.location.href = `${router.basePath}/404`
+    return {
+      settings: undefined,
+      retryOnError: false,
+      isLoading: false,
+    }
   }
 
   // checkout is invalid, but there's a chance to retry by refreshing the page
