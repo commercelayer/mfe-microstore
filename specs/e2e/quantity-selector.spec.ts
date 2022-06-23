@@ -5,14 +5,14 @@ const defaultQuantity = 3
 test.describe("With quantity selector, for specific sku", () => {
   test.use({
     defaultParams: {
-      skus: `APPTESLA:${defaultQuantity}`,
+      skus: `BEANIEXXFFFFFF000000XXXX:${defaultQuantity}`,
       cart: true,
       inline: true,
     },
   })
 
   test("should add default quantity to cart", async ({ microstorePage }) => {
-    await microstorePage.addItemToCart()
+    await microstorePage.addItemToCart({ inline: true })
     await microstorePage.checkCartItemsCount(defaultQuantity)
   })
 
@@ -20,7 +20,7 @@ test.describe("With quantity selector, for specific sku", () => {
     microstorePage,
   }) => {
     await microstorePage.quantitySelector.selectOption("4")
-    await microstorePage.addItemToCart()
+    await microstorePage.addItemToCart({ inline: true })
     await microstorePage.checkCartItemsCount(4)
   })
 })
@@ -28,7 +28,7 @@ test.describe("With quantity selector, for specific sku", () => {
 test.describe("No quantity selector if no quantity is passed in url", () => {
   test.use({
     defaultParams: {
-      skus: `APPTESLA:0,TSHIRTMS000000FFFFFFLXXX`,
+      skus: `BEANIEXXFFFFFF000000XXXX:0,TSHIRTMS000000FFFFFFLXXX`,
       cart: true,
       inline: true,
     },

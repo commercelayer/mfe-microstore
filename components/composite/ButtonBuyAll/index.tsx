@@ -15,7 +15,11 @@ export const ButtonBuyAll: FC = () => {
 
   return (
     <Wrapper>
-      <Button disabled={isBuyingAll} onClick={() => buyAllSkus()}>
+      <Button
+        data-test-id="button-buy-all"
+        disabled={isBuyingAll}
+        onClick={() => buyAllSkus()}
+      >
         Buy all
       </Button>
       {errorMessage && (
