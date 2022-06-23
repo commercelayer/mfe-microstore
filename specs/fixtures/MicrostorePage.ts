@@ -15,6 +15,7 @@ export class MicrostorePage {
   readonly attributes?: AttributesProps
   readonly buyNowButton: Locator
   readonly addToCartButton: Locator
+  readonly addToCartInlineButton: Locator
   readonly cartItemsCount: Locator
   readonly quantitySelector: Locator
 
@@ -27,6 +28,9 @@ export class MicrostorePage {
       .first()
     this.addToCartButton = this.page
       .locator("[data-test-id=button-add-to-cart]")
+      .first()
+    this.addToCartInlineButton = this.page
+      .locator("[data-test-id=button-add-to-cart-inline]")
       .first()
     this.cartItemsCount = this.page.locator("[data-test-id=cart-items-count]")
     this.quantitySelector = this.page
@@ -54,12 +58,20 @@ export class MicrostorePage {
     await expect(this.buyNowButton).toBeVisible()
   }
 
-  async expectAddToCartButton() {
-    await expect(this.addToCartButton).toBeVisible()
+  async expectAddToCartButton({ inline }: { inline: boolean }) {
+    if (inline) {
+      await expect(this.addToCartInlineButton).toBeVisible()
+    } else {
+      await expect(this.addToCartButton).toBeVisible()
+    }
   }
 
-  async addItemToCart() {
-    await this.addToCartButton.click()
+  async addItemToCart({ inline }: { inline: boolean }) {
+    if (inline) {
+      await this.addToCartInlineButton.click()
+    } else {
+      await this.addToCartButton.click()
+    }
   }
 
   async checkCartItemsCount(total: number) {

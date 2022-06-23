@@ -19,7 +19,7 @@ test("should navigate to no skus", async ({ microstorePage }) => {
 test.describe("with skus", () => {
   test.use({
     defaultParams: {
-      skus: "APPTESLA",
+      skus: "TSHIRTMS000000FFFFFFLXXX",
     },
   })
 

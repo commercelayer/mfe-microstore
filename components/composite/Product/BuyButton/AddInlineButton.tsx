@@ -15,7 +15,7 @@ export const AddInlineButton: FC<Props> = ({ disabled }) => {
         return (
           <button
             {...rest}
-            data-test-id="button-add-to-cart"
+            data-test-id="button-add-to-cart-inline"
             disabled={disabled || justAdded}
             onClick={() => handleOnAddFeedback(handleClick)}
           >
