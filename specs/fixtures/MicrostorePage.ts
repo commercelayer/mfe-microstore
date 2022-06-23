@@ -14,6 +14,7 @@ export class MicrostorePage {
   readonly page: Page
   readonly attributes?: AttributesProps
   readonly buyNowButton: Locator
+  readonly buyAllButton: Locator
   readonly addToCartButton: Locator
   readonly addToCartInlineButton: Locator
   readonly cartItemsCount: Locator
@@ -26,6 +27,7 @@ export class MicrostorePage {
     this.buyNowButton = this.page
       .locator("[data-test-id=button-buy-now]")
       .first()
+    this.buyAllButton = this.page.locator("[data-test-id=button-buy-all]")
     this.addToCartButton = this.page
       .locator("[data-test-id=button-add-to-cart]")
       .first()
@@ -56,6 +58,10 @@ export class MicrostorePage {
 
   async expectBuyNowButton() {
     await expect(this.buyNowButton).toBeVisible()
+  }
+
+  async expectBuyAllButton() {
+    await expect(this.buyAllButton).toBeVisible()
   }
 
   async expectAddToCartButton({ inline }: { inline: boolean }) {
