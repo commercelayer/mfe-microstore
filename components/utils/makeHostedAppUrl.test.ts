@@ -15,11 +15,11 @@ describe("makeHostedAppUrl", () => {
   })
 
   test("should return a valid hosted cart url", () => {
-    // stub window.location.href
+    // mock window.location.href
     global.window = Object.create(window)
     Object.defineProperty(window, "location", {
       value: {
-        href: "http://localhost:3000/microstore",
+        href: "http://myorg.commercelayer.app/microstore?someUrlParam=xxxx",
       },
     })
 
@@ -30,7 +30,7 @@ describe("makeHostedAppUrl", () => {
     })
 
     expect(url).toBe(
-      "http://localhost:3000/cart/weWdhV2zpx?accessToken=eyJhbGciOiUzUxM"
+      "http://myorg.commercelayer.app/cart/weWdhV2zpx?accessToken=eyJhbGciOiUzUxM"
     )
   })
 })
