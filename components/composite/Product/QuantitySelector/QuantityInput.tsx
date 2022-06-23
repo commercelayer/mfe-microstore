@@ -21,7 +21,7 @@ export const QuantityInput: FC<Props> = ({ skuCode }) => {
   }
 
   return (
-    <QuantitySelector defaultValue={quantityValue.toString()}>
+    <QuantitySelector value={quantityValue.toString()}>
       {({ handleChange, max = MAX_OPTIONS }) => {
         const options = createSelectOptions(max)
         const onQuantityChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
