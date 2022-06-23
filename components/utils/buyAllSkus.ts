@@ -2,7 +2,6 @@ import CommerceLayer from "@commercelayer/sdk"
 
 import { createLineItems } from "./createLineItems"
 import { getOrCreateOrderId } from "./getOrCreateOrderId"
-import { makeHostedAppUrl } from "./makeHostedAppUrl"
 import { removeAllLineItems } from "./removeAllLineItems"
 import { updateOrderAttributes } from "./updateOrderAttributes"
 

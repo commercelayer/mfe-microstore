@@ -3,7 +3,6 @@ import {
   OrderContainer,
   OrderStorage,
 } from "@commercelayer/react-components"
-import { useState } from "react"
 
 import { MicrostoreHead } from "components/composite/MicrostoreHead"
 import { TopNav } from "components/composite/TopNav"
@@ -12,7 +11,6 @@ import { useDataFromUrl } from "components/hooks/useDataFromUrl"
 import { Base } from "components/ui/Base"
 import { Container } from "components/ui/Container"
 import { Footer } from "components/ui/Footer"
-import { makeHostedAppUrl } from "components/utils/makeHostedAppUrl"
 
 interface Props {
   settings: Settings

@@ -71,7 +71,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
 
       if (cart) {
         window.location.href = makeHostedAppUrl({
-          basePath: "cart",
+          hostedApp: "cart",
           orderId: order.id,
           accessToken: settings.accessToken,
         })
@@ -80,9 +80,10 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
 
       // when cart is not enable it's ok to take user directy to checkout
       window.location.href = makeHostedAppUrl({
-        basePath: "checkout",
+        hostedApp: "checkout",
         orderId: order.id,
         accessToken: settings.accessToken,
+        subdomain: settings.slug,
       })
     } catch {
       setIsBuyingAll(false)
