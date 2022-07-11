@@ -1,6 +1,6 @@
-# Commerce Layer React Checkout
+# Commerce Layer Microstore
 
-The Commerce Layer Microstore application (React) provides you with a production-ready microstore website powered by Commerce Layer APIs. Microstores are a self-contained and fully functional hosted store accessed through a unique URL, which can be embedded onto any online or offline (via QR code) content. You can fork this repository and deploy it to any hosting service or use it as a reference application to build your own.
+The Commerce Layer Microstore application (React) provides you with a production-ready microstore website powered by Commerce Layer APIs. Microstores are self-contained and fully functional hosted stores accessible via a unique URL, which can be embedded into any online or offline (e.g. using a QR code) content. You can fork this repository and deploy it to any hosting service or use it as a reference application to build your own. A hosted version is also available.
 
 ![Commerce Layer React Microstore demo](./public/demo.gif)
 
@@ -22,37 +22,50 @@ The Commerce Layer Microstore application (React) provides you with a production
 
 1. Deploy the forked repository to your preferred hosting service or host it yourself. You can deploy with one click below:
 
-2. Create your organization and get your credentials by following this [credentials guide](https://docs.commercelayer.io/developers/credentials).
+
+2. Create your organization and get your credentials by following one of our [onboarding tutorials](https://docs.commercelayer.io/developers/welcome).
 
 3. Build your sales channel with your favorite technologies and frameworks by leveraging our [developer resources](https://commercelayer.io/developers) and [documentation](https://docs.commercelayer.io/api).
 
-4. Get a [access token](https://docs.commercelayer.io/api/authentication) for your application. You should generate this in your sales channel or use our Javascript [authentication library](https://github.com/commercelayer/commercelayer-js-auth).
+4. Get an [access token](https://docs.commercelayer.io/api/authentication) for your application. You should generate this in your sales channel or use our Javascript [authentication library](https://github.com/commercelayer/commercelayer-js-auth).
 
 5. Create one or more [SKUs](https://commercelayer.io/docs/data-model/skus) associated with prices and inventories.
 
-6. Open the microstore using the URL format: `<your-deployed-microstore-url>/microstore?skus=<skuCode-comma-separated>accessToken=<your-access-token>`. For example: `https://microstore.yourbrand.com/microstore?skus=TSHIRT123,TANK123&accessToken=eyJhbGciOiJIUzUxMiJ9`.
+6. Open the microstore using the URL format: `<your-deployed-microstore-url>/microstore?skus=<skuCodes-comma-separated>accessToken=<your-access-token>`. For example: `https://microstore.yourbrand.com/microstore?skus=TSHIRT123,TANK123&accessToken=eyJhbGciOiJIUzUxMiJ9`.
 
 ## Hosted version
 
-There is a hosted version of the microstore application that is automatically enabled in your Commerce Layer account. You can customize it by adding your organization logo, favicon and primary color.
+Any Commerce Layer account comes with a hosted version of the microstore application. You can customize it by adding your organization logo, favicon, and primary color.
 
-You can use the hosted checkout with the following URL format: `https://<your-organization-subdomain>.commercelayer.app/microstore?skus=<skuCode-comma-separated>accessToken=<your-access-token>`.
+You can use the hosted version of the microstore application by building the related URL with the following format: `https://<your-organization-subdomain>.commercelayer.app/microstore?skus=<skuCodes-comma-separated>accessToken=<your-access-token>`.
 
-Default behaviour is with Buy now mode (as soon as a customer add a product to the shopping bag it will be redirected directly to checkout. If other line items were present on the order they will be deleted.
+The default behavior is the _Buy Now_ mode. This means that as soon as customers add a product to the shopping bag they are redirected directly to checkout. If other line items were present in the order, they will be deleted.
 
-URL Options:
+### URL parameters
 
-Parameters:
+| Parameter     | Description                                                                                                                                                                                                   |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `accessToken` | A valid sales channel access token.                                                                                                                                                                           |
+| `skus`        | SKU codes, comma separated. You can use colon to add a default quantity (e.g. `TSHIRT123:4` will add 4 of the specified SKU to the microstore). Default quantity is **1**.                                    |
+| `all`         | If `true`, a _Buy All_ button is activated on top of the products list. This will clear the line items of the order and add all the items listed on the page to the order (with the quantity set in the URL). |
+| `cart`        | If `true`, the microstore application will work together with the [cart](https://github.com/commercelayer/commercelayer-cart) one.                                                                                                                              |
 
-- **accessToken**: A sales channel access token valid for the subdomain of the organization used.
-- **skus**: SKU codes comma separated, you can use colon to add a default quantity, TSHIRT123:4 is going to add an SKU to the microstore with quantity set to 4. Default quantity is 1.
-- **all**: if set to true, we activate “Buy All” button on top of the products list that will clear line items of the order and add all the items in the page with the default quantity set in the url.
-- **cart**: if set to true, microstore will work together with the hosted cart. We disabled the "Buy now" mode, avoiding to remove previous line items from the order when we click the "Buy now" button. Enabling the cart will add a behaviour option on how we add item to the shopping bag
-  - **inline**: If set to true, when a customer click on the button add to bag, he will remain on the page, otherwise he will be redirected immediately to the hosted cart.
-
-`https://yourbrand.commercelayer.app/microstore?skus=<skuCode-comma-separated>accessToken=<your-access-token>`
+`https://<your-organization-subdomain>.commercelayer.app/microstore?skus=<skuCode-comma-separated>accessToken=<your-access-token>`
 
 For example: `https://yourbrand.checkout.commercelayer.app/microstore?skus=TSHIRT123:4&accessToken=eyJhbGciOiJIUzUxMiJ9`
+
+### Cart options
+
+> When the microstore app works in conjunction with the [cart](https://github.com/commercelayer/commercelayer-cart) one, we decided to disable the _Buy Now_ mode, so as to avoid removing previous line items from the order on the "Buy now" button click.
+
+Enabling the cart will add a behavior option about how the items are added to the shopping bag:
+
+| Parameter     | Description                                                                                                                                                                                                   |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `inline` | If `true`, when customers click on the "Add to bag" button, they will remain on the page, otherwise they will be redirected immediately to the cart. |
+
+For example: `https://yourbrand.checkout.commercelayer.app/microstore?skus=TSHIRT123:4&accessToken=eyJhbGciOiJIUzUxMiJ9&cart=true&inline=true`
+
 
 ## Contributors guide
 
