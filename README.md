@@ -2,7 +2,7 @@
 
 The Commerce Layer Microstore application (React) provides you with a production-ready microstore website powered by Commerce Layer APIs. Microstores are self-contained and fully functional hosted stores accessible via a unique URL, which can be embedded into any online or offline (e.g. using a QR code) content. You can fork this repository and deploy it to any hosting service or use it as a reference application to build your own. A hosted version is also available.
 
-![Commerce Layer React Microstore demo](./public/demo.gif)
+![Commerce Layer React Microstore demo](./public/demo.png)
 
 ## What is Commerce Layer?
 
@@ -43,11 +43,11 @@ The default behavior is the _Buy Now_ mode. This means that as soon as customers
 ### URL parameters
 
 | Parameter     | Description                                                                                                                                                                                                   |
-|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `accessToken` | A valid sales channel access token.                                                                                                                                                                           |
 | `skus`        | SKU codes, comma separated. You can use colon to add a default quantity (e.g. `TSHIRT123:4` will add 4 of the specified SKU to the microstore). Default quantity is **1**.                                    |
 | `all`         | If `true`, a _Buy All_ button is activated on top of the products list. This will clear the line items of the order and add all the items listed on the page to the order (with the quantity set in the URL). |
-| `cart`        | If `true`, the microstore application will work together with the [cart](https://github.com/commercelayer/commercelayer-cart) one.                                                                                                                              |
+| `cart`        | If `true`, the microstore application will work together with the [cart](https://github.com/commercelayer/commercelayer-cart) one.                                                                            |
 
 `https://<your-organization-subdomain>.commercelayer.app/microstore?skus=<skuCode-comma-separated>accessToken=<your-access-token>`
 
@@ -59,12 +59,11 @@ For example: `https://yourbrand.checkout.commercelayer.app/microstore?skus=TSHIR
 
 Enabling the cart will add a behavior option about how the items are added to the shopping bag:
 
-| Parameter     | Description                                                                                                                                                                                                   |
-|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `inline` | If `true`, when customers click on the "Add to bag" button, they will remain on the page, otherwise they will be redirected immediately to the cart. |
+| Parameter | Description                                                                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `inline`  | If `true`, when customers click on the "Add to bag" button, they will remain on the page, otherwise they will be redirected immediately to the cart. |
 
 For example: `https://yourbrand.checkout.commercelayer.app/microstore?skus=TSHIRT123:4&accessToken=eyJhbGciOiJIUzUxMiJ9&cart=true&inline=true`
-
 
 ## Contributors guide
 
