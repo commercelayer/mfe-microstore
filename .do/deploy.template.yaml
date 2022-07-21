@@ -1,0 +1,7 @@
+spec:
+ name: commercelayer-microstore
+ services:
+ - name: commercelayer-microstore
+   git:
+     branch: master
+     repo_clone_url: https://github.com/commercelayer/commercelayer-microstore.git
