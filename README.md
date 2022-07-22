@@ -32,7 +32,7 @@ The Commerce Layer Microstore application (React) provides you with a production
 
 5. Create one or more [SKUs](https://commercelayer.io/docs/data-model/skus) associated with prices and inventories.
 
-6. Open the Microstore using the URL format: `<your-deployed-microstore-url>/microstore?skus=<skuCodes-comma-separated>accessToken=<your-access-token>`. For example: `https://microstore.yourbrand.com/microstore?skus=TSHIRT123,TANK123&accessToken=eyJhbGciOiJIUzUxMiJ9`.
+6. Open the microstore using the URL format: `<your-deployed-microstore-url>/microstore?skus=<skuCodes-comma-separated>accessToken=<your-access-token>`. For example: `https://microstore.yourbrand.com/microstore?skus=TSHIRT123,TANK123&accessToken=eyJhbGciOiJIUzUxMiJ9`.
 
 ## Hosted version
 
@@ -47,9 +47,9 @@ The default behavior is the _Buy Now_ mode. This means that as soon as customers
 | Parameter     | Description                                                                                                                                                                                                   |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `accessToken` | A valid sales channel access token.                                                                                                                                                                           |
-| `skus`        | SKU codes, comma separated. You can use colon to add a default quantity (e.g. `TSHIRT123:4` will add 4 of the specified SKU to the Microstore). Default quantity is **1**.                                    |
+| `skus`        | SKU codes, comma separated. You can use colon to add a default quantity (e.g. `TSHIRT123:4` will add 4 of the specified SKU to the microstore). Default quantity is **1**.                                    |
 | `all`         | If `true`, a _Buy All_ button is activated on top of the products list. This will clear the line items of the order and add all the items listed on the page to the order (with the quantity set in the URL). |
-| `cart`        | If `true`, the Microstore application will work together with the [cart](https://github.com/commercelayer/commercelayer-cart) one.                                                                            |
+| `cart`        | If `true`, the Microstore application will work together with the [Cart](https://github.com/commercelayer/commercelayer-cart) one.                                                                            |
 
 `https://<your-organization-subdomain>.commercelayer.app/microstore?skus=<skuCode-comma-separated>accessToken=<your-access-token>`
 
