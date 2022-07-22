@@ -40,7 +40,7 @@ Any Commerce Layer account comes with a hosted version of the Microstore applica
 
 You can use the hosted version of the Microstore application by building the related URL with the following format: `https://<your-organization-subdomain>.commercelayer.app/microstore?skus=<skuCodes-comma-separated>accessToken=<your-access-token>`.
 
-The default behavior is the _Buy Now_ mode. This means that as soon as customers add a product to the shopping bag they are redirected directly to checkout. If other line items were present in the order, they will be deleted.
+The default behavior is the _Buy Now_ mode. This means that as soon as customers add a product to the shopping bag they are redirected directly to the [Checkout application](https://github.com/commercelayer/commercelayer-react-checkout). If other line items were present in the order, they will be deleted.
 
 ### URL parameters
 
@@ -57,7 +57,7 @@ For example: `https://yourbrand.checkout.commercelayer.app/microstore?skus=TSHIR
 
 ### Cart options
 
-> When the Microstore application works in conjunction with the [Cart](https://github.com/commercelayer/commercelayer-cart) one, we decided to disable the _Buy Now_ mode, so as to avoid removing previous line items from the order on the "Buy now" button click.
+> When the Microstore application works in conjunction with the [Cart application](https://github.com/commercelayer/commercelayer-cart), we decided to disable the _Buy Now_ mode, so as to avoid removing previous line items from the order on the "Buy now" button click.
 
 Enabling the Cart application will add a behavior option about how the items are added to the shopping bag:
 
