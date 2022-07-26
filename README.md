@@ -20,19 +20,21 @@ The Commerce Layer Microstore application (React) provides you with a production
 
 ## Getting started
 
-1. Deploy the forked repository to your preferred hosting service or host it yourself. You can deploy with one click below:
+1. Create your organization and get your credentials by following one of our [onboarding tutorials](https://docs.commercelayer.io/developers/welcome).
+
+2. Set the environment variable `NEXT_PUBLIC_SLUG` on your hosting provider to your organization slug (subdomain) and be sure to build the forked repository using the node environment (`NODE_ENV`) as production.
+
+3. Deploy the forked repository to your preferred hosting service or host it yourself. You can deploy with one click below:
 
 [<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" height="35">](https://app.netlify.com/start/deploy?repository=https://github.com/commercelayer/commercelayer-microstore) [<img src="https://vercel.com/button" alt="Deploy to Vercel" height="35">](https://vercel.com/new/clone?repository-url=https://github.com/commercelayer/commercelayer-microstore) [<img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="35">](https://heroku.com/deploy?template=https://github.com/commercelayer/commercelayer-microstore) [<img src="https://www.deploytodo.com/do-btn-blue.svg" alt="Deploy to Digital Ocean" height="35">](https://cloud.digitalocean.com/apps/new?repo=https://github.com/commercelayer/commercelayer-microstore/tree/master)
 
-2. Create your organization and get your credentials by following one of our [onboarding tutorials](https://docs.commercelayer.io/developers/welcome).
+4. Build your sales channel with your favorite technologies and frameworks by leveraging our [developer resources](https://commercelayer.io/developers) and [documentation](https://docs.commercelayer.io/api).
 
-3. Build your sales channel with your favorite technologies and frameworks by leveraging our [developer resources](https://commercelayer.io/developers) and [documentation](https://docs.commercelayer.io/api).
+5. Get an [access token](https://docs.commercelayer.io/api/authentication) for your application. You should generate this in your sales channel or use our JavaScript [authentication library](https://github.com/commercelayer/commercelayer-js-auth).
 
-4. Get an [access token](https://docs.commercelayer.io/api/authentication) for your application. You should generate this in your sales channel or use our JavaScript [authentication library](https://github.com/commercelayer/commercelayer-js-auth).
+6. Create one or more [SKUs](https://commercelayer.io/docs/data-model/skus) associated with prices and inventories.
 
-5. Create one or more [SKUs](https://commercelayer.io/docs/data-model/skus) associated with prices and inventories.
-
-6. Open the microstore using the URL format: `<your-deployed-microstore-url>/microstore?skus=<skuCodes-comma-separated>accessToken=<your-access-token>`. For example: `https://microstore.yourbrand.com/microstore?skus=TSHIRT123,TANK123&accessToken=eyJhbGciOiJIUzUxMiJ9`.
+7. Open the microstore using the URL format: `<your-deployed-microstore-url>/microstore?skus=<skuCodes-comma-separated>accessToken=<your-access-token>`. For example: `https://microstore.yourbrand.com/microstore?skus=TSHIRT123,TANK123&accessToken=eyJhbGciOiJIUzUxMiJ9`.
 
 ## Hosted version
 
@@ -61,8 +63,8 @@ For example: `https://yourbrand.checkout.commercelayer.app/microstore?skus=TSHIR
 
 Enabling the Cart application will add a behavior option about how the items are added to the shopping bag:
 
-| Parameter | Description                                                                                                                                          |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter | Description                                                                                                                                                      |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `inline`  | If `true`, when customers click on the "Add to bag" button, they will remain on the page, otherwise they will be redirected immediately to the Cart application. |
 
 For example: `https://yourbrand.checkout.commercelayer.app/microstore?skus=TSHIRT123:4&accessToken=eyJhbGciOiJIUzUxMiJ9&cart=true&inline=true`
@@ -73,7 +75,7 @@ Any Commerce Layer account comes with a hosted version of the Cart application.
 
 Microstore URLs can be generated programmatically or using the [Microstore Configurator](https://github.com/commercelayer/commercelayer-microstore-configurator). You can fork the configurator repository and deploy it to any hosting service or use it as a reference application to build your own.
 
-Any Commerce Layer account comes with a hosted version of the Microstore Configurator application. 
+Any Commerce Layer account comes with a hosted version of the Microstore Configurator application.
 
 ## Contributors guide
 
