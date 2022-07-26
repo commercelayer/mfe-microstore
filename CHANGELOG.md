@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/commercelayer/commercelayer-microstore/compare/v1.0.0...v1.0.1) (2022-07-26)
+
+
+### Bug Fixes
+
+* force check slug variable on forked microstore ([43c9469](https://github.com/commercelayer/commercelayer-microstore/commit/43c946944b8bc5afc319049b9574d0e9bc42748c))
+
 # 1.0.0 (2022-07-26)
 
 
