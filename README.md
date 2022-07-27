@@ -71,12 +71,6 @@ For example: `https://yourbrand.checkout.commercelayer.app/microstore?skus=TSHIR
 
 Any Commerce Layer account comes with a hosted version of the Cart application.
 
-### Microstore Configurator
-
-Microstore URLs can be generated programmatically or using the [Microstore Configurator](https://github.com/commercelayer/commercelayer-microstore-configurator). You can fork the configurator repository and deploy it to any hosting service or use it as a reference application to build your own.
-
-Any Commerce Layer account comes with a hosted version of the Microstore Configurator application.
-
 ## Contributors guide
 
 1. Fork [this repository](https://github.com/commercelayer/commercelayer-microstore) (you can learn how to do this [here](https://help.github.com/articles/fork-a-repo)).
