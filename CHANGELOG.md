@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/commercelayer/commercelayer-microstore/compare/v1.0.1...v1.0.2) (2022-07-28)
+
+
+### Bug Fixes
+
+* solve safari bug for disabled button ([9348824](https://github.com/commercelayer/commercelayer-microstore/commit/93488242eaaac1c484d0358600ddc4be879529b1))
+
 ## [1.0.1](https://github.com/commercelayer/commercelayer-microstore/compare/v1.0.0...v1.0.1) (2022-07-26)
 
 
