@@ -28,7 +28,7 @@ const Home: NextPage = () => {
   return (
     <>
       <MicrostoreContainer settings={settings} couponCode={couponCode}>
-        <BuyAllProvider settings={settings}>
+        <BuyAllProvider settings={settings} skus={skus}>
           <Microstore
             skus={skus}
             couponCode={couponCode}

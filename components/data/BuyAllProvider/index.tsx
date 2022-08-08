@@ -23,6 +23,7 @@ type BuyAllProviderValue = {
 interface BuyAllProviderProps {
   children: ((props: BuyAllProviderValue) => ReactNode) | ReactNode
   settings: Settings
+  skus: SkuWithQuantity[]
 }
 
 const BuyAllContext = createContext<BuyAllProviderValue>({
@@ -36,8 +37,9 @@ const BuyAllContext = createContext<BuyAllProviderValue>({
 export const BuyAllProvider: FC<BuyAllProviderProps> = ({
   children,
   settings,
+  skus,
 }) => {
-  const { skus, all, cart } = useDataFromUrl()
+  const { all, cart } = useDataFromUrl()
   const [internalSkus, setInteralSkus] = useState<SkuWithQuantity[]>([])
   const [isBuyingAll, setIsBuyingAll] = useState(false)
   const [showBuyAllButton, setShowBuyAllButton] = useState(false)
