@@ -4,7 +4,6 @@ type SkuWithQuantity = {
 }
 
 type UrlData = {
-  skus: SkuWithQuantity[]
   description?: string
   title?: string
   couponCode?: string
