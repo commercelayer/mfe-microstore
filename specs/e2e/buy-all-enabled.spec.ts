@@ -3,7 +3,7 @@ import { test } from "../fixtures/tokenizedPage"
 test.describe("Param `all=true` is found in url params without cart", () => {
   test.use({
     defaultParams: {
-      skus: "TSHIRTMS000000FFFFFFLXXX,BEANIEXXFFFFFF000000XXXX:3",
+      skuListId: process.env.E2E_SKU_LIST_ID,
       all: true,
     },
   })
@@ -18,7 +18,7 @@ test.describe(
   () => {
     test.use({
       defaultParams: {
-        skus: "TSHIRTMS000000FFFFFFLXXX,BEANIEXXFFFFFF000000XXXX:3",
+        skuListId: process.env.E2E_SKU_LIST_ID,
         all: true,
         cart: true,
       },
