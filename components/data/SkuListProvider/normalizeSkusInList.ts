@@ -1,7 +1,7 @@
 import { SkuList } from "@commercelayer/sdk"
 
 /**
- * @returns a normalized array of sku codes with quantity by checking
+ * @returns a normalized array of SKU codes with quantity by checking
  * if SKU List has been configured with manual `sku_list_items` or with
  * a regex that populates a `skus` array
  *

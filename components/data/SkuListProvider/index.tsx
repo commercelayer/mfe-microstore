@@ -22,13 +22,15 @@ type SkuListProviderValue = {
   }
 }
 
-interface SkuListProviderProps {
+type SkuListProviderProps = {
   /**
    * Settings returned from `useSettings` hook
    */
   settings: Settings
   /**
-   * The SKU List resource id we want to use in this microstore
+   * The SKU List resource id we want to use in this microstore.
+   *
+   * {@link https://docs.commercelayer.io/developers/v/api-reference/sku_lists Check API reference}
    */
   skuListId: string
   /**
