@@ -30,31 +30,33 @@ const SkuListPage: NextPage = () => {
 
   return (
     <SkuListProvider settings={settings} skuListId={skuListId}>
-      {({
-        isLoading: isLoadingSkus,
-        isError: isErrorSkus,
-        data: skusListDetails,
-      }) =>
-        isLoadingSkus ? (
-          <SkeletonLoader />
-        ) : isErrorSkus || !skusListDetails ? (
-          <ErrorContainer
-            errorCode="Error"
-            errorMessage="This SKU List is not accessibile"
-          />
-        ) : (
+      {(skuList) => {
+        if (skuList.isLoading) {
+          return <SkeletonLoader />
+        }
+
+        if (skuList.isError || !skuList.data) {
+          return (
+            <ErrorContainer
+              errorCode="Error"
+              errorMessage="This SKU List is not accessibile"
+            />
+          )
+        }
+
+        return (
           <MicrostoreContainer settings={settings} couponCode={couponCode}>
-            <BuyAllProvider settings={settings} skus={skusListDetails?.skus}>
+            <BuyAllProvider settings={settings} skus={skuList.data.skus}>
               <Microstore
-                skus={skusListDetails?.skus}
+                skus={skuList.data.skus}
                 couponCode={couponCode}
-                title={skusListDetails?.title}
-                description={skusListDetails?.description}
+                title={skuList.data.title}
+                description={skuList.data.description}
               />
             </BuyAllProvider>
           </MicrostoreContainer>
         )
-      }
+      }}
     </SkuListProvider>
   )
 }
