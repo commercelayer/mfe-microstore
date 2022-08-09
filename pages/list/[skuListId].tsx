@@ -40,7 +40,7 @@ const SkuListPage: NextPage = () => {
         ) : isErrorSkus || !skusListDetails ? (
           <ErrorContainer
             errorCode="Error"
-            errorMessage="This Sku List is not accessibile"
+            errorMessage="This SKU List is not accessibile"
           />
         ) : (
           <MicrostoreContainer settings={settings} couponCode={couponCode}>

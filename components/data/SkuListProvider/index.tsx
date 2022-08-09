@@ -5,15 +5,15 @@ import { normalizeSkusInList } from "./normalizeSkusInList"
 
 type SkuListProviderValue = {
   /**
-   * This will be set to `true` during Sku List data fetching
+   * This will be set to `true` during SKU List data fetching
    */
   isLoading: boolean
   /**
-   * Unable to fetch Sku List info from the given `skuListId`
+   * Unable to fetch SKU List info from the given `skuListId`
    */
   isError?: boolean
   /**
-   * The Sku List fetched data that we need in order to render the microstore
+   * The SKU List fetched data that we need in order to render the microstore
    */
   data?: {
     title?: string
@@ -28,11 +28,11 @@ interface SkuListProviderProps {
    */
   settings: Settings
   /**
-   * The Sku List resource id we want to use in this microstore
+   * The SKU List resource id we want to use in this microstore
    */
   skuListId: string
   /**
-   * Use it to limit items found in sku list to a specific amount, default is 12
+   * Use it to limit items found in SKU List to a specific amount, default is 12
    */
   itemsLimit?: number
   children: (props: SkuListProviderValue) => ReactNode
