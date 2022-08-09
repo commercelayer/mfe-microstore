@@ -62,6 +62,11 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
     try {
       const skuList = await cl.sku_lists.retrieve(skuListId, {
         include: ["sku_list_items", "skus"],
+        fields: {
+          sku_lists: ["name", "description", "sku_list_items", "skus"],
+          sku_list_items: ["sku_code", "quantity"],
+          skus: ["code"],
+        },
       })
 
       if (skuList) {
