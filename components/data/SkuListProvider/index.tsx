@@ -3,7 +3,7 @@ import { FC, ReactNode, useState, useEffect, useCallback } from "react"
 
 import { normalizeSkusInList } from "./normalizeSkusInList"
 
-type SkuListProviderValue = {
+type SkuListProviderChildrenProps = {
   /**
    * This will be set to `true` during SKU List data fetching
    */
@@ -37,7 +37,7 @@ type SkuListProviderProps = {
    * Use it to limit items found in SKU List to a specific amount, default is 12
    */
   itemsLimit?: number
-  children: (props: SkuListProviderValue) => ReactNode
+  children: (props: SkuListProviderChildrenProps) => ReactNode
 }
 
 export const SkuListProvider: FC<SkuListProviderProps> = ({
