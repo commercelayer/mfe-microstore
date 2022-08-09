@@ -3,6 +3,7 @@ import { Page, expect, Locator } from "@playwright/test"
 interface GoToProps {
   accessToken?: string
   cart?: boolean
+  skuListId?: string
 }
 
 interface AttributesProps {
@@ -34,18 +35,20 @@ export class MicrostorePage {
     this.addToCartInlineButton = this.page
       .locator("[data-test-id=button-add-to-cart-inline]")
       .first()
-    this.cartItemsCount = this.page.locator("[data-test-id=cart-items-count]")
+    this.cartItemsCount = this.page
+      .locator("[data-test-id=cart-items-count]")
+      .first()
     this.quantitySelector = this.page
       .locator("[data-test-id=quantity-selector]")
       .first()
   }
 
   async goto(props: GoToProps) {
-    const params = JSON.parse(JSON.stringify(props))
+    const { skuListId, ...params } = JSON.parse(JSON.stringify(props))
 
     const querystring = new URLSearchParams(params)
 
-    const url = `microstore/?${querystring}`
+    const url = `microstore/list/${skuListId}?${querystring}`
 
     await this.page.goto(`${url}`, {
       waitUntil: "networkidle",

@@ -11,7 +11,7 @@ dotenv.config({ path: path.resolve(__dirname, "../../.env.local") })
 export interface DefaultParamsProps {
   accessToken?: string
   market?: string
-  skus?: string
+  skuListId?: string
   cart?: boolean
   inline?: boolean
   all?: boolean

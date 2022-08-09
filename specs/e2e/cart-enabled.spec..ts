@@ -3,7 +3,7 @@ import { test, expect } from "../fixtures/tokenizedPage"
 test.describe("With add and go to cart feature enabled", () => {
   test.use({
     defaultParams: {
-      skus: "TSHIRTMS000000FFFFFFLXXX",
+      skuListId: process.env.E2E_SKU_LIST_ID,
       cart: true,
       inline: false,
     },
@@ -19,7 +19,7 @@ test.describe("With add and go to cart feature enabled", () => {
 test.describe("With inline cart feature enabled", () => {
   test.use({
     defaultParams: {
-      skus: "TSHIRTMS000000FFFFFFLXXX",
+      skuListId: process.env.E2E_SKU_LIST_ID,
       cart: true,
       inline: true,
     },
