@@ -1,3 +1,20 @@
+# [1.1.0](https://github.com/commercelayer/commercelayer-microstore/compare/v1.0.2...v1.1.0) (2022-08-09)
+
+
+### Bug Fixes
+
+* remove root page with SKUs array in url query string ([edc522c](https://github.com/commercelayer/commercelayer-microstore/commit/edc522c0912ba4f9dc0104b79d4b56765e4ee071))
+
+
+### Features
+
+* add support for SKU List ([2287dc1](https://github.com/commercelayer/commercelayer-microstore/commit/2287dc169c638152066132f837c991374de662eb))
+
+
+### Performance Improvements
+
+* request only necessary fields to reduce api payload ([30618df](https://github.com/commercelayer/commercelayer-microstore/commit/30618df8db6e4f76699ca803760540e140ae71f0))
+
 ## [1.0.2](https://github.com/commercelayer/commercelayer-microstore/compare/v1.0.1...v1.0.2) (2022-07-28)
 
 
