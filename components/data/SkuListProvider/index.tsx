@@ -4,8 +4,17 @@ import { FC, ReactNode, useState, useEffect, useCallback } from "react"
 import { normalizeSkusInList } from "./normalizeSkusInList"
 
 type SkuListProviderValue = {
+  /**
+   * This will be set to `true` during Sku List data fetching
+   */
   isLoading: boolean
+  /**
+   * Unable to fetch Sku List info from the given `skuListId`
+   */
   isError?: boolean
+  /**
+   * The Sku List fetched data that we need in order to render the microstore
+   */
   data?: {
     title?: string
     description?: string
@@ -14,9 +23,18 @@ type SkuListProviderValue = {
 }
 
 interface SkuListProviderProps {
+  /**
+   * Settings returned from `useSettings` hook
+   */
   settings: Settings
+  /**
+   * The Sku List resource id we want to use in this microstore
+   */
   skuListId: string
-  maxSkusToShow?: number
+  /**
+   * Use it to limit items found in sku list to a specific amount, default is 12
+   */
+  itemsLimit?: number
   children: (props: SkuListProviderValue) => ReactNode
 }
 
@@ -24,7 +42,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
   settings,
   skuListId,
   children,
-  maxSkusToShow = 12,
+  itemsLimit = 12,
 }) => {
   const [title, setTitle] = useState<string>()
   const [description, setDescription] = useState<string>()
@@ -47,7 +65,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
       if (skuList) {
         setTitle(skuList.name)
         setDescription(skuList.description)
-        setSkus(normalizeSkusInList(skuList).slice(0, maxSkusToShow))
+        setSkus(normalizeSkusInList(skuList).slice(0, itemsLimit))
       } else {
         setIsError(true)
       }

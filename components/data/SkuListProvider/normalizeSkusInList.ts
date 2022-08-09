@@ -1,5 +1,12 @@
 import { SkuList } from "@commercelayer/sdk"
 
+/**
+ * @returns a normalized array of sku codes with quantity by checking
+ * if Sku List has been configured with manual `sku_list_items` or with
+ * a regex that populates a `skus` array
+ *
+ * @param skuList - The fetched sku_list resource object returned from SDK
+ */
 export const normalizeSkusInList = (skuList: SkuList): SkuWithQuantity[] => {
   return skuList.manual
     ? (skuList.sku_list_items || []).map((item) => ({
