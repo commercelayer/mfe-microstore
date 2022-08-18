@@ -39,7 +39,7 @@ test.describe("With inline cart feature enabled", () => {
     microstorePage,
   }) => {
     await microstorePage.addItemToCart({ inline: true })
-    await microstorePage.checkCartItemsCount(1)
+    await microstorePage.checkCartItemsCount(12)
     await microstorePage.expectCartLinkOnTop()
   })
 
@@ -47,7 +47,7 @@ test.describe("With inline cart feature enabled", () => {
     microstorePage,
   }) => {
     await microstorePage.addItemToCart({ inline: true })
-    await microstorePage.checkCartItemsCount(1)
+    await microstorePage.checkCartItemsCount(12)
 
     // validate cart url
     const carlUrl =

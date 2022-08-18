@@ -10,8 +10,9 @@ test.describe("With quantity selector, for specific sku", () => {
   })
 
   test("should add default quantity to cart", async ({ microstorePage }) => {
+    await microstorePage.expectDefaultQuantity(12)
     await microstorePage.addItemToCart({ inline: true })
-    await microstorePage.checkCartItemsCount(1)
+    await microstorePage.checkCartItemsCount(12)
   })
 
   test("should be able to manually update quantity", async ({
