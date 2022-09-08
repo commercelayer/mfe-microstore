@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/commercelayer/commercelayer-microstore/compare/v1.1.0...v1.1.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* show default quantity for each SKU item in list ([a98729f](https://github.com/commercelayer/commercelayer-microstore/commit/a98729f33d8d69d65e6c1f01330720cd3ef9c96c))
+
 # [1.1.0](https://github.com/commercelayer/commercelayer-microstore/compare/v1.0.2...v1.1.0) (2022-08-09)
 
 
