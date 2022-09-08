@@ -75,6 +75,11 @@ export class MicrostorePage {
     }
   }
 
+  async expectDefaultQuantity(quantity: number) {
+    const inputValue = await this.quantitySelector.inputValue()
+    await expect(inputValue).toBe(`${quantity}`)
+  }
+
   async addItemToCart({ inline }: { inline: boolean }) {
     if (inline) {
       await this.addToCartInlineButton.click()
