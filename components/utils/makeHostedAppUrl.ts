@@ -40,4 +40,4 @@ const makeCheckoutUrl = ({
   )
 
 const makeCartUrl = ({ orderId }: { orderId: string }): URL =>
-  new URL(`cart/${orderId}`, window.location.href)
+  new URL(`cart/${orderId}`, window.location.origin)

@@ -15,11 +15,11 @@ describe("makeHostedAppUrl", () => {
   })
 
   test("should return a valid hosted cart url", () => {
-    // mock window.location.href
+    // mock window.location
     global.window = Object.create(window)
     Object.defineProperty(window, "location", {
       value: {
-        href: "http://myorg.commercelayer.app/microstore?someUrlParam=xxxx",
+        origin: "http://myorg.commercelayer.app",
       },
     })
 
