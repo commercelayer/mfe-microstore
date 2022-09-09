@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/commercelayer/commercelayer-microstore/compare/v1.1.1...v1.1.2) (2022-09-09)
+
+
+### Bug Fixes
+
+* use `location.origin` instead of `href` to properly build cart url when buy-now mode is active ([9743167](https://github.com/commercelayer/commercelayer-microstore/commit/9743167b54909ef369057d6967a4f394c679fc4c))
+
 ## [1.1.1](https://github.com/commercelayer/commercelayer-microstore/compare/v1.1.0...v1.1.1) (2022-09-08)
 
 
