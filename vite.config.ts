@@ -9,7 +9,8 @@ import { resolve } from "path"
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "")
   const analyzeBundle = env.ANALYZE_BUNDLE === "true"
-  const basePath = env.PUBLIC_BASE_PATH || ""
+  const basePath =
+    env.PUBLIC_PROJECT_PATH != null ? `/${env.PUBLIC_PROJECT_PATH}` : ""
 
   return {
     plugins: preparePlugins({ analyzeBundle }),

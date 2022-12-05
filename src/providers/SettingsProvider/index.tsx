@@ -36,6 +36,10 @@ type SettingsProviderProps = {
    * ```
    */
   children: ((props: SettingsProviderValue) => ReactNode) | ReactNode
+  /**
+   * App config served locally from public/config.json
+   */
+  config: RuntimeConfig
 }
 
 const initialValues: SettingsProviderValue = {
@@ -54,7 +58,10 @@ export const useSettings = (): SettingsProviderValue => {
   }
 }
 
-export const SettingsProvider: FC<SettingsProviderProps> = ({ children }) => {
+export const SettingsProvider: FC<SettingsProviderProps> = ({
+  children,
+  config,
+}) => {
   const [settings, setSettings] = useState<Settings | InvalidSettings>(
     defaultSettings
   )
@@ -65,7 +72,10 @@ export const SettingsProvider: FC<SettingsProviderProps> = ({ children }) => {
     setIsLoading(!!accessToken)
 
     if (accessToken) {
-      getSettings({ accessToken })
+      getSettings({
+        accessToken,
+        config,
+      })
         .then(setSettings)
         .finally(() => {
           setIsLoading(false)

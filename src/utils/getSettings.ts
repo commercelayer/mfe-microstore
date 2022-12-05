@@ -35,19 +35,19 @@ const makeInvalidSettings = ({
  *
  * @param accessToken - Access Token for a sales channel API credentials to be used to authenticate all Commerce Layer API requests.
  * Read more at {@link https://docs.commercelayer.io/developers/authentication/client-credentials#sales-channel}
- * @param orderId - Order Id used to show cart info details.
- * Read more at {@link https://docs.commercelayer.io/developers/api-specification#base-endpoint}.
+ * @param config - RuntimeConfig from config.json file.
  *
  * @returns an union type of `Settings` or `InvalidSettings`
  */
 export const getSettings = async ({
   accessToken,
+  config,
 }: {
   accessToken: string
+  config: RuntimeConfig
 }): Promise<Settings | InvalidSettings> => {
-  // TODO: read from config
-  const domain = import.meta.env.PUBLIC_DOMAIN || "commercelayer.io"
   const { slug } = getInfoFromJwt(accessToken)
+  const { domain = "commercelayer.io", selfHostedSlug, isHosted } = config
 
   if (!slug) {
     return makeInvalidSettings({})
@@ -55,7 +55,14 @@ export const getSettings = async ({
 
   // checking app consistency
   const hostname = typeof window && window.location.hostname
-  if (!isValidHost(hostname, accessToken)) {
+  if (
+    !isValidHost({
+      hostname,
+      accessToken,
+      selfHostedSlug,
+      isCommerceLayerHosted: Boolean(isHosted),
+    })
+  ) {
     return makeInvalidSettings({})
   }
 
@@ -81,6 +88,7 @@ export const getSettings = async ({
     accessToken,
     endpoint: `https://${slug}.${domain}`,
     slug,
+    domain,
     logoUrl: organization.logo_url,
     companyName: organization.name || defaultSettings.companyName,
     primaryColor: organization.primary_color || defaultSettings.primaryColor,

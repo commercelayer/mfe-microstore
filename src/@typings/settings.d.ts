@@ -39,6 +39,7 @@ interface Settings {
    * Read more at {@link https://docs.commercelayer.io/developers/v/api-reference/organization/object}.
    */
   faviconUrl: string
+  domain: string
 }
 
 type InvalidSettings = Pick<

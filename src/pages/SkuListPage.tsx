@@ -13,7 +13,7 @@ function SkuListPage(): JSX.Element {
   const [match, params] = useRoute("/list/:skuListId")
   const skuListId = params?.skuListId as string
   const search = new URLSearchParams(window.location.search)
-  const couponCode = search.get("accessToken") || undefined
+  const couponCode = search.get("couponCode") || undefined
 
   const { settings, isLoading: isLoadingSettings } = useSettings()
 
@@ -26,20 +26,18 @@ function SkuListPage(): JSX.Element {
     )
   }
 
-  if (!settings.isValid) {
-    return (
-      <ErrorContainer
-        errorCode="Error"
-        errorMessage="This SKU List is not accessible"
-      />
-    )
-  }
-
   if (isLoadingSettings || !settings) {
     return <SkeletonLoader />
   }
 
-  console.log("bbb")
+  if (settings && !settings.isValid) {
+    return (
+      <ErrorContainer
+        errorCode="Error"
+        errorMessage="This store is not accessible."
+      />
+    )
+  }
 
   return (
     <SkuListProvider settings={settings} skuListId={skuListId}>

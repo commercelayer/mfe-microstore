@@ -40,7 +40,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
   skus,
 }) => {
   const { all, cart } = useDataFromUrl()
-  const [internalSkus, setInteralSkus] = useState<SkuWithQuantity[]>([])
+  const [internalSkus, setInternalSkus] = useState<SkuWithQuantity[]>([])
   const [isBuyingAll, setIsBuyingAll] = useState(false)
   const [showBuyAllButton, setShowBuyAllButton] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | undefined>()
@@ -50,7 +50,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
   }, [all])
 
   useEffect(() => {
-    setInteralSkus(skus)
+    setInternalSkus(skus)
   }, [skus])
 
   const buyAllHandler = async () => {
@@ -99,7 +99,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
     if (!updatedSku) {
       return
     }
-    setInteralSkus((state) =>
+    setInternalSkus((state) =>
       state.map((s) => (s.skuCode === updatedSku.skuCode ? updatedSku : s))
     )
   }

@@ -3,26 +3,36 @@ import { Router, Route, Switch } from "wouter"
 
 import ErrorPage from "#pages/ErrorPage"
 import SkuListPage from "#pages/SkuListPage"
+import { RuntimeConfigProvider } from "#providers/RuntimeConfigProvider"
 import { SettingsProvider } from "#providers/SettingsProvider"
 
 function App(): JSX.Element {
+  const basePath =
+    import.meta.env.PUBLIC_PROJECT_PATH != null
+      ? `/${import.meta.env.PUBLIC_PROJECT_PATH}`
+      : undefined
+
   return (
     <HelmetProvider>
-      <Router base={import.meta.env.PUBLIC_BASE_PATH}>
-        <Switch>
-          <Route path={"/404"}>
-            <ErrorPage />
-          </Route>
-          <Route path={"/list/:skuListId"}>
-            <SettingsProvider>
-              <SkuListPage />
-            </SettingsProvider>
-          </Route>
-          <Route>
-            <ErrorPage />
-          </Route>
-        </Switch>
-      </Router>
+      <RuntimeConfigProvider>
+        {(config) => (
+          <Router base={basePath}>
+            <Switch>
+              <Route path={"/404"}>
+                <ErrorPage />
+              </Route>
+              <Route path={"/list/:skuListId"}>
+                <SettingsProvider config={config}>
+                  <SkuListPage />
+                </SettingsProvider>
+              </Route>
+              <Route>
+                <ErrorPage />
+              </Route>
+            </Switch>
+          </Router>
+        )}
+      </RuntimeConfigProvider>
     </HelmetProvider>
   )
 }

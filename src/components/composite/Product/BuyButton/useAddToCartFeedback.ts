@@ -1,4 +1,4 @@
-import { AddToCartReturn } from "@commercelayer/react-components/lib/esm/reducers/OrderReducer"
+import { AddToCartReturn } from "@commercelayer/react-components/lib/reducers/OrderReducer"
 import { useState, useRef, useEffect } from "react"
 
 export const useAddToCartFeedback = (feedbackDelay = 3000) => {

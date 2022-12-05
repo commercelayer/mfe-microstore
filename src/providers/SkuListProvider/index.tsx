@@ -61,7 +61,6 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
       // domain: settings.domain,
     })
 
-    console.log("skuListId, settings")
     try {
       const skuList = await cl.sku_lists.retrieve(skuListId, {
         include: ["sku_list_items", "skus"],
@@ -92,7 +91,6 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
 
   useEffect(() => {
     if (!skuListId || !settings) {
-      console.log("here", skuListId)
       return
     }
     fetchSkuListInfo()

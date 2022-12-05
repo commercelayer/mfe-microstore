@@ -33,6 +33,7 @@ export const retryCall = async <T>(
           object: await f(),
           success: true,
         }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         // sdk return sa structured object in case of api error
         // we assume we hit a not-retriable error when the error object returned has no keys

@@ -1,4 +1,4 @@
-import CommerceLayer from "@commercelayer/sdk"
+import { CommerceLayer } from "@commercelayer/sdk"
 
 import { createLineItems } from "./createLineItems"
 import { getOrCreateOrderId } from "./getOrCreateOrderId"
