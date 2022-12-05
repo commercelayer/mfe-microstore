@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
     base: `${basePath}/`,
     build: {
       target: "esnext",
-      outDir: "build",
+      outDir: "dist",
       rollupOptions: {
         output: {
           manualChunks: {
