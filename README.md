@@ -22,7 +22,7 @@ The Commerce Layer Microstore application (React) provides you with a production
 
 1. Create your organization and get your credentials by following one of our [onboarding tutorials](https://docs.commercelayer.io/developers/welcome).
 
-2. Set the environment variable `NEXT_PUBLIC_SLUG` on your hosting provider to your organization slug (subdomain) and be sure to build the forked repository using the node environment (`NODE_ENV`) as production.
+2. Set the config variables in `public/config.json`, specifying `selfHostedSlug` as your organization slug (subdomain) and be sure to build the forked repository using the node environment (`NODE_ENV`) as production.
 
 3. Deploy the forked repository to your preferred hosting service or host it yourself. You can deploy with one click below:
 
@@ -46,12 +46,12 @@ The default behavior is the _Buy Now_ mode. This means that as soon as customers
 
 ### URL parameters
 
-| Parameter     | Description                                                                                                                                                                                                   |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `skuListId`        | SKU List Id. You can use the attribute quantity of SKU List Item to add a default quantity. Default quantity is **1**. Microstore will show up to 12 items of the SKU List. Name and description attributes of the SKU List will be used in the Microstore application as greetings and description.                                    |
-| `accessToken` | A valid sales channel access token.                                                                                                                                                                           |
-| `all`         | If `true`, a _Buy All_ button is activated on top of the products list. This will clear the line items of the order and add all the items listed on the page to the order (with the quantity set in the SKU List Items). |
-| `cart`        | If `true`, the Microstore application will work together with the [Cart](https://github.com/commercelayer/commercelayer-cart) one.                                                                            |
+| Parameter     | Description                                                                                                                                                                                                                                                                                          |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `skuListId`   | SKU List Id. You can use the attribute quantity of SKU List Item to add a default quantity. Default quantity is **1**. Microstore will show up to 12 items of the SKU List. Name and description attributes of the SKU List will be used in the Microstore application as greetings and description. |
+| `accessToken` | A valid sales channel access token.                                                                                                                                                                                                                                                                  |
+| `all`         | If `true`, a _Buy All_ button is activated on top of the products list. This will clear the line items of the order and add all the items listed on the page to the order (with the quantity set in the SKU List Items).                                                                             |
+| `cart`        | If `true`, the Microstore application will work together with the [Cart](https://github.com/commercelayer/commercelayer-cart) one.                                                                                                                                                                   |
 
 `https://<your-organization-subdomain>.commercelayer.app/microstore/list/<skuListId>?accessToken=<your-access-token>`
 
@@ -84,8 +84,8 @@ git clone https://github.com/<your username>/commercelayer-microstore.git && cd 
 3. First, install dependencies and run the development server:
 
 ```
-yarn install
-yarn dev
+pnpm install
+pnpm dev
 ```
 
 4. Set your environment with `.env.local` starting from `.env.local.sample`.
