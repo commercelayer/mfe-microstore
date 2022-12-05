@@ -56,18 +56,22 @@ export function RuntimeConfigProvider({
 function parseConfig(
   configFromJson: unknown
 ): RuntimeConfigContextValue | null {
-  const configSchema: ZodType<RuntimeConfigContextValue> = z
+  const configSchema: ZodType<RuntimeConfig> = z
     .object({
       domain: z.string().min(10),
-      slug: z.optional(z.string().nullable()),
+      selfHostedSlug: z.optional(z.string().nullable()),
       isHosted: z.optional(z.boolean()),
     })
     .superRefine((data, ctx) => {
-      if (data.isHosted !== true && !data.slug) {
+      if (import.meta.env.DEV === false) {
+        return
+      }
+
+      if (data.isHosted !== true && !data.selfHostedSlug) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          path: ["slug"],
-          message: "slug is required when isHosted is not true",
+          path: ["selfHostedSlug"],
+          message: "selfHostedSlug is required when isHosted is not true",
         })
       }
     })
