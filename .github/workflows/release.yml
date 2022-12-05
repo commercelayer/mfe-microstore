@@ -23,9 +23,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Build app
-        run: yarn build
+        run: pnpm build
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
