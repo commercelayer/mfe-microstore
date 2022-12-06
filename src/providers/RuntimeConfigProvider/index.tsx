@@ -53,9 +53,7 @@ export function RuntimeConfigProvider({
   )
 }
 
-function parseConfig(
-  configFromJson: unknown
-): RuntimeConfigContextValue | null {
+function parseConfig(configFromJson: unknown): RuntimeConfig | null {
   const configSchema: ZodType<RuntimeConfig> = z
     .object({
       domain: z.string().min(10),
