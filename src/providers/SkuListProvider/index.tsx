@@ -57,8 +57,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
     const cl = CommerceLayer({
       organization: settings.slug,
       accessToken: settings.accessToken,
-      // TODO: implement from config.json
-      // domain: settings.domain,
+      domain: settings.domain,
     })
 
     try {
