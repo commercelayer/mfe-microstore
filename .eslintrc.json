@@ -7,7 +7,6 @@
     "standard",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@next/next/recommended",
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
@@ -28,7 +27,11 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "@typescript-eslint"],
+  "plugins": [
+    "react",
+    "prettier",
+    "@typescript-eslint"
+  ],
   "rules": {
     "prettier/prettier": "warn",
     "react/react-in-jsx-scope": "off",
@@ -44,7 +47,13 @@
       "error",
       {
         "newlines-between": "always",
-        "groups": ["external", "builtin", "parent", "sibling", "index"],
+        "groups": [
+          "external",
+          "builtin",
+          "parent",
+          "sibling",
+          "index"
+        ],
         "pathGroups": [
           {
             "pattern": "components/**",
@@ -52,7 +61,9 @@
             "position": "after"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["parent"],
+        "pathGroupsExcludedImportTypes": [
+          "parent"
+        ],
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true
@@ -67,7 +78,7 @@
   },
   "settings": {
     "react": {
-        "version": "detect"
+      "version": "detect"
     }
   }
 }

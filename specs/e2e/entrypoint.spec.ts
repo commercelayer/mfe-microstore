@@ -6,7 +6,7 @@ test("should navigate to 404", async ({ page }) => {
 })
 
 test("should navigate to the 404 page with wrong url", async ({ page }) => {
-  await page.goto("/Asdakfrsf")
+  await page.goto("/microstore/Asdakfrsf")
   await expect(page.locator("text=404")).toBeVisible()
 })
 

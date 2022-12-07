@@ -1,12 +1,15 @@
 module.exports = {
-  content: ["./pages/**/*.{html,js,tsx}", "./components/**/*.{html,js,tsx}"],
+  content: [
+    "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     container: {
       center: true,
       padding: {
-        DEFAULT: '0',
-        sm: '0',
-        lg: '0',
+        DEFAULT: "0",
+        sm: "0",
+        lg: "0",
       },
       screens: {
         sm: "100%",
@@ -21,9 +24,9 @@ module.exports = {
         dark: "var(--primary-dark)",
       },
       contrast: "var(--contrast)",
-      transparent: 'transparent',
-      black: '#101111',
-      white: '#fff',
+      transparent: "transparent",
+      black: "#101111",
+      white: "#fff",
       gray: {
         50: "#f8f8f8",
         100: "#EDEEEE",
@@ -51,17 +54,17 @@ module.exports = {
     fontFamily: {
       sans: ["Manrope", "ui-sans-serif", "sans-serif"],
     },
-    borderColor: theme => ({
-      ...theme('colors'),
-       DEFAULT: theme('colors.gray.200', 'currentColor'),
-     }),
+    borderColor: (theme) => ({
+      ...theme("colors"),
+      DEFAULT: theme("colors.gray.200", "currentColor"),
+    }),
     extend: {
       boxShadow: {
         subtle: "0 2px 0 0 rgba(0, 0, 0, 0.025)",
       },
       transitionProperty: {
-        'bg': 'background',
-      }
+        bg: "background",
+      },
     },
   },
   plugins: [

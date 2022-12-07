@@ -23,9 +23,9 @@ type FixtureType = {
 }
 
 const getToken = async (market?: string) => {
-  const clientId = process.env.NEXT_PUBLIC_CLIENT_ID as string
-  const endpoint = process.env.NEXT_PUBLIC_ENDPOINT as string
-  const scope = market || (process.env.NEXT_PUBLIC_MARKET_ID as string)
+  const clientId = process.env.E2E_CLIENT_ID as string
+  const endpoint = process.env.E2E_ENDPOINT as string
+  const scope = market || (process.env.E2E_MARKET_ID as string)
 
   const data = await getSalesChannelToken({
     clientId,
