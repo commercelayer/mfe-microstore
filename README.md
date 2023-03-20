@@ -55,7 +55,7 @@ The default behavior is the _Buy Now_ mode. This means that as soon as customers
 
 `https://<your-organization-subdomain>.commercelayer.app/microstore/list/<skuListId>?accessToken=<your-access-token>`
 
-For example: `https://yourbrand.checkout.commercelayer.app/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9`
+For example: `https://yourbrand.commercelayer.app/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9`
 
 ### Cart options
 
@@ -67,7 +67,7 @@ Enabling the Cart application will add a behavior option about how the items are
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `inline`  | If `true`, when customers click on the "Add to bag" button, they will remain on the page, otherwise they will be redirected immediately to the Cart application. |
 
-For example: `https://yourbrand.checkout.commercelayer.app/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9&cart=true&inline=true`
+For example: `https://yourbrand.commercelayer.app/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9&cart=true&inline=true`
 
 Any Commerce Layer account comes with a hosted version of the Cart application.
 

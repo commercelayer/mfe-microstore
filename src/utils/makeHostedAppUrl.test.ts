@@ -10,7 +10,7 @@ describe("makeHostedAppUrl", () => {
     })
 
     expect(url).toBe(
-      "https://org-slug.checkout.commercelayer.app/weWdhV2zpx?accessToken=eyJhbGciOiUzUxM"
+      "https://org-slug.commercelayer.app/checkout/weWdhV2zpx?accessToken=eyJhbGciOiUzUxM"
     )
   })
 
