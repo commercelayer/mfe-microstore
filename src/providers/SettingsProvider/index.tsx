@@ -39,7 +39,7 @@ type SettingsProviderProps = {
   /**
    * App config served locally from public/config.json
    */
-  config: RuntimeConfig
+  config: CommerceLayerAppConfig
 }
 
 const initialValues: SettingsProviderValue = {

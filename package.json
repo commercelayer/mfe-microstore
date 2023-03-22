@@ -15,7 +15,8 @@
     "test": "pnpm run lint && pnpm run test:unit",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
-    "test:e2e:debug": "PWDEBUG=1 playwright test"
+    "test:e2e:debug": "PWDEBUG=1 playwright test",
+    "prepare": "touch ./public/config.local.js"
   },
   "repository": {
     "type": "git",

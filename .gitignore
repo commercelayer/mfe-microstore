@@ -36,3 +36,6 @@ yarn-error.log*
 *.tsbuildinfo
 /playwright-report/
 /test-results/
+
+# App
+public/config.local.js
