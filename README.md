@@ -22,7 +22,7 @@ The Commerce Layer Microstore application (React) provides you with a production
 
 1. Create your organization and get your credentials by following one of our [onboarding tutorials](https://docs.commercelayer.io/developers/welcome).
 
-2. Set the config variables in `public/config.json`, specifying `selfHostedSlug` as your organization slug (subdomain) and be sure to build the forked repository using the node environment (`NODE_ENV`) as production.
+2. Set the config variables in `public/config.local.js`, specifying `selfHostedSlug` as your organization slug (subdomain) and be sure to build the forked repository using the node environment (`NODE_ENV`) as production.
 
 3. Deploy the forked repository to your preferred hosting service or host it yourself. You can deploy with one click below:
 

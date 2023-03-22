@@ -35,7 +35,7 @@ const makeInvalidSettings = ({
  *
  * @param accessToken - Access Token for a sales channel API credentials to be used to authenticate all Commerce Layer API requests.
  * Read more at {@link https://docs.commercelayer.io/developers/authentication/client-credentials#sales-channel}
- * @param config - RuntimeConfig from config.json file.
+ * @param config - CommerceLayerAppConfig from config.js file.
  *
  * @returns an union type of `Settings` or `InvalidSettings`
  */
@@ -44,7 +44,7 @@ export const getSettings = async ({
   config,
 }: {
   accessToken: string
-  config: RuntimeConfig
+  config: CommerceLayerAppConfig
 }): Promise<Settings | InvalidSettings> => {
   const { slug } = getInfoFromJwt(accessToken)
   const { domain = "commercelayer.io", selfHostedSlug, isHosted } = config

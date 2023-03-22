@@ -47,10 +47,10 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "public/config*.js",
   ],
   "exclude": [
-    "node_modules",
-    "public"
+    "node_modules"
   ]
 }
