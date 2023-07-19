@@ -20,16 +20,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/commercelayer/commercelayer-microstore.git"
+    "url": "git+https://github.com/commercelayer/mfe-microstore.git"
   },
   "author": {
     "name": "Matteo Alessani",
     "email": "matteo@commercelayer.io"
   },
   "bugs": {
-    "url": "https://github.com/commercelayer/commercelayer-microstore/issues"
+    "url": "https://github.com/commercelayer/mfe-microstore/issues"
   },
-  "homepage": "https://github.com/commercelayer/commercelayer-microstore#readme",
+  "homepage": "https://github.com/commercelayer/mfe-microstore#readme",
   "license": "MIT",
   "dependencies": {
     "@commercelayer/js-auth": "^2.3.0",

@@ -1,7 +1,7 @@
 spec:
- name: commercelayer-microstore
+ name: mfe-microstore
  services:
- - name: commercelayer-microstore
+ - name: mfe-microstore
    git:
      branch: master
-     repo_clone_url: https://github.com/commercelayer/commercelayer-microstore.git
+     repo_clone_url: https://github.com/commercelayer/mfe-microstore.git
