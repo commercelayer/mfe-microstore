@@ -24,9 +24,7 @@ The Commerce Layer Microstore application (React) provides you with a production
 
 2. Set the config variables in `public/config.local.js`, specifying `selfHostedSlug` as your organization slug (subdomain) and be sure to build the forked repository using the node environment (`NODE_ENV`) as production.
 
-3. Deploy the forked repository to your preferred hosting service or host it yourself. You can deploy with one click below:
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" height="35">](https://app.netlify.com/start/deploy?repository=https://github.com/commercelayer/mfe-microstore) [<img src="https://vercel.com/button" alt="Deploy to Vercel" height="35">](https://vercel.com/new/clone?repository-url=https://github.com/commercelayer/mfe-microstore) [<img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="35">](https://heroku.com/deploy?template=https://github.com/commercelayer/mfe-microstore) [<img src="https://www.deploytodo.com/do-btn-blue.svg" alt="Deploy to Digital Ocean" height="35">](https://cloud.digitalocean.com/apps/new?repo=https://github.com/commercelayer/mfe-microstore/tree/master)
+3. Deploy the forked repository to your preferred hosting service.
 
 4. Get an [access token](https://docs.commercelayer.io/api/authentication) for your application. You should generate this in your sales channel or use our JavaScript [authentication library](https://github.com/commercelayer/commercelayer-js-auth).
 
