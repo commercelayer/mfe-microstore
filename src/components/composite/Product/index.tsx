@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next"
 
 import { BuyButton } from "./BuyButton"
 import { DiscountBadge } from "./DiscountBadge"
+import { LocalizedAttribute } from "./LocalizedAttribute"
 import { QuantitySelector } from "./QuantitySelector"
 import {
   Card,
@@ -36,10 +37,10 @@ export const Product: FC = () => {
         </CardImage>
         <CardBody>
           <CardTitle>
-            <SkuField attribute="name" tagElement="p" />
+            <LocalizedAttribute attribute="name" />
           </CardTitle>
           <CardDesc>
-            <SkuField attribute="description" tagElement="p" />
+            <LocalizedAttribute attribute="description" />
           </CardDesc>
           <CardFooter>
             <CardPrice>
