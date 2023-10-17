@@ -1,5 +1,6 @@
 import { useOrderContainer } from "@commercelayer/react-components/hooks/useOrderContainer"
 import { FC } from "react"
+import { useTranslation } from "react-i18next"
 
 import { StyledAddToCartButton } from "./styled"
 import { useAddToCartFeedback } from "./useAddToCartFeedback"
@@ -12,6 +13,7 @@ interface Props {
 
 export const AddInlineButton: FC<Props> = ({ disabled, quantity, skuCode }) => {
   const { justAdded, handleOnAddFeedback } = useAddToCartFeedback()
+  const { t } = useTranslation()
   const { addToCart } = useOrderContainer()
   return (
     <StyledAddToCartButton>
@@ -25,7 +27,7 @@ export const AddInlineButton: FC<Props> = ({ disabled, quantity, skuCode }) => {
               handleOnAddFeedback(() => addToCart({ skuCode, quantity }))
             }
           >
-            {justAdded ? "Added!" : "Add to cart"}
+            {justAdded ? t("buttons.inlineAdded") : t("buttons.addToCart")}
           </button>
         )
       }}

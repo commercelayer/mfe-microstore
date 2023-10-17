@@ -13,6 +13,7 @@ export const useDataFromUrl = () => {
       const cart = search.get("cart") || undefined
       const inline = search.get("inline") || undefined
       const all = search.get("all") || undefined
+      const lang = search.get("lang") || "en"
 
       setData({
         description: parseQueryValue(description),
@@ -22,6 +23,7 @@ export const useDataFromUrl = () => {
         cart: parseBooleanValue(cart),
         inline: parseBooleanValue(inline),
         all: parseBooleanValue(all),
+        lang: parseQueryValue(lang),
       })
     }
   }, [])

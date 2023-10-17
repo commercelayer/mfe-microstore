@@ -59,6 +59,7 @@ The default behavior is the _Buy Now_ mode. This means that as soon as customers
 | `accessToken` | A valid sales channel access token.                                                                                                                                                                                                                                                                  |
 | `all`         | If `true`, a _Buy All_ button is activated on top of the products list. This will clear the line items of the order and add all the items listed on the page to the order (with the quantity set in the SKU List Items).                                                                             |
 | `cart`        | If `true`, the Microstore application will work together with the [Cart](https://github.com/commercelayer/commercelayer-cart) one.                                                                                                                                                                   |
+| `lang`        | `en` (default) or `it`, the Microstore application will use the language of the `lang` attribute for the UI and the order will have the attribute `language_code` set to the same value.                                                                                                             |
 
 `https://<your-organization-subdomain>.commercelayer.app/microstore/list/<skuListId>?accessToken=<your-access-token>`
 

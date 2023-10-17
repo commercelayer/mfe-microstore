@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { useTranslation } from "react-i18next"
 import Styled from "styled-components"
 import tw from "twin.macro"
 
@@ -8,6 +9,7 @@ import { useBuyAll } from "#providers/BuyAllProvider"
 export const ButtonBuyAll: FC = () => {
   const { isBuyingAll, showBuyAllButton, buyAllSkus, errorMessage } =
     useBuyAll()
+  const { t } = useTranslation()
 
   if (!showBuyAllButton) {
     return null
@@ -20,7 +22,7 @@ export const ButtonBuyAll: FC = () => {
         disabled={isBuyingAll}
         onClick={() => buyAllSkus()}
       >
-        Buy all
+        {t("buttons.buyAll")}
       </Button>
       {errorMessage && (
         <div className="text-sm text-red-400">{errorMessage}</div>

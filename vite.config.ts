@@ -38,6 +38,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         "#components": resolve(__dirname, "./src/components"),
         "#hooks": resolve(__dirname, "./src/hooks"),
+        "#locales": resolve(__dirname, "./src/locales"),
         "#providers": resolve(__dirname, "./src/providers"),
         "#utils": resolve(__dirname, "./src/utils"),
         "#pages": resolve(__dirname, "./src/pages"),

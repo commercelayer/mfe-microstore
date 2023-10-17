@@ -30,6 +30,9 @@
       "#hooks/*": [
         "src/hooks/*"
       ],
+      "#locales/*": [
+        "src/locales/*"
+      ],
       "#providers/*": [
         "src/providers/*"
       ],

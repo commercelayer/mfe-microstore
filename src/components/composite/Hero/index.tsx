@@ -1,7 +1,6 @@
 import { DiscountBanner } from "../DiscountBanner"
 
 import { Title, Description, Wrapper } from "./styled"
-
 interface Props {
   couponCode?: string
   title?: string

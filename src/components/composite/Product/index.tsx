@@ -5,6 +5,7 @@ import {
   AvailabilityContainer,
 } from "@commercelayer/react-components"
 import { FC } from "react"
+import { useTranslation } from "react-i18next"
 
 import { BuyButton } from "./BuyButton"
 import { DiscountBadge } from "./DiscountBadge"
@@ -25,6 +26,7 @@ import {
 } from "./styled"
 
 export const Product: FC = () => {
+  const { t } = useTranslation()
   return (
     <>
       <Card>
@@ -60,7 +62,12 @@ export const Product: FC = () => {
               </QuantityAndButtonWrapper>
             </CardPrice>
             <AvailabilityContainer>
-              <AvailabilityTemplate>
+              <AvailabilityTemplate
+                labels={{
+                  available: t("availability.available"),
+                  outOfStock: t("availability.outOfStock"),
+                }}
+              >
                 {({ quantity, text }) => {
                   return (
                     <CardStock>
