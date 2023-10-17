@@ -5,7 +5,7 @@ orbs:
 
 image: &image
   docker:
-    - image: cimg/node:18.7.0
+    - image: cimg/node:18.18.2
   resource_class: medium+
 
 setup: &setup
@@ -20,9 +20,19 @@ jobs:
     <<: *image
     steps:
       - checkout
+      - restore_cache:
+          name: Restore pnpm Package Cache
+          keys:
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+      - run: node --version
       - <<: *setup
+      - save_cache:
+          name: Save pnpm Package Cache
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - node_modules
       - run:
-          name: Test 
+          name: Test
           command: pnpm test
   build:
     <<: *image
@@ -30,9 +40,18 @@ jobs:
       PUBLIC_PROJECT_PATH: microstore
     steps:
       - checkout
+      - restore_cache:
+          name: Restore pnpm Package Cache
+          keys:
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
       - <<: *setup
+      - save_cache:
+          name: Save pnpm Package Cache
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - node_modules
       - run:
-          name: Build 
+          name: Build
           command: pnpm build
       - aws-s3/sync:
           aws-access-key-id: AWS_ACCESS_KEY
@@ -42,7 +61,7 @@ jobs:
 
 workflows:
   version: 2
-  
+
   run-tests:
     jobs:
       - test:
@@ -50,7 +69,7 @@ workflows:
           filters:
             tags:
               ignore: /v.*/
-  
+
   test-build-and-push:
     jobs:
       - test:
