@@ -1,4 +1,4 @@
-import { getSalesChannelToken } from "@commercelayer/js-auth"
+import { authentication } from "@commercelayer/js-auth"
 import { test as base } from "@playwright/test"
 import dotenv from "dotenv"
 
@@ -24,14 +24,15 @@ type FixtureType = {
 
 const getToken = async (market?: string) => {
   const clientId = process.env.E2E_CLIENT_ID as string
-  const endpoint = process.env.E2E_ENDPOINT as string
+  const endpoint = process.env.E2E_SLUG as string
   const scope = market || (process.env.E2E_MARKET_ID as string)
 
-  const data = await getSalesChannelToken({
+  const data = await authentication("client_credentials", {
     clientId,
-    endpoint,
+    slug: endpoint,
     scope,
   })
+
   return data?.accessToken as string
 }
 
