@@ -11,19 +11,27 @@ type Experience = "addInline" | "addToCart" | "buyNow"
 
 const ButtonExperiences: Record<
   Experience,
-  (p: { disabled?: boolean }) => JSX.Element
+  (p: { disabled?: boolean; quantity: number; skuCode?: string }) => JSX.Element
 > = {
   addInline: (p) => <AddInlineButton {...p} />,
   addToCart: (p) => <AddToCartButton {...p} />,
   buyNow: (p) => <BuyNowButton {...p} />,
 }
 
-export const BuyButton: FC = () => {
+export const BuyButton: FC<{ skuCode: string }> = ({ skuCode }) => {
   const { cart, inline } = useDataFromUrl()
-  const { isBuyingAll } = useBuyAll()
-
+  const { isBuyingAll, skus } = useBuyAll()
+  const sku = skus.find((sku) => sku.skuCode === skuCode)
   const activeExperience =
     cart && inline ? "addInline" : cart ? "addToCart" : "buyNow"
 
-  return <>{ButtonExperiences[activeExperience]({ disabled: isBuyingAll })}</>
+  return (
+    <>
+      {ButtonExperiences[activeExperience]({
+        disabled: isBuyingAll,
+        quantity: sku?.quantity || 1,
+        skuCode: sku?.skuCode,
+      })}
+    </>
+  )
 }

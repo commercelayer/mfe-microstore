@@ -3,7 +3,6 @@ import {
   Skus,
   PricesContainer,
   AvailabilityContainer,
-  ItemContainer,
 } from "@commercelayer/react-components"
 
 import { ButtonBuyAll } from "../ButtonBuyAll"
@@ -42,15 +41,13 @@ export const Microstore = ({
 
       <Wrapper>
         <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>
-          <ItemContainer>
-            <PricesContainer>
-              <AvailabilityContainer>
-                <Skus>
-                  <Product />
-                </Skus>
-              </AvailabilityContainer>
-            </PricesContainer>
-          </ItemContainer>
+          <PricesContainer>
+            <AvailabilityContainer>
+              <Skus>
+                <Product />
+              </Skus>
+            </AvailabilityContainer>
+          </PricesContainer>
         </SkusContainer>
       </Wrapper>
     </>

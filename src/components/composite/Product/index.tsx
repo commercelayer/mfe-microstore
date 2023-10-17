@@ -2,6 +2,7 @@ import {
   SkuField,
   Price,
   AvailabilityTemplate,
+  AvailabilityContainer,
 } from "@commercelayer/react-components"
 import { FC } from "react"
 
@@ -47,24 +48,32 @@ export const Product: FC = () => {
                 />
               </CardPriceWrapper>
               <QuantityAndButtonWrapper>
-                <QuantitySelector />
-                <BuyButton />
+                <SkuField attribute="code" tagElement="span">
+                  {({ attributeValue: skuCode }) => (
+                    <>
+                      <QuantitySelector skuCode={skuCode} />
+                      <BuyButton skuCode={skuCode} />
+                    </>
+                  )}
+                </SkuField>
               </QuantityAndButtonWrapper>
             </CardPrice>
-            <AvailabilityTemplate>
-              {({ quantity, text }) => {
-                return (
-                  <CardStock>
-                    <span
-                      className={`block w-2 h-2  ${
-                        quantity === 0 ? "bg-red-400" : "bg-green-400"
-                      } rounded-full`}
-                    />
-                    {text}
-                  </CardStock>
-                )
-              }}
-            </AvailabilityTemplate>
+            <AvailabilityContainer>
+              <AvailabilityTemplate>
+                {({ quantity, text }) => {
+                  return (
+                    <CardStock>
+                      <span
+                        className={`block w-2 h-2  ${
+                          quantity === 0 ? "bg-red-400" : "bg-green-400"
+                        } rounded-full`}
+                      />
+                      {text}
+                    </CardStock>
+                  )
+                }}
+              </AvailabilityTemplate>
+            </AvailabilityContainer>
           </CardFooter>
         </CardBody>
       </Card>
