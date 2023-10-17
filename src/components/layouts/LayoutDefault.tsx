@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import Styled from "styled-components"
 import tw from "twin.macro"
 
 import { Base } from "#components/ui/Base"
@@ -20,10 +20,10 @@ export const LayoutDefault: React.FC<Props> = ({ main }) => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = Styled.div`
   ${tw`flex flex-wrap justify-end items-stretch flex-col min-h-full md:h-screen md:flex-row`}
 `
 
-const Main = styled.div`
+const Main = Styled.div`
   ${tw`flex-none md:flex-1 justify-center order-first md:order-last`}
 `

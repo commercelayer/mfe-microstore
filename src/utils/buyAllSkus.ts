@@ -18,7 +18,7 @@ export const buyAllSkus = async ({
 }) => {
   const client = CommerceLayer({
     organization: slug,
-    accessToken: accessToken,
+    accessToken,
     domain,
   })
 

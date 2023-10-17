@@ -1,5 +1,5 @@
 import { SelectHTMLAttributes } from "react"
-import styled from "styled-components"
+import Styled from "styled-components"
 import tw from "twin.macro"
 
 type Props = SelectHTMLAttributes<HTMLSelectElement>
@@ -23,12 +23,12 @@ export function Select({ children, ...rest }: Props): JSX.Element {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = Styled.div`
   min-width: 70px;
   ${tw`relative inline-block w-full`}
 `
 
-const StyledSelect = styled.select`
+const StyledSelect = Styled.select`
   ${tw`
     appearance-none outline-none w-full bg-white px-4 py-3 pr-7 
     border border-gray-300 rounded 

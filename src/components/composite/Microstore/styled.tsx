@@ -1,7 +1,7 @@
-import styled from "styled-components"
+import Styled from "styled-components"
 import tw from "twin.macro"
 
-export const Wrapper = styled.div`
+export const Wrapper = Styled.div`
   ${tw`flex flex-col`}
 
   & hr:last-child {

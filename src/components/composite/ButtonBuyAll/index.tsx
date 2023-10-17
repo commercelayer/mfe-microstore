@@ -1,5 +1,5 @@
 import { FC } from "react"
-import styled from "styled-components"
+import Styled from "styled-components"
 import tw from "twin.macro"
 
 import { Button } from "#components/ui/Button"
@@ -29,6 +29,6 @@ export const ButtonBuyAll: FC = () => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = Styled.div`
   ${tw`flex flex-col items-end px-8 pt-5 md:px-0 md:pt-0`}
 `

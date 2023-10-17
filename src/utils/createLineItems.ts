@@ -10,19 +10,22 @@ export const createLineItems = async ({
   orderId: string
 }) => {
   const lineItems: LineItem[] = []
-  await skus.reduce(async (nextRequest, { skuCode, quantity }) => {
-    await nextRequest
-    return client.line_items
-      .create({
-        sku_code: skuCode,
-        quantity,
-        order: client.orders.relationship(orderId),
-      })
-      .then((item) => {
-        lineItems.push(item)
-        return item
-      })
-  }, Promise.resolve(null) as Promise<LineItem | null>)
+  await skus.reduce(
+    async (nextRequest, { skuCode, quantity }) => {
+      await nextRequest
+      return client.line_items
+        .create({
+          sku_code: skuCode,
+          quantity,
+          order: client.orders.relationship(orderId),
+        })
+        .then((item) => {
+          lineItems.push(item)
+          return item
+        })
+    },
+    Promise.resolve(null) as Promise<LineItem | null>
+  )
 
   return lineItems
 }

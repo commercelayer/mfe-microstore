@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import Styled from "styled-components"
 import tw from "twin.macro"
 
 interface Props {
@@ -96,6 +96,6 @@ export function Logo({ width, height, className }: Props): JSX.Element {
   )
 }
 
-const Svg = styled.svg`
+const Svg = Styled.svg`
   ${tw`text-gray-500`}
 `
