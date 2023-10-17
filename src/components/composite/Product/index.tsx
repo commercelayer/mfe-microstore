@@ -49,6 +49,7 @@ export const Product: FC = () => {
               </CardPriceWrapper>
               <QuantityAndButtonWrapper>
                 <SkuField attribute="code" tagElement="span">
+                  {/* @ts-expect-error typing should come from react-components */}
                   {({ attributeValue: skuCode }) => (
                     <>
                       <QuantitySelector skuCode={skuCode} />

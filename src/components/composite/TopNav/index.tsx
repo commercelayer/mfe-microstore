@@ -12,7 +12,7 @@ import { Header } from "#components/ui/Header"
 import { Logo } from "#components/ui/Logo"
 
 type Props = {
-  logoUrl?: string
+  logoUrl: string | undefined | null
   companyName: string
   showCartIcon?: boolean
 }

@@ -1,7 +1,7 @@
 import { Image, Label } from "./styled"
 
 interface Props {
-  logoUrl?: string
+  logoUrl?: string | null | undefined
   companyName: string
   className?: string
 }

@@ -5,7 +5,7 @@ import ErrorPage from "#pages/ErrorPage"
 import SkuListPage from "#pages/SkuListPage"
 import { SettingsProvider } from "#providers/SettingsProvider"
 
-function App(): JSX.Element {
+function App() {
   const basePath =
     import.meta.env.PUBLIC_PROJECT_PATH != null
       ? `/${import.meta.env.PUBLIC_PROJECT_PATH}`

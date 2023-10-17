@@ -1,5 +1,9 @@
-import { AddToCartReturn } from "@commercelayer/react-components/lib/reducers/OrderReducer"
 import { useState, useRef, useEffect } from "react"
+
+export type AddToCartReturn = Promise<{
+  success: boolean
+  orderId?: string | undefined
+}>
 
 export const useAddToCartFeedback = (feedbackDelay = 3000) => {
   const [justAdded, setJustAdded] = useState(false)

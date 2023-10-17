@@ -78,7 +78,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
 
       if (skuList) {
         setTitle(skuList.name)
-        setDescription(skuList.description)
+        setDescription(skuList.description as string)
         setSkus(normalizeSkusInList(skuList).slice(0, itemsLimit))
       } else {
         setIsError(true)

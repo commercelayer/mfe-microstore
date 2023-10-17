@@ -18,7 +18,7 @@ interface Settings {
    * Logo URL found in current organization (if set).
    * Read more at {@link https://docs.commercelayer.io/developers/v/api-reference/organization/object}.
    */
-  logoUrl?: string
+  logoUrl?: string | null
   /**
    * Organization name.
    * Read more at {@link https://docs.commercelayer.io/developers/v/api-reference/organization/object}.
