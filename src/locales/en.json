@@ -6,6 +6,7 @@
   "buttons": {
     "buyAll": "Buy all",
     "inlineAdded": "Added!", 
-    "addToCart": "Add to cart" 
+    "addToCart": "Add to cart",
+    "buyNow": "Buy now"
   }
 }
