@@ -17,7 +17,6 @@ describe("Is valid host", () => {
       isValidHost({
         hostname: "acme.commercelayer.app",
         accessToken: jwtSalesChannelOrgAcme,
-        isCommerceLayerHosted: true,
       })
     ).toBe(true)
   })
@@ -27,7 +26,6 @@ describe("Is valid host", () => {
       isValidHost({
         hostname: "acme.commercelayer.app",
         accessToken: jwtIntegrationOrgAcme,
-        isCommerceLayerHosted: false,
       })
     ).toBe(false)
   })
@@ -38,7 +36,6 @@ describe("Is valid host", () => {
         hostname: "akme.commercelayer.app",
         accessToken: jwtSalesChannelOrgAcme,
         forceProductionEnv: true,
-        isCommerceLayerHosted: true,
       })
     ).toBe(false)
   })
@@ -49,7 +46,6 @@ describe("Is valid host", () => {
         hostname: "akme.commercelayer.app",
         accessToken: jwtSalesChannelOrgAcme,
         forceProductionEnv: false,
-        isCommerceLayerHosted: true,
       })
     ).toBe(true)
   })

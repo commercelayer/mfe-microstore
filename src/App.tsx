@@ -11,6 +11,14 @@ function App(): JSX.Element {
       ? `/${import.meta.env.PUBLIC_PROJECT_PATH}`
       : undefined
 
+  const config = {
+    ...window.clAppConfig,
+    selfHostedSlug:
+      // local config is always overwritten by ENV var, if present
+      import.meta.env.PUBLIC_SELF_HOSTED_SLUG ??
+      window.clAppConfig.selfHostedSlug,
+  }
+
   return (
     <HelmetProvider>
       <Router base={basePath}>
@@ -19,7 +27,7 @@ function App(): JSX.Element {
             <ErrorPage />
           </Route>
           <Route path={"/list/:skuListId"}>
-            <SettingsProvider config={window.clAppConfig}>
+            <SettingsProvider config={config}>
               <SkuListPage />
             </SettingsProvider>
           </Route>

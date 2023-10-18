@@ -47,7 +47,7 @@ export const getSettings = async ({
   config: CommerceLayerAppConfig
 }): Promise<Settings | InvalidSettings> => {
   const { slug } = getInfoFromJwt(accessToken)
-  const { domain = "commercelayer.io", selfHostedSlug, isHosted } = config
+  const { domain = "commercelayer.io", selfHostedSlug } = config
 
   if (!slug) {
     return makeInvalidSettings({})
@@ -60,7 +60,6 @@ export const getSettings = async ({
       hostname,
       accessToken,
       selfHostedSlug,
-      isCommerceLayerHosted: Boolean(isHosted),
     })
   ) {
     return makeInvalidSettings({})
