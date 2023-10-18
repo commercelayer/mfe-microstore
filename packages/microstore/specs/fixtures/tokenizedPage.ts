@@ -1,12 +1,7 @@
 import { authentication } from "@commercelayer/js-auth"
 import { test as base } from "@playwright/test"
-import dotenv from "dotenv"
-
-import path from "path"
 
 import { MicrostorePage } from "./MicrostorePage"
-
-dotenv.config({ path: path.resolve(__dirname, "../../.env.local") })
 
 export interface DefaultParamsProps {
   accessToken?: string
