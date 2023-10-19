@@ -1,0 +1,12 @@
+{
+  "availability": {
+    "available": "Disponibile",
+    "outOfStock": "Esaurito"
+  },
+  "buttons": {
+    "buyAll": "Compra tutto",
+    "inlineAdded": "Aggiunto!", 
+    "addToCart": "Aggiungi al carrello",
+    "buyNow": "Compra subito"
+  }
+}

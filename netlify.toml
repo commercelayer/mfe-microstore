@@ -1,7 +1,7 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 [build]
 command = "pnpm run build"
-publish = "dist"
+publish = "packages/microstore/build"
 [[redirects]]
 from = "/*"
 to = "/index.html"

@@ -45,7 +45,3 @@ yarn-error.log*
 /playwright-report/
 /playwright/.cache/
 /dist-pw/
-
-# App
-packages/*/public/config.local.js
-
