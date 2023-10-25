@@ -3,15 +3,18 @@ import { FC } from "react"
 
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
 
-export const LocalizedAttribute: FC<{ attribute: "name" | "description" }> = ({
-  attribute,
-}) => {
+type LocalizedAttributeProp = "name" | "description"
+
+export const LocalizedAttribute: FC<{
+  attribute: LocalizedAttributeProp
+}> = ({ attribute }) => {
   const { lang } = useDataFromUrl()
   return (
     <SkuField attribute="metadata">
       {/* @ts-expect-error Typings should be resolved by `react-components` */}
       {({ attributeValue }) => {
-        const description = attributeValue[`${attribute}_${lang}`]
+        const description =
+          attributeValue[`microstore_i18n_${lang}_${attribute}`]
         return description ? (
           <p>{description}</p>
         ) : (
