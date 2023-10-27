@@ -11,7 +11,7 @@ import { Wrapper } from "./styled"
 
 import { Hero } from "#components/composite/Hero"
 import { Product } from "#components/composite/Product"
-import { WithVariants } from "#components/composite/ProductWithVariants"
+import { ProductWithVariants } from "#components/composite/ProductWithVariants"
 
 interface Props {
   skus?: SkuWithQuantity[]
@@ -53,7 +53,10 @@ export const Microstore = ({
           </SkusContainer>
         ) : (
           Object.keys(products).map((key) => (
-            <WithVariants key={key} skus={products[key]}></WithVariants>
+            <ProductWithVariants
+              key={key}
+              skus={products[key]}
+            ></ProductWithVariants>
           ))
         )}
       </Wrapper>

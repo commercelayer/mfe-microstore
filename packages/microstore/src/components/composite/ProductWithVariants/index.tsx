@@ -25,7 +25,7 @@ import {
 import { LocalizedAttribute } from "./LocalizedAttribute"
 import { VariantSelector } from "./VariantSelector"
 
-export const WithVariants: FC<{ skus: any }> = ({ skus }) => {
+export const ProductWithVariants: FC<{ skus: any }> = ({ skus }) => {
   const [sku, setSku] = useState(skus[0])
   const { t } = useTranslation()
 
