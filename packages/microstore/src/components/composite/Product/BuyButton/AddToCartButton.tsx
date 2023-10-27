@@ -6,9 +6,10 @@ import { StyledAddToCartButton } from "./styled"
 interface Props {
   disabled?: boolean
   quantity: number
+  skuCode?: string
 }
 
-export const AddToCartButton: FC<Props> = ({ disabled, quantity }) => {
+export const AddToCartButton: FC<Props> = ({ disabled, skuCode, quantity }) => {
   const { t } = useTranslation()
   return (
     <StyledAddToCartButton
@@ -16,6 +17,7 @@ export const AddToCartButton: FC<Props> = ({ disabled, quantity }) => {
       label={t("buttons.addToCart")}
       quantity={`${quantity}`}
       redirectToHostedCart
+      skuCode={skuCode}
       disabled={disabled}
     />
   )

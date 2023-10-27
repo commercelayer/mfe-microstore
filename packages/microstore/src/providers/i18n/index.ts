@@ -4,6 +4,8 @@ import { initReactI18next } from "react-i18next"
 import translationEN from "#locales/en.json"
 import translationIT from "#locales/it.json"
 
+export const I18N_PREFIX = "microstore_i18n"
+
 const resources = {
   en: {
     translation: translationEN,
