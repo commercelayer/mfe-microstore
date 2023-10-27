@@ -18,7 +18,10 @@ const ButtonExperiences: Record<
   buyNow: (p) => <BuyNowButton {...p} />,
 }
 
-export const BuyButton: FC<{ skuCode: string }> = ({ skuCode }) => {
+export const BuyButton: FC<{ skuCode: string; available: boolean }> = ({
+  skuCode,
+  available,
+}) => {
   const { cart, inline } = useDataFromUrl()
   const { isBuyingAll, skus } = useBuyAll()
   const sku = skus.find((sku) => sku.skuCode === skuCode)
@@ -28,7 +31,7 @@ export const BuyButton: FC<{ skuCode: string }> = ({ skuCode }) => {
   return (
     <>
       {ButtonExperiences[activeExperience]({
-        disabled: isBuyingAll,
+        disabled: isBuyingAll || !available,
         quantity: sku?.quantity || 1,
         skuCode: sku?.skuCode,
       })}

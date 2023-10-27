@@ -43,25 +43,6 @@ export const Product: FC = () => {
             <LocalizedAttribute attribute="description" />
           </CardDesc>
           <CardFooter>
-            <CardPrice>
-              <CardPriceWrapper>
-                <Price
-                  className="text-xl font-bold"
-                  compareClassName="text-gray-400 line-through mr-2"
-                />
-              </CardPriceWrapper>
-              <QuantityAndButtonWrapper>
-                <SkuField attribute="code" tagElement="span">
-                  {/* @ts-expect-error typing should come from react-components */}
-                  {({ attributeValue: skuCode }) => (
-                    <>
-                      <QuantitySelector skuCode={skuCode} />
-                      <BuyButton skuCode={skuCode} />
-                    </>
-                  )}
-                </SkuField>
-              </QuantityAndButtonWrapper>
-            </CardPrice>
             <AvailabilityContainer>
               <AvailabilityTemplate
                 labels={{
@@ -71,14 +52,42 @@ export const Product: FC = () => {
               >
                 {({ quantity, text }) => {
                   return (
-                    <CardStock>
-                      <span
-                        className={`block w-2 h-2  ${
-                          quantity === 0 ? "bg-red-400" : "bg-green-400"
-                        } rounded-full`}
-                      />
-                      {text}
-                    </CardStock>
+                    <>
+                      <CardPrice>
+                        <CardPriceWrapper>
+                          <Price
+                            className="text-xl font-bold"
+                            compareClassName="text-gray-400 line-through mr-2"
+                          />
+                        </CardPriceWrapper>
+                        <QuantityAndButtonWrapper>
+                          <SkuField attribute="code" tagElement="span">
+                            {/* @ts-expect-error typing should come from react-components */}
+                            {({ attributeValue: skuCode }) => (
+                              <>
+                                <QuantitySelector
+                                  skuCode={skuCode}
+                                  quantityAvailable={quantity}
+                                />
+                                <BuyButton
+                                  available={quantity > 0}
+                                  skuCode={skuCode}
+                                />
+                              </>
+                            )}
+                          </SkuField>
+                        </QuantityAndButtonWrapper>
+                      </CardPrice>
+
+                      <CardStock>
+                        <span
+                          className={`block w-2 h-2  ${
+                            quantity > 0 ? "bg-green-400" : "bg-red-400"
+                          } rounded-full`}
+                        />
+                        {text}
+                      </CardStock>
+                    </>
                   )
                 }}
               </AvailabilityTemplate>

@@ -7,11 +7,12 @@ import { useBuyAll } from "#providers/BuyAllProvider"
 
 interface Props {
   skuCode: string
+  quantityAvailable: number
 }
 
 const MAX_OPTIONS = 10
 
-export const QuantityInput: FC<Props> = ({ skuCode }) => {
+export const QuantityInput: FC<Props> = ({ skuCode, quantityAvailable }) => {
   const { updateQuantity, skus } = useBuyAll()
   const quantityValue = skus.find((o) => skuCode === o.skuCode)?.quantity || 0
 
@@ -19,7 +20,9 @@ export const QuantityInput: FC<Props> = ({ skuCode }) => {
     return null
   }
 
-  const options = createSelectOptions(MAX_OPTIONS)
+  const options = createSelectOptions(
+    quantityAvailable > MAX_OPTIONS ? MAX_OPTIONS : quantityAvailable
+  )
   const onQuantityChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     updateQuantity({
       skuCode,
@@ -28,9 +31,10 @@ export const QuantityInput: FC<Props> = ({ skuCode }) => {
     // handleChange(e as unknown as MouseEvent<HTMLInputElement>)
   }
 
-  return options.length > 0 ? (
+  return (
     <Select
       value={quantityValue}
+      disabled={quantityAvailable <= 0}
       onChange={onQuantityChangeHandler}
       data-test-id="quantity-selector"
     >
@@ -44,5 +48,5 @@ export const QuantityInput: FC<Props> = ({ skuCode }) => {
         <option value={quantityValue}>{quantityValue}</option>
       ) : null}
     </Select>
-  ) : null
+  )
 }

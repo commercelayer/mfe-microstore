@@ -31,6 +31,7 @@ export const ProductWithVariants: FC<{ skus: SkuWithPrices[] }> = ({
   skus,
 }) => {
   const [sku, setSku] = useState(skus[0])
+
   const { t } = useTranslation()
 
   return (
@@ -57,23 +58,6 @@ export const ProductWithVariants: FC<{ skus: SkuWithPrices[] }> = ({
             </p>
           </CardDesc>
           <CardFooter>
-            <CardPrice>
-              <CardPriceWrapper>
-                <p className="text-xl font-bold">
-                  {sku.prices[0].formatted_amount}
-                </p>
-                <p className="text-gray-400 line-through mr-2">
-                  {sku.prices[0].formatted_compare_at_amount}
-                </p>
-              </CardPriceWrapper>
-              <QuantityAndButtonWrapper>
-                {skus.length > 1 && (
-                  <VariantSelector variants={skus} setSku={setSku} />
-                )}
-                <QuantitySelector skuCode={sku.code} />
-                <BuyButton skuCode={sku.code} />
-              </QuantityAndButtonWrapper>
-            </CardPrice>
             <AvailabilityContainer skuCode={sku.code}>
               <AvailabilityTemplate
                 labels={{
@@ -83,14 +67,44 @@ export const ProductWithVariants: FC<{ skus: SkuWithPrices[] }> = ({
               >
                 {({ quantity, text }) => {
                   return (
-                    <CardStock>
-                      <span
-                        className={`block w-2 h-2  ${
-                          quantity === 0 ? "bg-red-400" : "bg-green-400"
-                        } rounded-full`}
-                      />
-                      {text}
-                    </CardStock>
+                    <>
+                      <CardPrice>
+                        <CardPriceWrapper>
+                          <p className="text-xl font-bold">
+                            {sku.prices[0].formatted_amount}
+                          </p>
+                          <p className="text-gray-400 line-through mr-2">
+                            {sku.prices[0].formatted_compare_at_amount}
+                          </p>
+                        </CardPriceWrapper>
+                        <QuantityAndButtonWrapper>
+                          {skus.length > 1 && (
+                            <VariantSelector
+                              variants={skus}
+                              sku={sku}
+                              setSku={setSku}
+                            />
+                          )}
+                          <QuantitySelector
+                            skuCode={sku.code}
+                            quantityAvailable={quantity}
+                          />
+                          <BuyButton
+                            skuCode={sku.code}
+                            available={quantity > 0}
+                          />
+                        </QuantityAndButtonWrapper>
+                      </CardPrice>
+
+                      <CardStock>
+                        <span
+                          className={`block w-2 h-2  ${
+                            quantity > 0 ? "bg-green-400" : "bg-red-400"
+                          } rounded-full`}
+                        />
+                        {text}
+                      </CardStock>
+                    </>
                   )
                 }}
               </AvailabilityTemplate>

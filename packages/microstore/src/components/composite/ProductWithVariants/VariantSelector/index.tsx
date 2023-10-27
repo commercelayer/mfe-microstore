@@ -7,12 +7,13 @@ import { SkuWithPrices } from "#providers/SkuListProvider"
 
 interface Props {
   variants: SkuWithPrices[]
+  sku: SkuWithPrices
   setSku: (sku: SkuWithPrices) => void
 }
 
-export const VariantSelector: FC<Props> = ({ variants, setSku }) => {
+export const VariantSelector: FC<Props> = ({ variants, sku, setSku }) => {
   const options = variants.map((variant) => [variant.id, variant.name])
-  const [value, setValue] = useState(variants[0].code)
+  const [value, setValue] = useState(sku.code)
   const onSkuChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     setSku(variants.find((v) => v.code === e.target.value) as SkuWithPrices)
     setValue(e.target.value)
