@@ -1,8 +1,15 @@
-import { CommerceLayer } from "@commercelayer/sdk"
+import { CommerceLayer, Price, Sku, SkuList } from "@commercelayer/sdk"
 import { FC, ReactNode, useState, useEffect, useCallback } from "react"
 
 import { normalizeSkusInList } from "./normalizeSkusInList"
 
+import { withVariants } from "#providers/SkuListProvider/withVariants"
+
+export type SimpleSkuList = Pick<SkuList, "name" | "description" | "metadata">
+
+export type SkuWithPrices = Sku & {
+  prices: Price[]
+}
 type SkuListProviderChildrenProps = {
   /**
    * This will be set to `true` during SKU List data fetching
@@ -16,9 +23,9 @@ type SkuListProviderChildrenProps = {
    * The SKU List fetched data that we need in order to render the microstore
    */
   data?: {
-    title?: string
-    description?: string
+    list?: SimpleSkuList
     skus: SkuWithQuantity[]
+    products: Record<string, SkuWithPrices[]>
   }
 }
 
@@ -46,9 +53,9 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
   children,
   itemsLimit = 12,
 }) => {
-  const [title, setTitle] = useState<string>()
-  const [description, setDescription] = useState<string>()
+  const [skuList, setSkuList] = useState<SimpleSkuList>()
   const [skus, setSkus] = useState<SkuWithQuantity[]>()
+  const [products, setProducts] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
 
@@ -70,16 +77,36 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
             "sku_list_items",
             "skus",
             "manual",
+            "metadata",
           ],
           sku_list_items: ["sku_code", "quantity"],
-          skus: ["code"],
+          skus: ["code", "reference"],
         },
       })
 
       if (skuList) {
-        setTitle(skuList.name)
-        setDescription(skuList.description as string)
-        setSkus(normalizeSkusInList(skuList).slice(0, itemsLimit))
+        setSkuList({
+          name: skuList.name,
+          description: skuList.description,
+          metadata: skuList.metadata,
+        })
+        const products = normalizeSkusInList(skuList).slice(0, itemsLimit)
+        setSkus(products)
+
+        if (withVariants(products)) {
+          const prod = await cl.skus.list({
+            filters: { code_in: products.map((p) => p.skuCode).join(",") },
+            include: ["prices"],
+          })
+
+          const productsWithVariants = prod.reduce(function (r, a) {
+            const k = a.reference || "noReference"
+            r[k] = r[k] || []
+            r[k].push(a)
+            return r
+          }, Object.create(null))
+          setProducts(productsWithVariants)
+        }
       } else {
         setIsError(true)
       }
@@ -107,9 +134,9 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
         isLoading,
         isError,
         data: skus && {
-          title,
-          description,
+          list: skuList,
           skus,
+          products,
         },
       })}
     </>

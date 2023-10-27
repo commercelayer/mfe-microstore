@@ -33,6 +33,7 @@ const StyledSelect = Styled.select`
     appearance-none outline-none w-full bg-white px-4 py-3 pr-7 
     border border-gray-300 rounded 
     text-black text-xs 
+    disabled:text-gray-300
     transition duration-500 ease-in-out
     focus:border-primary focus:ring focus:ring-offset-0 focus:ring-primary-light focus:ring-opacity-50
   `}

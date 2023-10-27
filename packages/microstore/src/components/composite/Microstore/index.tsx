@@ -11,18 +11,20 @@ import { Wrapper } from "./styled"
 
 import { Hero } from "#components/composite/Hero"
 import { Product } from "#components/composite/Product"
+import { ProductWithVariants } from "#components/composite/ProductWithVariants"
+import { SimpleSkuList, SkuWithPrices } from "#providers/SkuListProvider"
 
 interface Props {
   skus?: SkuWithQuantity[]
-  title?: string
-  description?: string
+  products?: Record<string, SkuWithPrices[]>
+  skuList?: SimpleSkuList
   couponCode?: string
 }
 
 export const Microstore = ({
   skus = [],
-  title,
-  description,
+  products = {},
+  skuList,
   couponCode,
 }: Props) => {
   if (skus.length === 0) {
@@ -36,19 +38,28 @@ export const Microstore = ({
 
   return (
     <>
-      <Hero title={title} description={description} couponCode={couponCode} />
+      <Hero skuList={skuList} couponCode={couponCode} />
       <ButtonBuyAll />
 
       <Wrapper>
-        <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>
-          <PricesContainer>
-            <AvailabilityContainer>
-              <Skus>
-                <Product />
-              </Skus>
-            </AvailabilityContainer>
-          </PricesContainer>
-        </SkusContainer>
+        {Object.keys(products).length === 0 ? (
+          <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>
+            <PricesContainer>
+              <AvailabilityContainer>
+                <Skus>
+                  <Product />
+                </Skus>
+              </AvailabilityContainer>
+            </PricesContainer>
+          </SkusContainer>
+        ) : (
+          Object.keys(products).map((key) => (
+            <ProductWithVariants
+              key={key}
+              skus={products[key]}
+            ></ProductWithVariants>
+          ))
+        )}
       </Wrapper>
     </>
   )

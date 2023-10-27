@@ -1,6 +1,7 @@
 type SkuWithQuantity = {
   skuCode: string
   quantity: number
+  reference?: string | undefined | null
 }
 
 type UrlData = {

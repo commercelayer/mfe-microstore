@@ -115,10 +115,12 @@ describe("normalizeSkusInList", () => {
     expect(skus).toStrictEqual([
       {
         skuCode: "TSHIRTWV000000FFFFFFSXXX",
+        reference: "sku_246",
         quantity: 1,
       },
       {
         skuCode: "TSHIRTWKFFFFFF000000MXXX",
+        reference: "sku_230",
         quantity: 1,
       },
     ])
@@ -130,14 +132,17 @@ describe("normalizeSkusInList", () => {
     expect(skus).toStrictEqual([
       {
         skuCode: "TSHIRTMS000000FFFFFFLXXX",
+        reference: undefined,
         quantity: 2,
       },
       {
         skuCode: "TSHIRTMM000000FFFFFFXLXX",
+        reference: undefined,
         quantity: 1,
       },
       {
         skuCode: "TSHIRTMM000000FFFFF222",
+        reference: undefined,
         quantity: 5,
       },
     ])
