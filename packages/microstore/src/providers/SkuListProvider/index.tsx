@@ -18,7 +18,7 @@ type SkuListProviderChildrenProps = {
    * The SKU List fetched data that we need in order to render the microstore
    */
   data?: {
-    list?: SkuListRenamed
+    list?: SimpleSkuList
     skus: SkuWithQuantity[]
     products: Record<string, unknown[]>
   }
@@ -48,7 +48,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
   children,
   itemsLimit = 12,
 }) => {
-  const [skuList, setSkuList] = useState<SkuListRenamed>()
+  const [skuList, setSkuList] = useState<SimpleSkuList>()
   const [skus, setSkus] = useState<SkuWithQuantity[]>()
   const [products, setProducts] = useState({})
   const [isLoading, setIsLoading] = useState(true)
@@ -81,7 +81,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
 
       if (skuList) {
         setSkuList({
-          title: skuList.name,
+          name: skuList.name,
           description: skuList.description,
           metadata: skuList.metadata,
         })

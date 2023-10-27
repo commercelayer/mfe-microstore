@@ -68,7 +68,4 @@ type MicrostorePageContextProps = Pick<
   | "favicon"
 >
 
-type SkuListRenamed = Pick<
-  Omit<SkuList, "name"> & { title: SkuList["name"] },
-  "title" | "description" | "metadata"
->
+type SimpleSkuList = Pick<SkuList, "name" | "description" | "metadata">

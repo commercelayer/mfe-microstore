@@ -6,7 +6,7 @@ import { useDataFromUrl } from "#hooks/useDataFromUrl"
 import { I18N_PREFIX } from "#providers/i18n"
 interface Props {
   couponCode?: string
-  skuList?: SkuListRenamed
+  skuList?: SimpleSkuList
 }
 
 export const Hero = ({ skuList, couponCode }: Props) => {
@@ -14,11 +14,11 @@ export const Hero = ({ skuList, couponCode }: Props) => {
 
   return (
     <Wrapper>
-      {skuList?.title && (
+      {skuList?.name && (
         <Title>
           {(skuList.metadata &&
-            skuList.metadata[`${I18N_PREFIX}_${lang}_title`]) ??
-            skuList.title}
+            skuList.metadata[`${I18N_PREFIX}_${lang}_name`]) ??
+            skuList.name}
         </Title>
       )}
       {skuList?.description && (

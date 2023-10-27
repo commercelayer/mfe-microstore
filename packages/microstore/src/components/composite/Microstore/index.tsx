@@ -16,7 +16,7 @@ import { WithVariants } from "#components/composite/ProductWithVariants"
 interface Props {
   skus?: SkuWithQuantity[]
   products?: Record<string, unknown[]>
-  skuList?: SkuListRenamed
+  skuList?: SimpleSkuList
   couponCode?: string
 }
 
