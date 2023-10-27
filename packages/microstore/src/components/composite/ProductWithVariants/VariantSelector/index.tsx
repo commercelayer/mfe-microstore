@@ -1,20 +1,20 @@
-import { Sku } from "@commercelayer/sdk"
 import { FC, ChangeEvent, useState } from "react"
 
 import { LocalizedAttribute } from "../LocalizedAttribute"
 
 import { Select } from "#components/ui/Select"
+import { SkuWithPrices } from "#providers/SkuListProvider"
 
 interface Props {
-  variants: Sku[]
-  setSku: (sku: Sku) => void
+  variants: SkuWithPrices[]
+  setSku: (sku: SkuWithPrices) => void
 }
 
 export const VariantSelector: FC<Props> = ({ variants, setSku }) => {
   const options = variants.map((variant) => [variant.id, variant.name])
   const [value, setValue] = useState(variants[0].code)
   const onSkuChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSku(variants.find((v) => v.code === e.target.value) as Sku)
+    setSku(variants.find((v) => v.code === e.target.value) as SkuWithPrices)
     setValue(e.target.value)
   }
 

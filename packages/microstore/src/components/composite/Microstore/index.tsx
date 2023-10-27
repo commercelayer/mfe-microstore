@@ -12,10 +12,11 @@ import { Wrapper } from "./styled"
 import { Hero } from "#components/composite/Hero"
 import { Product } from "#components/composite/Product"
 import { ProductWithVariants } from "#components/composite/ProductWithVariants"
+import { SimpleSkuList, SkuWithPrices } from "#providers/SkuListProvider"
 
 interface Props {
   skus?: SkuWithQuantity[]
-  products?: Record<string, unknown[]>
+  products?: Record<string, SkuWithPrices[]>
   skuList?: SimpleSkuList
   couponCode?: string
 }

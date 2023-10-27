@@ -67,5 +67,3 @@ type MicrostorePageContextProps = Pick<
   | "primaryColor"
   | "favicon"
 >
-
-type SimpleSkuList = Pick<SkuList, "name" | "description" | "metadata">

@@ -4,6 +4,7 @@ import { Title, Description, Wrapper } from "./styled"
 
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
 import { I18N_PREFIX } from "#providers/i18n"
+import { SimpleSkuList } from "#providers/SkuListProvider"
 interface Props {
   couponCode?: string
   skuList?: SimpleSkuList

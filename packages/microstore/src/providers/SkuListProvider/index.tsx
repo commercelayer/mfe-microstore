@@ -1,10 +1,15 @@
-import { CommerceLayer } from "@commercelayer/sdk"
+import { CommerceLayer, Price, Sku, SkuList } from "@commercelayer/sdk"
 import { FC, ReactNode, useState, useEffect, useCallback } from "react"
 
 import { normalizeSkusInList } from "./normalizeSkusInList"
 
 import { withVariants } from "#providers/SkuListProvider/withVariants"
 
+export type SimpleSkuList = Pick<SkuList, "name" | "description" | "metadata">
+
+export type SkuWithPrices = Sku & {
+  prices: Price[]
+}
 type SkuListProviderChildrenProps = {
   /**
    * This will be set to `true` during SKU List data fetching
@@ -20,7 +25,7 @@ type SkuListProviderChildrenProps = {
   data?: {
     list?: SimpleSkuList
     skus: SkuWithQuantity[]
-    products: Record<string, unknown[]>
+    products: Record<string, SkuWithPrices[]>
   }
 }
 

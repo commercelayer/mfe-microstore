@@ -25,20 +25,26 @@ import {
 import { LocalizedAttribute } from "./LocalizedAttribute"
 import { VariantSelector } from "./VariantSelector"
 
-export const ProductWithVariants: FC<{ skus: any }> = ({ skus }) => {
+import { SkuWithPrices } from "#providers/SkuListProvider"
+
+export const ProductWithVariants: FC<{ skus: SkuWithPrices[] }> = ({
+  skus,
+}) => {
   const [sku, setSku] = useState(skus[0])
   const { t } = useTranslation()
 
   return (
     <>
       <Card>
-        <CardImage>
-          <img
-            className="h-48 rounded-md w-full object-scale-down self-start p-1 border border-gray-100 md:(h-36)"
-            src={sku.image_url}
-          />
-          <DiscountBadge prices={sku.prices} />
-        </CardImage>
+        {sku.image_url && (
+          <CardImage>
+            <img
+              className="h-48 rounded-md w-full object-scale-down self-start p-1 border border-gray-100 md:(h-36)"
+              src={sku.image_url}
+            />
+            <DiscountBadge prices={sku.prices} />
+          </CardImage>
+        )}
         <CardBody>
           <CardTitle>
             <p>

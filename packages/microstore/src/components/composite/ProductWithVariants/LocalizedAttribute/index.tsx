@@ -1,13 +1,13 @@
-import { Sku } from "@commercelayer/sdk"
 import { FC } from "react"
 
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
 import { I18N_PREFIX } from "#providers/i18n"
+import { SkuWithPrices } from "#providers/SkuListProvider"
 
 type LocalizedAttributeProp = "name" | "description"
 
 export const LocalizedAttribute: FC<{
-  sku: Sku
+  sku: SkuWithPrices
   type?: "variant" | "product"
   attribute: LocalizedAttributeProp
 }> = ({ sku, attribute, type = "product" }) => {
