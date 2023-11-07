@@ -1,26 +1,24 @@
-import { SkuField } from "@commercelayer/react-components"
 import { FC } from "react"
 
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
+import { I18N_PREFIX } from "#providers/i18n"
+import { SkuWithPrices } from "#providers/SkuListProvider"
 
 type LocalizedAttributeProp = "name" | "description"
 
 export const LocalizedAttribute: FC<{
+  sku: SkuWithPrices
+  type?: "variant" | "product"
   attribute: LocalizedAttributeProp
-}> = ({ attribute }) => {
+}> = ({ sku, attribute, type = "product" }) => {
   const { lang } = useDataFromUrl()
-  return (
-    <SkuField attribute="metadata">
-      {/* @ts-expect-error Typings should be resolved by `react-components` */}
-      {({ attributeValue }) => {
-        const description =
-          attributeValue[`microstore_i18n_${lang}_${attribute}`]
-        return description ? (
-          <p>{description}</p>
-        ) : (
-          <SkuField attribute={attribute} tagElement="p" />
-        )
-      }}
-    </SkuField>
-  )
+  const metadata = sku.metadata
+
+  const value =
+    metadata &&
+    (type === "product"
+      ? metadata[`${I18N_PREFIX}_${lang}_reference_${attribute}`] ??
+        metadata[`${I18N_PREFIX}_${lang}_${attribute}`]
+      : metadata[`${I18N_PREFIX}_${lang}_${attribute}`])
+  return value || sku[attribute]
 }

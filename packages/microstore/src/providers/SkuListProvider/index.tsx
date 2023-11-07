@@ -3,12 +3,18 @@ import { FC, ReactNode, useState, useEffect, useCallback } from "react"
 
 import { normalizeSkusInList } from "./normalizeSkusInList"
 
-import { withVariants } from "#providers/SkuListProvider/withVariants"
+import { SkuWithQuantity } from "@typings/urlData"
 
 export type SimpleSkuList = Pick<SkuList, "name" | "description" | "metadata">
 
-export type SkuWithPrices = Sku & {
-  prices: Price[]
+type OptionalExceptFor<T, TRequired extends keyof T> = Partial<T> &
+  Pick<T, TRequired>
+
+export type SkuWithPrices = OptionalExceptFor<
+  Sku,
+  "name" | "code" | "reference"
+> & {
+  prices?: Price[]
 }
 type SkuListProviderChildrenProps = {
   /**
@@ -25,7 +31,6 @@ type SkuListProviderChildrenProps = {
   data?: {
     list?: SimpleSkuList
     skus: SkuWithQuantity[]
-    products: Record<string, SkuWithPrices[]>
   }
 }
 
@@ -55,7 +60,6 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
 }) => {
   const [skuList, setSkuList] = useState<SimpleSkuList>()
   const [skus, setSkus] = useState<SkuWithQuantity[]>()
-  const [products, setProducts] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
 
@@ -69,7 +73,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
 
     try {
       const skuList = await cl.sku_lists.retrieve(skuListId, {
-        include: ["sku_list_items", "skus"],
+        include: ["sku_list_items", "skus", "skus.prices"],
         fields: {
           sku_lists: [
             "name",
@@ -80,7 +84,21 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
             "metadata",
           ],
           sku_list_items: ["sku_code", "quantity"],
-          skus: ["code", "reference"],
+          skus: [
+            "code",
+            "reference",
+            "name",
+            "description",
+            "metadata",
+            "image_url",
+            "prices",
+          ],
+          prices: [
+            "formatted_amount",
+            "formatted_compare_at_amount",
+            "compare_at_amount_float",
+            "amount_float",
+          ],
         },
       })
 
@@ -92,21 +110,6 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
         })
         const products = normalizeSkusInList(skuList).slice(0, itemsLimit)
         setSkus(products)
-
-        if (withVariants(products)) {
-          const prod = await cl.skus.list({
-            filters: { code_in: products.map((p) => p.skuCode).join(",") },
-            include: ["prices"],
-          })
-
-          const productsWithVariants = prod.reduce(function (r, a) {
-            const k = a.reference || "noReference"
-            r[k] = r[k] || []
-            r[k].push(a)
-            return r
-          }, Object.create(null))
-          setProducts(productsWithVariants)
-        }
       } else {
         setIsError(true)
       }
@@ -136,7 +139,6 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
         data: skus && {
           list: skuList,
           skus,
-          products,
         },
       })}
     </>

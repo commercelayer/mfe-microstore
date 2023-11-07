@@ -1,32 +1,20 @@
-import {
-  SkusContainer,
-  Skus,
-  PricesContainer,
-  AvailabilityContainer,
-} from "@commercelayer/react-components"
-
 import { ButtonBuyAll } from "../ButtonBuyAll"
 
 import { Wrapper } from "./styled"
 
 import { Hero } from "#components/composite/Hero"
 import { Product } from "#components/composite/Product"
-import { ProductWithVariants } from "#components/composite/ProductWithVariants"
-import { SimpleSkuList, SkuWithPrices } from "#providers/SkuListProvider"
+import { SimpleSkuList } from "#providers/SkuListProvider"
+import { withVariants } from "#providers/SkuListProvider/withVariants"
+import { SkuWithQuantity } from "@typings/urlData"
 
 interface Props {
   skus?: SkuWithQuantity[]
-  products?: Record<string, SkuWithPrices[]>
   skuList?: SimpleSkuList
   couponCode?: string
 }
 
-export const Microstore = ({
-  skus = [],
-  products = {},
-  skuList,
-  couponCode,
-}: Props) => {
+export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
   if (skus.length === 0) {
     return (
       <div className="py-10 font-bold" data-test-id="no-skus-found">
@@ -36,30 +24,30 @@ export const Microstore = ({
     )
   }
 
+  let products: Record<string, SkuWithQuantity[]> = {}
+  if (withVariants(skus)) {
+    const productsWithVariants = skus.reduce(function (r, a) {
+      const k = a.sku.reference || "noReference"
+      r[k] = r[k] || []
+      r[k].push(a)
+      return r
+    }, Object.create(null))
+    products = productsWithVariants
+  }
+
   return (
     <>
       <Hero skuList={skuList} couponCode={couponCode} />
       <ButtonBuyAll />
 
       <Wrapper>
-        {Object.keys(products).length === 0 ? (
-          <SkusContainer skus={skus.map(({ skuCode }) => skuCode)}>
-            <PricesContainer>
-              <AvailabilityContainer>
-                <Skus>
-                  <Product />
-                </Skus>
-              </AvailabilityContainer>
-            </PricesContainer>
-          </SkusContainer>
-        ) : (
-          Object.keys(products).map((key) => (
-            <ProductWithVariants
-              key={key}
-              skus={products[key]}
-            ></ProductWithVariants>
-          ))
-        )}
+        {Object.keys(products).length === 0
+          ? skus.map((item) => (
+              <Product key={item.sku.code} skus={[item]}></Product>
+            ))
+          : Object.keys(products).map((key) => (
+              <Product key={key} skus={products[key]}></Product>
+            ))}
       </Wrapper>
     </>
   )

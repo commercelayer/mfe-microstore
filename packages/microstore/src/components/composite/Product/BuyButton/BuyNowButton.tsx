@@ -7,9 +7,15 @@ interface Props {
   disabled?: boolean
   quantity: number
   skuCode?: string
+  name: string
 }
 
-export const BuyNowButton: FC<Props> = ({ disabled, skuCode, quantity }) => {
+export const BuyNowButton: FC<Props> = ({
+  disabled,
+  skuCode,
+  quantity,
+  name,
+}) => {
   const { t } = useTranslation()
   return (
     <StyledAddToCartButton
@@ -17,6 +23,7 @@ export const BuyNowButton: FC<Props> = ({ disabled, skuCode, quantity }) => {
       buyNowMode
       skuCode={skuCode}
       quantity={`${quantity}`}
+      lineItem={{ name }}
       label={t("buttons.buyNow")}
       disabled={disabled}
     />

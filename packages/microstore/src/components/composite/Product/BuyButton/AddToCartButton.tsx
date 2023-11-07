@@ -7,9 +7,15 @@ interface Props {
   disabled?: boolean
   quantity: number
   skuCode?: string
+  name: string
 }
 
-export const AddToCartButton: FC<Props> = ({ disabled, skuCode, quantity }) => {
+export const AddToCartButton: FC<Props> = ({
+  disabled,
+  skuCode,
+  quantity,
+  name,
+}) => {
   const { t } = useTranslation()
   return (
     <StyledAddToCartButton
@@ -18,6 +24,7 @@ export const AddToCartButton: FC<Props> = ({ disabled, skuCode, quantity }) => {
       quantity={`${quantity}`}
       redirectToHostedCart
       skuCode={skuCode}
+      lineItem={{ name }}
       disabled={disabled}
     />
   )

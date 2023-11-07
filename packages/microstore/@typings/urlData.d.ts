@@ -1,7 +1,8 @@
+import { SkuWithPrices } from "#providers/SkuListProvider"
+
 type SkuWithQuantity = {
-  skuCode: string
   quantity: number
-  reference?: string | undefined | null
+  sku: SkuWithPrices
 }
 
 type UrlData = {

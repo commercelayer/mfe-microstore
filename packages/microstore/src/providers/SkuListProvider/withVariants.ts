@@ -1,3 +1,5 @@
+import { SkuWithQuantity } from "@typings/urlData"
+
 /**
  * @returns if an array of SKUs should be treated as products with variants
  *
@@ -5,7 +7,7 @@
  */
 export const withVariants = (skus: SkuWithQuantity[]): boolean => {
   const grouped = skus.reduce(function (r, a) {
-    const k = a.reference || "noReference"
+    const k = a.sku.reference || "noReference"
     r[k] = r[k] || []
     r[k].push(a)
     return r

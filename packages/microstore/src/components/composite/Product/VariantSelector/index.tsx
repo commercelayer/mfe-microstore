@@ -15,8 +15,11 @@ export const VariantSelector: FC<Props> = ({ variants, sku, setSku }) => {
   const options = variants.map((variant) => [variant.id, variant.name])
   const [value, setValue] = useState(sku.code)
   const onSkuChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSku(variants.find((v) => v.code === e.target.value) as SkuWithPrices)
-    setValue(e.target.value)
+    const sku = variants.find((v) => v.code === e.target.value)
+    if (sku) {
+      setSku(sku)
+      setValue(e.target.value)
+    }
   }
 
   return options.length > 0 ? (
