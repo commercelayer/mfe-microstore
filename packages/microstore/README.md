@@ -4,7 +4,6 @@ The Commerce Layer Microstore application (React) provides you with a production
 
 ![Commerce Layer React Microstore demo](https://github.com/commercelayer/mfe-microstore/assets/97170183/e2cefcb2-9fea-497a-b132-5916da7aaa23)
 
-
 ## What is Commerce Layer?
 
 [Commerce Layer](https://commercelayer.io) is a multi-market commerce API and order management system that lets you add global shopping capabilities to any website, mobile app, chatbot, wearable, voice, or IoT device, with ease. Compose your stack with the best-of-breed tools you already mastered and love. Make any experience shoppable, anywhere, through a blazing-fast, enterprise-grade, and secure API.
@@ -79,6 +78,30 @@ Enabling the Cart application will add a behavior option about how the items are
 For example: `https://yourbrand.commercelayer.app/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9&cart=true&inline=true`
 
 Any Commerce Layer account comes with a hosted version of the Cart application.
+
+### Products with variants
+
+Microstore can also be used to showcase products with variants. On Commerce Layer data model we have only SKUs but we can follow a convention to group variants under the same product. This can be done using the `reference` attribute of the SKU. Each SKU with the same `reference` will be grouped in a single product and it will be possible to select a particular variant from a dropdown. When a customer will change the value of the dropdown all information about the selected variant will be shown (image, price, availability, ...).
+
+### Localizations
+
+Please follow this convention to localize SKUs:
+
+| Parameter                             | Description                      |
+| ------------------------------------- | -------------------------------- |
+| `microstore_i18n_${lang}_name`        | localized name of the SKU        |
+| `microstore_i18n_${lang}_description` | localized description of the SKU |
+
+or a set of them grouped by product:
+
+| Parameter                                       | Description                                   |
+| ----------------------------------------------- | --------------------------------------------- |
+| `microstore_i18n_${lang}_reference_name`        | localized name of the product                 |
+| `microstore_i18n_${lang}_reference_description` | localized description of the product          |
+| `microstore_i18n_${lang}_name`                  | localized name of the selected variant        |
+| `microstore_i18n_${lang}_description`           | localized description of the selected variant |
+
+When the customer will add an item to the cart, the line item `name` displayed on the cart/checkout will be localized if translations are available. If there is a product with variants the line item `name` will be composed in this way: `microstore_i18n_${lang}_reference_name` - `microstore_i18n_${lang}_name`.
 
 ## Contributors guide
 
