@@ -2,7 +2,7 @@
 
 The Commerce Layer Microstore application (React) provides you with a production-ready microstore website powered by Commerce Layer APIs. Microstores are self-contained and fully functional hosted stores accessible via a unique URL, which can be embedded into any online or offline (e.g. using a QR code) content. You can fork this repository and deploy it to any hosting service or use it as a reference application to build your own. A hosted version is also available.
 
-![Commerce Layer React Microstore demo](https://github.com/commercelayer/mfe-microstore/assets/97170183/e2cefcb2-9fea-497a-b132-5916da7aaa23)
+![Commerce Layer React Microstore demo](https://github.com/commercelayer/mfe-microstore/assets/55532244/0612e256-a2f0-424a-943a-32207277635b)
 
 ## What is Commerce Layer?
 
