@@ -1,4 +1,4 @@
-import { CartLink } from "@commercelayer/react-components"
+import { CartLink } from "@commercelayer/react-components/orders/CartLink"
 import Styled from "styled-components"
 import tw from "twin.macro"
 

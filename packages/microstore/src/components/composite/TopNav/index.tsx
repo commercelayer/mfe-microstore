@@ -1,7 +1,5 @@
-import {
-  LineItemsCount,
-  LineItemsContainer,
-} from "@commercelayer/react-components"
+import { LineItemsContainer } from "@commercelayer/react-components/line_items/LineItemsContainer"
+import { LineItemsCount } from "@commercelayer/react-components/line_items/LineItemsCount"
 import { FC } from "react"
 
 import { CartIcon } from "./CartIcon"

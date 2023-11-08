@@ -14,8 +14,7 @@ const MAX_OPTIONS = 10
 
 export const QuantityInput: FC<Props> = ({ skuCode, quantityAvailable }) => {
   const { updateQuantity, skus } = useBuyAll()
-  const quantityValue = skus.find((o) => skuCode === o.skuCode)?.quantity || 0
-
+  const quantityValue = skus.find((o) => skuCode === o.sku.code)?.quantity || 0
   if (!quantityValue) {
     return null
   }
@@ -24,10 +23,13 @@ export const QuantityInput: FC<Props> = ({ skuCode, quantityAvailable }) => {
     quantityAvailable > MAX_OPTIONS ? MAX_OPTIONS : quantityAvailable
   )
   const onQuantityChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    updateQuantity({
-      skuCode,
-      quantity: parseInt(e.currentTarget.value, 10),
-    })
+    const sku = skus.find((item) => item.sku.code === skuCode)?.sku
+    if (sku) {
+      updateQuantity({
+        sku,
+        quantity: parseInt(e.currentTarget.value, 10),
+      })
+    }
     // handleChange(e as unknown as MouseEvent<HTMLInputElement>)
   }
 

@@ -10,6 +10,7 @@ import {
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
 import { buyAllSkus } from "#utils/buyAllSkus"
 import { makeHostedAppUrl } from "#utils/makeHostedAppUrl"
+import { SkuWithQuantity } from "@typings/urlData"
 
 type BuyAllProviderValue = {
   showBuyAllButton: boolean
@@ -100,7 +101,9 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
       return
     }
     setInternalSkus((state) =>
-      state.map((s) => (s.skuCode === updatedSku.skuCode ? updatedSku : s))
+      state.map((item) =>
+        item.sku.code === updatedSku.sku.code ? updatedSku : item
+      )
     )
   }
   const value: BuyAllProviderValue = {

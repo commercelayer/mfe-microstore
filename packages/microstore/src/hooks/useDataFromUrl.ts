@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 
+import { UrlData } from "@typings/urlData"
+
 export const useDataFromUrl = () => {
   const [data, setData] = useState<UrlData>({})
   const search = new URLSearchParams(window.location.search)

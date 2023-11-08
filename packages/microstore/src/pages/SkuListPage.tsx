@@ -60,7 +60,6 @@ function SkuListPage(): JSX.Element {
             <BuyAllProvider settings={settings} skus={skuList.data.skus}>
               <Microstore
                 skus={skuList.data.skus}
-                products={skuList.data.products}
                 couponCode={couponCode}
                 skuList={skuList.data.list}
               />

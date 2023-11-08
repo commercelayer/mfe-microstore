@@ -32,7 +32,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^7.0.0",
-    "npm-check-updates": "^16.10.12"
+    "lerna": "^7.4.2",
+    "npm-check-updates": "^16.14.6"
   }
 }

@@ -9,9 +9,15 @@ interface Props {
   disabled?: boolean
   quantity?: number
   skuCode?: string
+  name: string
 }
 
-export const AddInlineButton: FC<Props> = ({ disabled, quantity, skuCode }) => {
+export const AddInlineButton: FC<Props> = ({
+  disabled,
+  quantity,
+  skuCode,
+  name,
+}) => {
   const { justAdded, handleOnAddFeedback } = useAddToCartFeedback()
   const { t } = useTranslation()
   const { addToCart } = useOrderContainer()
@@ -24,7 +30,9 @@ export const AddInlineButton: FC<Props> = ({ disabled, quantity, skuCode }) => {
             data-test-id="button-add-to-cart-inline"
             disabled={disabled || justAdded}
             onClick={() =>
-              handleOnAddFeedback(() => addToCart({ skuCode, quantity }))
+              handleOnAddFeedback(() =>
+                addToCart({ skuCode, quantity, lineItem: { name } })
+              )
             }
           >
             {justAdded ? t("buttons.inlineAdded") : t("buttons.addToCart")}

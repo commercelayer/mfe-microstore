@@ -1,10 +1,6 @@
-import {
-  SkuField,
-  Price,
-  AvailabilityTemplate,
-  AvailabilityContainer,
-} from "@commercelayer/react-components"
-import { FC } from "react"
+import { AvailabilityContainer } from "@commercelayer/react-components/skus/AvailabilityContainer"
+import { AvailabilityTemplate } from "@commercelayer/react-components/skus/AvailabilityTemplate"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 import { BuyButton } from "./BuyButton"
@@ -23,27 +19,43 @@ import {
   CardStock,
   CardTitle,
   QuantityAndButtonWrapper,
-  Thumb,
 } from "./styled"
+import { VariantSelector } from "./VariantSelector"
 
-export const Product: FC = () => {
+import { useDataFromUrl } from "#hooks/useDataFromUrl"
+import { lineItemName } from "#utils/lineItemName"
+import { SkuWithQuantity } from "@typings/urlData"
+
+export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
+  const [sku, setSku] = useState(skus[0].sku)
   const { t } = useTranslation()
+  const { lang } = useDataFromUrl()
   return (
     <>
       <Card>
         <CardImage>
-          <Thumb attribute="image_url" tagElement="img" />
-          <Price>{({ prices }) => <DiscountBadge prices={prices} />}</Price>
+          <img
+            className="h-48 rounded-md w-full object-scale-down self-start p-1 border border-gray-100 md:(h-36)"
+            src={
+              sku.image_url ||
+              "https://data.commercelayer.app/assets/images/placeholders/img_placeholder.svg"
+            }
+          />
+          {sku.prices && <DiscountBadge prices={sku.prices} />}
         </CardImage>
         <CardBody>
           <CardTitle>
-            <LocalizedAttribute attribute="name" />
+            <p>
+              <LocalizedAttribute sku={sku} attribute="name" />
+            </p>
           </CardTitle>
           <CardDesc>
-            <LocalizedAttribute attribute="description" />
+            <p>
+              <LocalizedAttribute sku={sku} attribute="description" />{" "}
+            </p>
           </CardDesc>
           <CardFooter>
-            <AvailabilityContainer>
+            <AvailabilityContainer skuId={sku.id} skuCode={sku.code}>
               <AvailabilityTemplate
                 labels={{
                   available: t("availability.available"),
@@ -54,28 +66,33 @@ export const Product: FC = () => {
                   return (
                     <>
                       <CardPrice>
-                        <CardPriceWrapper>
-                          <Price
-                            className="text-xl font-bold"
-                            compareClassName="text-gray-400 line-through mr-2"
-                          />
-                        </CardPriceWrapper>
+                        {sku.prices && (
+                          <CardPriceWrapper>
+                            <p className="text-xl font-bold">
+                              {sku.prices[0].formatted_amount}
+                            </p>
+                            <p className="text-gray-400 line-through mr-2">
+                              {sku.prices[0].formatted_compare_at_amount}
+                            </p>
+                          </CardPriceWrapper>
+                        )}
                         <QuantityAndButtonWrapper>
-                          <SkuField attribute="code" tagElement="span">
-                            {/* @ts-expect-error typing should come from react-components */}
-                            {({ attributeValue: skuCode }) => (
-                              <>
-                                <QuantitySelector
-                                  skuCode={skuCode}
-                                  quantityAvailable={quantity}
-                                />
-                                <BuyButton
-                                  available={quantity > 0}
-                                  skuCode={skuCode}
-                                />
-                              </>
-                            )}
-                          </SkuField>
+                          {skus.length > 1 && (
+                            <VariantSelector
+                              variants={skus.map((s) => s.sku)}
+                              sku={sku}
+                              setSku={setSku}
+                            />
+                          )}
+                          <QuantitySelector
+                            skuCode={sku.code}
+                            quantityAvailable={quantity}
+                          />
+                          <BuyButton
+                            skuCode={sku.code}
+                            name={lineItemName(sku, lang)}
+                            available={quantity > 0}
+                          />
                         </QuantityAndButtonWrapper>
                       </CardPrice>
 
