@@ -1,8 +1,4 @@
-window.clAppConfig = Object.assign(
-  {
-    domain: "commercelayer.io",
-    selfHostedSlug: "zwr-event-agency",
-    isHosted: true,
-  },
-  window.clAppConfig
-)
+window.clAppConfig = {
+  domain: "commercelayer.io",
+  selfHostedSlug: "zwr-event-agency",
+}
