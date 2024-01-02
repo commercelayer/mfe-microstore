@@ -54,7 +54,7 @@ export default defineConfig(({ mode }) => {
 })
 
 function preparePlugins({ analyzeBundle }: { analyzeBundle: boolean }) {
-  const plugins: PluginOption[] = [
+  const plugins = [
     react({
       babel: {
         plugins: ["babel-plugin-macros", "babel-plugin-styled-components"],

@@ -30,6 +30,7 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
   const [sku, setSku] = useState(skus[0].sku)
   const { t } = useTranslation()
   const { lang } = useDataFromUrl()
+
   return (
     <>
       <Card>
@@ -69,14 +70,16 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
                         {sku.prices && (
                           <CardPriceWrapper>
                             <p className="text-xl font-bold">
-                              {sku.prices[0].formatted_amount}
+                              {sku!.prices[0].formatted_amount}
                             </p>
-                            {sku.prices[0].amount_float <
-                              sku.prices[0].compare_at_amount_float && (
-                              <p className="text-gray-400 line-through mr-2">
-                                {sku.prices[0].formatted_compare_at_amount}
-                              </p>
-                            )}
+                            {sku.prices[0].compare_at_amount_float != null &&
+                              sku.prices[0].amount_float != null &&
+                              sku.prices[0].amount_float <
+                                sku.prices[0].compare_at_amount_float && (
+                                <p className="text-gray-400 line-through mr-2">
+                                  {sku.prices[0].formatted_compare_at_amount}
+                                </p>
+                              )}
                           </CardPriceWrapper>
                         )}
                         <QuantityAndButtonWrapper>

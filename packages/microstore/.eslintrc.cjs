@@ -20,6 +20,7 @@ module.exports = {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
   },
+  ignorePatterns: ["*.config.cjs"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: path.resolve(__dirname, "tsconfig.json"),
