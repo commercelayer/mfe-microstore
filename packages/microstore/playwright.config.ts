@@ -1,5 +1,5 @@
-import { PlaywrightTestConfig, devices } from "@playwright/test"
-import dotenv from "dotenv"
+import { PlaywrightTestConfig } from "@playwright/test"
+import * as dotenv from "dotenv"
 
 import path from "path"
 

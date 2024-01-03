@@ -52,8 +52,8 @@
     "**/*.ts",
     "**/*.tsx",
     "public/config*.js",
-    ".eslintrc.cjs"
-  ],
+    ".eslintrc.cjs",
+    "vite.config.mts"],
   "exclude": [
     "node_modules",
   ]
