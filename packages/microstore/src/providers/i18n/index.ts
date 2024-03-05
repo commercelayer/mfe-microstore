@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next"
 
 import translationEN from "#locales/en.json"
 import translationIT from "#locales/it.json"
+import translationPL from "#locales/pl.json"
 
 export const I18N_PREFIX = "microstore_i18n"
 export const FALLBACK_LANGUAGE = "en"
@@ -12,6 +13,9 @@ const resources = {
   },
   it: {
     translation: translationIT,
+  },
+  pl: {
+    translation: translationPL,
   },
 }
 
