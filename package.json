@@ -33,9 +33,10 @@
   ],
   "devDependencies": {
     "lerna": "^8.1.2",
-    "npm-check-updates": "^16.14.15"
+    "npm-check-updates": "^16.14.18"
   },
   "resolutions": {
-    "semver": "^7.5.4"
+    "semver": "^7.5.4",
+    "follow-redirects": ">=1.15.6"
   }
 }
