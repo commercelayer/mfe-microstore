@@ -22,7 +22,7 @@ function MicrostoreContainer({
   couponCode,
   children,
 }: Props): JSX.Element {
-  const { cart, lang } = useDataFromUrl()
+  const { cart, lang, inline } = useDataFromUrl()
   const { i18n } = useTranslation()
 
   useEffect(() => {
@@ -54,6 +54,7 @@ function MicrostoreContainer({
               logoUrl={settings.logoUrl}
               companyName={settings.companyName}
               showCartIcon={cart}
+              inline={inline}
             />
             <Container>
               {children}

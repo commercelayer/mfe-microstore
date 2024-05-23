@@ -71,7 +71,7 @@ Enabling the Cart application will add a behavior option about how the items are
 
 | Parameter | Description                                                                                                                                                      |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `inline`  | If `true`, when customers click on the "Add to bag" button, they will remain on the page, otherwise they will be redirected immediately to the Cart application. |
+| `inline`  | If `true`, when customers click on the "Add to bag" button, they will remain on the page, otherwise they will be redirected immediately to the Cart application. On tablet and desktop devices, selecting the `inline` option will display the mini cart version of the hosted cart in the right sidebar of the microstore. |
 
 For example: `https://yourbrand.commercelayer.app/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9&cart=true&inline=true`
 
