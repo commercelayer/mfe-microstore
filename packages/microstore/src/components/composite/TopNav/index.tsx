@@ -8,14 +8,21 @@ import { Nav, Badge, CartLinkStyled } from "./styled"
 import { Container } from "#components/ui/Container"
 import { Header } from "#components/ui/Header"
 import { Logo } from "#components/ui/Logo"
+import { openMiniCart } from "#utils/openMiniCart"
 
 type Props = {
   logoUrl: string | undefined | null
   companyName: string
   showCartIcon?: boolean
+  inline?: boolean
 }
 
-export const TopNav: FC<Props> = ({ logoUrl, companyName, showCartIcon }) => {
+export const TopNav: FC<Props> = ({
+  logoUrl,
+  companyName,
+  showCartIcon,
+  inline,
+}) => {
   return (
     <Header>
       <Container>
@@ -24,6 +31,7 @@ export const TopNav: FC<Props> = ({ logoUrl, companyName, showCartIcon }) => {
           {showCartIcon ? (
             <CartLinkStyled
               data-test-id="link-view-cart"
+              {...(openMiniCart() && inline ? { type: "mini" } : {})}
               label={
                 <>
                   <CartIcon />

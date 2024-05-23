@@ -1,3 +1,5 @@
+import { HostedCart } from "@commercelayer/react-components/orders/HostedCart"
+
 import { ButtonBuyAll } from "../ButtonBuyAll"
 
 import { Wrapper } from "./styled"
@@ -6,6 +8,7 @@ import { Hero } from "#components/composite/Hero"
 import { Product } from "#components/composite/Product"
 import { SimpleSkuList } from "#providers/SkuListProvider"
 import { withVariants } from "#providers/SkuListProvider/withVariants"
+import { openMiniCart } from "#utils/openMiniCart"
 import { SkuWithQuantity } from "@typings/urlData"
 
 interface Props {
@@ -37,6 +40,19 @@ export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
 
   return (
     <>
+      <HostedCart
+        type="mini"
+        openAdd={openMiniCart()}
+        style={{
+          container: {
+            backgroundColor: "white",
+            zIndex: "20",
+          },
+          background: {
+            zIndex: "15",
+          },
+        }}
+      />
       <Hero skuList={skuList} couponCode={couponCode} />
       <ButtonBuyAll />
 

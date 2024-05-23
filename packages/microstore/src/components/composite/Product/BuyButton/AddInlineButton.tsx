@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next"
 import { StyledAddToCartButton } from "./styled"
 import { useAddToCartFeedback } from "./useAddToCartFeedback"
 
+import { openMiniCart } from "#utils/openMiniCart"
+
 interface Props {
   disabled?: boolean
   quantity?: number
@@ -31,7 +33,12 @@ export const AddInlineButton: FC<Props> = ({
             disabled={disabled || justAdded}
             onClick={() =>
               handleOnAddFeedback(() =>
-                addToCart({ skuCode, quantity, lineItem: { name } })
+                addToCart({
+                  skuCode,
+                  quantity,
+                  lineItem: { name },
+                  openMiniCart: openMiniCart(),
+                })
               )
             }
           >
