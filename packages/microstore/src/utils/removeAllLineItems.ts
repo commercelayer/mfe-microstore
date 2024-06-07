@@ -7,10 +7,7 @@ export const removeAllLineItems = async ({
   client: CommerceLayerClient
   orderId: string
 }) => {
-  const { line_items: lineItems } = await client.orders.retrieve(orderId, {
-    fields: ["line_items"],
-    include: ["line_items"],
-  })
+  const lineItems = await client.orders.line_items(orderId)
   if (lineItems && lineItems?.length > 0) {
     await Promise.all(
       lineItems.map(async (lineItem) => {
