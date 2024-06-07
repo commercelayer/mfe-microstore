@@ -1,4 +1,5 @@
 import { HostedCart } from "@commercelayer/react-components/orders/HostedCart"
+import { Price } from "@commercelayer/sdk"
 
 import { ButtonBuyAll } from "../ButtonBuyAll"
 
@@ -14,10 +15,16 @@ import { SkuWithQuantity } from "@typings/urlData"
 interface Props {
   skus?: SkuWithQuantity[]
   skuList?: SimpleSkuList
+  prices?: Price[]
   couponCode?: string
 }
 
-export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
+export const Microstore = ({
+  skus = [],
+  skuList,
+  prices,
+  couponCode,
+}: Props) => {
   if (skus.length === 0) {
     return (
       <div className="py-10 font-bold" data-test-id="no-skus-found">
@@ -59,10 +66,14 @@ export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
       <Wrapper>
         {Object.keys(products).length === 0
           ? skus.map((item) => (
-              <Product key={item.sku.code} skus={[item]}></Product>
+              <Product
+                key={item.sku.code}
+                skus={[item]}
+                prices={prices}
+              ></Product>
             ))
           : Object.keys(products).map((key) => (
-              <Product key={key} skus={products[key]}></Product>
+              <Product key={key} skus={products[key]} prices={prices}></Product>
             ))}
       </Wrapper>
     </>

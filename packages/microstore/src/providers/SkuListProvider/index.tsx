@@ -31,6 +31,7 @@ type SkuListProviderChildrenProps = {
   data?: {
     list?: SimpleSkuList
     skus: SkuWithQuantity[]
+    prices?: Price[]
   }
 }
 
@@ -60,6 +61,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
 }) => {
   const [skuList, setSkuList] = useState<SimpleSkuList>()
   const [skus, setSkus] = useState<SkuWithQuantity[]>()
+  const [prices, setPrices] = useState<Price[]>()
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
 
@@ -73,34 +75,75 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
 
     try {
       const skuList = await cl.sku_lists.retrieve(skuListId, {
-        include: ["sku_list_items", "skus", "skus.prices"],
         fields: {
-          sku_lists: [
-            "name",
-            "description",
-            "sku_list_items",
-            "skus",
-            "manual",
-            "metadata",
-          ],
-          sku_list_items: ["sku_code", "quantity"],
-          skus: [
-            "code",
-            "reference",
-            "name",
-            "description",
-            "metadata",
-            "image_url",
-            "prices",
-          ],
-          prices: [
-            "formatted_amount",
-            "formatted_compare_at_amount",
-            "compare_at_amount_float",
-            "amount_float",
-          ],
+          sku_lists: ["name", "description", "skus", "manual", "metadata"],
         },
       })
+      const skuListItems = await cl.sku_lists.sku_list_items(skuListId, {
+        fields: {
+          sku_list_items: ["sku_code", "quantity"],
+        },
+        sort: {
+          position: "asc",
+        },
+        pageSize: 25,
+      })
+
+      const skuFields = [
+        "code",
+        "reference",
+        "name",
+        "description",
+        "metadata",
+        "image_url",
+      ] satisfies (keyof Sku)[]
+      const skus = await cl.sku_lists.skus(skuListId, {
+        fields: {
+          skus: skuFields,
+        },
+        pageSize: 25,
+      })
+      if (skus.meta.recordCount > 25) {
+        let pageNumber = 1
+        do {
+          const page = await cl.sku_lists.skus(skuListId, {
+            fields: {
+              skus: skuFields,
+            },
+            pageSize: 25,
+            pageNumber,
+          })
+          if (page.length > 0) {
+            skus.push(...page)
+            pageNumber++
+          }
+        } while (pageNumber < skus.meta.pageCount)
+        // Eventually we could set a custom limit to avoid giant results. Eg: `while (pageNumber < 4)`
+      }
+
+      const skuCodes = skus.map((sku) => sku.code)
+      const skuPrices = await cl.prices.list({
+        filters: { sku_code_in: skuCodes.join(",") },
+        pageSize: 25,
+      })
+      if (skuPrices.meta.recordCount > 25) {
+        let pageNumber = 1
+        do {
+          const page = await cl.prices.list({
+            filters: { sku_code_in: skuCodes.join(",") },
+            pageSize: 25,
+            pageNumber,
+          })
+          if (page.length > 0) {
+            skuPrices.push(...page)
+            pageNumber++
+          }
+        } while (pageNumber < skuPrices.meta.pageCount)
+      }
+
+      if (skuPrices) {
+        setPrices(skuPrices)
+      }
 
       if (skuList) {
         setSkuList({
@@ -108,7 +151,10 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
           description: skuList.description,
           metadata: skuList.metadata,
         })
-        const products = normalizeSkusInList(skuList).slice(0, itemsLimit)
+        const products = normalizeSkusInList(skuList, skuListItems, skus).slice(
+          0,
+          itemsLimit
+        )
         setSkus(products)
       } else {
         setIsError(true)
@@ -139,6 +185,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
         data: skus && {
           list: skuList,
           skus,
+          prices,
         },
       })}
     </>

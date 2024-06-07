@@ -1,5 +1,6 @@
 import { AvailabilityContainer } from "@commercelayer/react-components/skus/AvailabilityContainer"
 import { AvailabilityTemplate } from "@commercelayer/react-components/skus/AvailabilityTemplate"
+import { Price } from "@commercelayer/sdk"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 
@@ -26,10 +27,14 @@ import { useDataFromUrl } from "#hooks/useDataFromUrl"
 import { lineItemName } from "#utils/lineItemName"
 import { SkuWithQuantity } from "@typings/urlData"
 
-export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
+export const Product: FC<{ skus: SkuWithQuantity[]; prices?: Price[] }> = ({
+  skus,
+  prices,
+}) => {
   const [sku, setSku] = useState(skus[0].sku)
   const { t } = useTranslation()
   const { lang } = useDataFromUrl()
+  const skuPrices = prices?.filter((price) => price.sku_code === sku.code)
 
   return (
     <>
@@ -42,7 +47,7 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
               "https://data.commercelayer.app/assets/images/placeholders/img_placeholder.svg"
             }
           />
-          {sku.prices && <DiscountBadge prices={sku.prices} />}
+          {skuPrices && <DiscountBadge prices={skuPrices} />}
         </CardImage>
         <CardBody>
           <CardTitle>
@@ -67,17 +72,17 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
                   return (
                     <>
                       <CardPrice>
-                        {sku.prices && (
+                        {skuPrices && (
                           <CardPriceWrapper>
                             <p className="text-xl font-bold">
-                              {sku!.prices[0].formatted_amount}
+                              {skuPrices[0].formatted_amount}
                             </p>
-                            {sku.prices[0].compare_at_amount_float != null &&
-                              sku.prices[0].amount_float != null &&
-                              sku.prices[0].amount_float <
-                                sku.prices[0].compare_at_amount_float && (
+                            {skuPrices[0].compare_at_amount_float != null &&
+                              skuPrices[0].amount_float != null &&
+                              skuPrices[0].amount_float <
+                                skuPrices[0].compare_at_amount_float && (
                                 <p className="text-gray-400 line-through mr-2">
-                                  {sku.prices[0].formatted_compare_at_amount}
+                                  {skuPrices[0].formatted_compare_at_amount}
                                 </p>
                               )}
                           </CardPriceWrapper>

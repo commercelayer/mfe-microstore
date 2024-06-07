@@ -62,6 +62,7 @@ function SkuListPage(): JSX.Element {
                 skus={skuList.data.skus}
                 couponCode={couponCode}
                 skuList={skuList.data.list}
+                prices={skuList.data.prices}
               />
             </BuyAllProvider>
           </MicrostoreContainer>
