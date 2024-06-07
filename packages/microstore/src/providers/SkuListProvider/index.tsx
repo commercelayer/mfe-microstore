@@ -88,25 +88,37 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
         },
         pageSize: 25,
       })
-      if (skuListItems.meta.recordCount > 25) {
-        // Pagination needed ??
-      }
 
+      const skuFields = [
+        "code",
+        "reference",
+        "name",
+        "description",
+        "metadata",
+        "image_url",
+      ] satisfies (keyof Sku)[]
       const skus = await cl.sku_lists.skus(skuListId, {
         fields: {
-          skus: [
-            "code",
-            "reference",
-            "name",
-            "description",
-            "metadata",
-            "image_url",
-          ],
+          skus: skuFields,
         },
         pageSize: 25,
       })
       if (skus.meta.recordCount > 25) {
-        // Pagination needed ??
+        let pageNumber = 1
+        do {
+          const page = await cl.sku_lists.skus(skuListId, {
+            fields: {
+              skus: skuFields,
+            },
+            pageSize: 25,
+            pageNumber,
+          })
+          if (page.length > 0) {
+            skus.push(...page)
+            pageNumber++
+          }
+        } while (pageNumber < skus.meta.pageCount)
+        // Eventually we could set a custom limit to avoid giant results. Eg: `while (pageNumber < 4)`
       }
 
       const skuCodes = skus.map((sku) => sku.code)
@@ -115,7 +127,18 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
         pageSize: 25,
       })
       if (skuPrices.meta.recordCount > 25) {
-        // Pagination needed ??
+        let pageNumber = 1
+        do {
+          const page = await cl.prices.list({
+            filters: { sku_code_in: skuCodes.join(",") },
+            pageSize: 25,
+            pageNumber,
+          })
+          if (page.length > 0) {
+            skuPrices.push(...page)
+            pageNumber++
+          }
+        } while (pageNumber < skuPrices.meta.pageCount)
       }
 
       if (skuPrices) {
