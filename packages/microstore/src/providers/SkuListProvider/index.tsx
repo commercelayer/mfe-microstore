@@ -83,6 +83,9 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
         fields: {
           sku_list_items: ["sku_code", "quantity"],
         },
+        sort: {
+          position: "asc",
+        },
         pageSize: 25,
       })
       if (skuListItems.meta.recordCount > 25) {
