@@ -1,7 +1,7 @@
 import { CommerceLayer, Price, Sku, SkuList } from "@commercelayer/sdk"
 import { FC, ReactNode, useState, useEffect, useCallback } from "react"
 
-import { normalizeSkusInList } from "./normalizeSkusInList"
+import { getSkusWithQuantity } from "./getSkusWithQuantity"
 
 import { SkuWithQuantity } from "@typings/urlData"
 
@@ -73,7 +73,6 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
 
     try {
       const skuList = await cl.sku_lists.retrieve(skuListId, {
-        include: ["sku_list_items", "skus", "skus.prices"],
         fields: {
           sku_lists: [
             "name",
@@ -82,22 +81,6 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
             "skus",
             "manual",
             "metadata",
-          ],
-          sku_list_items: ["sku_code", "quantity"],
-          skus: [
-            "code",
-            "reference",
-            "name",
-            "description",
-            "metadata",
-            "image_url",
-            "prices",
-          ],
-          prices: [
-            "formatted_amount",
-            "formatted_compare_at_amount",
-            "compare_at_amount_float",
-            "amount_float",
           ],
         },
       })
@@ -108,7 +91,8 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
           description: skuList.description,
           metadata: skuList.metadata,
         })
-        const products = normalizeSkusInList(skuList).slice(0, itemsLimit)
+
+        const products = await getSkusWithQuantity({ cl, skuList, itemsLimit })
         setSkus(products)
       } else {
         setIsError(true)
