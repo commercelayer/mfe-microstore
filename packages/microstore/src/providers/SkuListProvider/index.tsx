@@ -56,7 +56,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
   settings,
   skuListId,
   children,
-  itemsLimit = 12,
+  itemsLimit,
 }) => {
   const [skuList, setSkuList] = useState<SimpleSkuList>()
   const [skus, setSkus] = useState<SkuWithQuantity[]>()
