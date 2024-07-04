@@ -1,6 +1,6 @@
 import { SkuList } from "@commercelayer/sdk"
 
-import { normalizeSkusInList } from "./normalizeSkusInList"
+import { getSkusWithQuantity } from "./getSkusWithQuantity"
 
 const skuListWithRegex = {
   id: "xxxxxxxxxx",
@@ -41,38 +41,57 @@ const skuListWithManual = {
   type: "sku_lists",
   manual: true,
   sku_code_regex: null,
-  skus: [
-    {
-      code: "TSHIRTMS000000FFFFFFLXXX",
-    },
-    { code: "TSHIRTMM000000FFFFFFXLXX" },
-    { code: "TSHIRTMM000000FFFFF222" },
-  ],
   sku_list_items: [
     {
       id: "rzDpOINGZz",
       type: "sku_list_items",
       sku_code: "TSHIRTMS000000FFFFFFLXXX",
       quantity: 2,
+      sku: {
+        id: "WVyPSYayJR",
+        type: "skus",
+        code: "TSHIRTMS000000FFFFFFLXXX",
+      },
     },
     {
       id: "MgMRPIKVqW",
       type: "sku_list_items",
       sku_code: "TSHIRTMM000000FFFFFFXLXX",
       quantity: 1,
+      sku: {
+        id: "oOwPIpjOXo",
+        type: "skus",
+        code: "TSHIRTMM000000FFFFFFXLXX",
+      },
     },
     {
       id: "yWEpMImZRg",
       type: "sku_list_items",
-      sku_code: "TSHIRTMM000000FFFFF222",
+      sku_code: "BEACHBAGFFFFFF000000",
       quantity: 5,
+      sku: {
+        id: "oOwPIpjOXo",
+        type: "skus",
+        code: "BEACHBAGFFFFFF000000",
+      },
     },
   ],
 } as unknown as SkuList
 
 describe("normalizeSkusInList", () => {
-  test("should return a simple array of type SkuWithQuantity when manual is false", () => {
-    const skus = normalizeSkusInList(skuListWithRegex)
+  test("should return a simple array of type SkuWithQuantity when manual is false", async () => {
+    const mockedSdkClient = vi.fn().mockImplementation(() => ({
+      sku_lists: {
+        skus: async () => skuListWithRegex.skus,
+      },
+    }))
+    const skus = await getSkusWithQuantity({
+      skuList: skuListWithRegex,
+      cl: mockedSdkClient(),
+      itemsLimit: 12,
+    })
+
+    expect(mockedSdkClient).toHaveBeenCalledTimes(1)
     expect(skus).toStrictEqual([
       {
         sku: {
@@ -107,20 +126,43 @@ describe("normalizeSkusInList", () => {
     ])
   })
 
-  test("should return a simple array of type SkuWithQuantity when manual is true", () => {
-    const skus = normalizeSkusInList(skuListWithManual)
+  test("should return a simple array of type SkuWithQuantity when manual is true", async () => {
+    const mockedSdkClient = vi.fn().mockImplementation(() => ({
+      sku_lists: {
+        sku_list_items: async () => skuListWithManual.sku_list_items,
+      },
+    }))
 
+    const skus = await getSkusWithQuantity({
+      skuList: skuListWithManual,
+      cl: mockedSdkClient(),
+      itemsLimit: 12,
+    })
+
+    expect(mockedSdkClient).toHaveBeenCalledTimes(1)
     expect(skus).toStrictEqual([
       {
-        sku: { code: "TSHIRTMS000000FFFFFFLXXX" },
+        sku: {
+          id: "WVyPSYayJR",
+          type: "skus",
+          code: "TSHIRTMS000000FFFFFFLXXX",
+        },
         quantity: 2,
       },
       {
-        sku: { code: "TSHIRTMM000000FFFFFFXLXX" },
+        sku: {
+          id: "oOwPIpjOXo",
+          type: "skus",
+          code: "TSHIRTMM000000FFFFFFXLXX",
+        },
         quantity: 1,
       },
       {
-        sku: { code: "TSHIRTMM000000FFFFF222" },
+        sku: {
+          id: "oOwPIpjOXo",
+          type: "skus",
+          code: "BEACHBAGFFFFFF000000",
+        },
         quantity: 5,
       },
     ])
