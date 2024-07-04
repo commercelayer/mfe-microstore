@@ -47,6 +47,7 @@ export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
           container: {
             backgroundColor: "white",
             zIndex: "20",
+            maxWidth: "100vw",
           },
           background: {
             zIndex: "15",
