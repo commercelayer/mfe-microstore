@@ -58,7 +58,7 @@ The default behavior is the _Buy Now_ mode. This means that as soon as customers
 | `skuListId`   | The SKU list ID. You can use the `quantity` attribute of the SKU list item to add a specific quantity. The default quantity is **1**. Microstore will show up to **12** items belonging to the SKU list. The `name` and `description` attributes of the SKU list will be used in the Microstore application as greetings and byline. |
 | `accessToken` | A valid [sales channel](https://docs.commercelayer.io/core/applications#sales-channel) access token.                                                                                                                                                                                                                                                                  |
 | `all`         | If `true`, a _Buy All_ button is activated on top of the products list. This will clear the line items of the order and add all the items listed on the page to the order (with the quantity set in the SKU list items).                                                                             |
-| `cart`        | If `true`, the Microstore application will work together with the [Cart](https://github.com/commercelayer/commercelayer-cart) one.                                                                                                                                                                   |
+| `cart`        | If `false`, the Microstore application will work without the [Cart](https://github.com/commercelayer/commercelayer-cart) one.                                                                                                                                                                   |
 | `lang`        | `en` (default) or `it`. The Microstore application will use the language of the `lang` attribute for the UI and the order will have the attribute `language_code` set to the same value.                                                                                                             |
 
 For example: `https://yourbrand.commercelayer.app/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9&all=true&lang=it`
@@ -71,9 +71,9 @@ Enabling the Cart application will add a behavior option about how the items are
 
 | Parameter | Description                                                                                                                                                      |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `inline`  | If `true`, when customers click on the "Add to bag" button, they will remain on the page, otherwise they will be redirected immediately to the Cart application. On tablet and desktop devices, selecting the `inline` option will display the mini cart version of the hosted cart in the right sidebar of the microstore. |
+| `inline`  | If `false`, when customers click on the "Add to bag" button, they will be redirected immediately to the Cart application. On tablet and desktop devices, the `inline` option will display the mini cart version of the hosted cart in the right sidebar of the microstore. |
 
-For example: `https://yourbrand.commercelayer.app/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9&cart=true&inline=true`
+For example: `https://yourbrand.commercelayer.app/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9&inline=false`
 
 Any Commerce Layer account comes with a hosted version of the Cart application.
 
