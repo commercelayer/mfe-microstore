@@ -30,7 +30,7 @@ export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
   let products: Record<string, SkuWithQuantity[]> = {}
   if (withVariants(skus)) {
     const productsWithVariants = skus.reduce(function (r, a) {
-      const k = a.sku.reference || "noReference"
+      const k = a.sku.reference ?? "noReference"
       r[k] = r[k] || []
       r[k].push(a)
       return r

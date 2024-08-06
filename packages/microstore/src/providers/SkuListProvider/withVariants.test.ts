@@ -92,6 +92,25 @@ const skusNoReference: SkuWithQuantity[] = [
   },
 ]
 
+const skusBlankReference: SkuWithQuantity[] = [
+  {
+    sku: {
+      name: "Baseball Hat White",
+      code: "BASEBHAT000000FFFFFFXXXX",
+      reference: "",
+    },
+    quantity: 1,
+  },
+  {
+    sku: {
+      name: "Baseball Hat Black",
+      code: "BASEBHATFFFFFF000000XXXX",
+      reference: null,
+    },
+    quantity: 1,
+  },
+]
+
 const skus: SkuWithQuantity[] = [
   {
     sku: {
@@ -129,6 +148,11 @@ describe("withVariants", () => {
 
   test("should return a false if skus without reference", () => {
     const isWithVariants = withVariants(skusNoReference)
+    expect(isWithVariants).toBeFalsy()
+  })
+
+  test("should return a false if skus with blank reference", () => {
+    const isWithVariants = withVariants(skusBlankReference)
     expect(isWithVariants).toBeFalsy()
   })
 
