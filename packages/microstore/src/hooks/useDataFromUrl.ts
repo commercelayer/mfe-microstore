@@ -12,8 +12,8 @@ export const useDataFromUrl = () => {
       const title = search.get("title") || undefined
       const description = search.get("description") || undefined
       const accessToken = search.get("accessToken") || undefined
-      const cart = search.get("cart") || undefined
-      const inline = search.get("inline") || undefined
+      const cart = search.get("cart") || "true"
+      const inline = search.get("inline") || "true"
       const all = search.get("all") || undefined
       const lang = search.get("lang") || "en"
 
