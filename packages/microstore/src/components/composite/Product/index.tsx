@@ -64,6 +64,7 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
                 }}
               >
                 {({ quantity, text }) => {
+                  const isAvailable = !!(quantity > 0 || sku.do_not_track)
                   return (
                     <>
                       <CardPrice>
@@ -97,7 +98,7 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
                           <BuyButton
                             skuCode={sku.code}
                             name={lineItemName(sku, lang)}
-                            available={quantity > 0}
+                            available={isAvailable}
                           />
                         </QuantityAndButtonWrapper>
                       </CardPrice>
@@ -105,10 +106,10 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
                       <CardStock>
                         <span
                           className={`block w-2 h-2  ${
-                            quantity > 0 ? "bg-green-400" : "bg-red-400"
+                            isAvailable ? "bg-green-400" : "bg-red-400"
                           } rounded-full`}
                         />
-                        {text}
+                        {text || t("availability.available")}
                       </CardStock>
                     </>
                   )

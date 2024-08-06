@@ -19,6 +19,7 @@ const skuFields = {
     "metadata",
     "image_url",
     "prices",
+    "do_not_track",
   ] satisfies (keyof Sku)[],
   prices: [
     "formatted_amount",
