@@ -32,8 +32,8 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^8.1.7",
-    "npm-check-updates": "^17.0.2"
+    "lerna": "^8.1.8",
+    "npm-check-updates": "^17.0.3"
   },
   "resolutions": {
     "braces": "^3.0.3"
