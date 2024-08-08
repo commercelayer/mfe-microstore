@@ -41,12 +41,12 @@ function SkuListPage(): JSX.Element {
 
   return (
     <SkuProvider settings={settings} skuId={skuId}>
-      {(sku) => {
-        if (sku.isLoading) {
+      {({ isLoading, isError, data }) => {
+        if (isLoading) {
           return <SkeletonLoader />
         }
 
-        if (sku.isError || !sku.data) {
+        if (isError || !data) {
           return (
             <ErrorContainer
               errorCode="Error"
@@ -57,8 +57,8 @@ function SkuListPage(): JSX.Element {
 
         return (
           <MicrostoreContainer settings={settings} couponCode={couponCode}>
-            <BuyAllProvider settings={settings} skus={sku.data.skus}>
-              <Microstore skus={sku.data.skus} couponCode={couponCode} />
+            <BuyAllProvider settings={settings} skus={data.skus}>
+              <Microstore skus={data.skus} couponCode={couponCode} />
             </BuyAllProvider>
           </MicrostoreContainer>
         )
