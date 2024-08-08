@@ -3,6 +3,7 @@ import { Router, Route, Switch } from "wouter"
 
 import ErrorPage from "#pages/ErrorPage"
 import SkuListPage from "#pages/SkuListPage"
+import SkuPage from "#pages/SkuPage"
 import { SettingsProvider } from "#providers/SettingsProvider"
 
 function App() {
@@ -29,6 +30,11 @@ function App() {
           <Route path={"/list/:skuListId"}>
             <SettingsProvider config={config}>
               <SkuListPage />
+            </SettingsProvider>
+          </Route>
+          <Route path={"/sku/:skuId"}>
+            <SettingsProvider config={config}>
+              <SkuPage />
             </SettingsProvider>
           </Route>
           <Route>

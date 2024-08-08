@@ -41,21 +41,26 @@ window.clAppConfig = {
 
 6. Create one or more [SKU lists](https://commercelayer.io/docs/data-model/sku-lists), either manual or dynamic using a regular expression. The `name` and `description` attributes of the SKU list will be used in the Microstore application as greetings and byline (e.g. "Hi there," and "This is a short selection of products just for you!" in the screenshot above).
 
-7. Open the microstore using the URL format: `<your-deployed-microstore-url>/microstore/list/<skuListId>?accessToken=<your-access-token>`. For example: `https://microstore.yourbrand.com/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9`.
+7. Open the microstore using this URL format for an SKU list: `<your-deployed-microstore-url>/microstore/list/<skuListId>?accessToken=<your-access-token>`. For example: `https://microstore.yourbrand.com/microstore/list/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9`.
+
+Or this one for a single SKU: `<your-deployed-microstore-url>/microstore/sku/<skuId>?accessToken=<your-access-token>`. For example: `https://microstore.yourbrand.com/microstore/sku/qkykhjYrGk?accessToken=eyJhbGciOiJIUzUxMiJ9`.
 
 ## Hosted version
 
 Any Commerce Layer account comes with a hosted version of the Microstore application. You can customize it by adding your organization logo, favicon, and primary color.
 
-You can use the hosted version of the Microstore application by building the related URL with the following format: `https://<your-organization-subdomain>.commercelayer.app/microstore/list/<skuListId>?accessToken=<your-access-token>`.
+You can use the hosted version of the Microstore application by building the related URL with the following formats for the SKU list: `https://<your-organization-subdomain>.commercelayer.app/microstore/list/<skuListId>?accessToken=<your-access-token>`.
 
-The default behavior is the _Buy Now_ mode. This means that as soon as customers add a product to the shopping bag they are redirected directly to the [Checkout application](https://github.com/commercelayer/mfe-checkout). If other line items are present in the order, they will be deleted.
+and for the single SKU: `https://<your-organization-subdomain>.commercelayer.app/microstore/sku/<skuId>?accessToken=<your-access-token>`.
+
+The default behavior is the _Cart with inline_ mode. This means that when customers add a product to the shopping bag the cart will be shown in desktop and tablet devices.
 
 ### URL parameters
 
 | Parameter     | Description                                                                                                                                                                                                                                                                                          |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `skuListId`   | The SKU list ID. You can use the `quantity` attribute of the SKU list item to add a specific quantity. The default quantity is **1**. Microstore will show up to **12** items belonging to the SKU list. The `name` and `description` attributes of the SKU list will be used in the Microstore application as greetings and byline. |
+| `skuListId`   | The SKU list ID. You can use the `quantity` attribute of the SKU list item to add a specific quantity. The default quantity is **1**. Microstore will show up to **25** items belonging to the SKU list. The `name` and `description` attributes of the SKU list will be used in the Microstore application as greetings and byline. |
+| `skuId`   | The SKU ID. |
 | `accessToken` | A valid [sales channel](https://docs.commercelayer.io/core/applications#sales-channel) access token.                                                                                                                                                                                                                                                                  |
 | `all`         | If `true`, a _Buy All_ button is activated on top of the products list. This will clear the line items of the order and add all the items listed on the page to the order (with the quantity set in the SKU list items).                                                                             |
 | `cart`        | If `false`, the Microstore application will work without the [Cart](https://github.com/commercelayer/mfe-cart) one.                                                                                                                                                                   |
