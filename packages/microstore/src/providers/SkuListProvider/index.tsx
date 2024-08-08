@@ -46,7 +46,7 @@ type SkuListProviderProps = {
    */
   skuListId: string
   /**
-   * Use it to limit items found in SKU List to a specific amount, default is 12
+   * Use it to limit items found in SKU List to a specific amount, default is 25
    */
   itemsLimit?: number
   children: (props: SkuListProviderChildrenProps) => ReactNode

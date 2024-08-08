@@ -1,6 +1,6 @@
 import { SkuList } from "@commercelayer/sdk"
 
-import { getSkusWithQuantity } from "./getSkusWithQuantity"
+import { getSkusWithQuantity, SKUS_LIMIT } from "./getSkusWithQuantity"
 
 const skuListWithRegex = {
   id: "xxxxxxxxxx",
@@ -88,7 +88,7 @@ describe("normalizeSkusInList", () => {
     const skus = await getSkusWithQuantity({
       skuList: skuListWithRegex,
       cl: mockedSdkClient(),
-      itemsLimit: 12,
+      itemsLimit: SKUS_LIMIT,
     })
 
     expect(mockedSdkClient).toHaveBeenCalledTimes(1)
@@ -136,7 +136,7 @@ describe("normalizeSkusInList", () => {
     const skus = await getSkusWithQuantity({
       skuList: skuListWithManual,
       cl: mockedSdkClient(),
-      itemsLimit: 12,
+      itemsLimit: SKUS_LIMIT,
     })
 
     expect(mockedSdkClient).toHaveBeenCalledTimes(1)
