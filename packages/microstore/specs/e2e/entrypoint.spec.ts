@@ -14,6 +14,7 @@ test.describe("sku list with items", () => {
   test.use({
     defaultParams: {
       skuListId: process.env.E2E_SKU_LIST_ID,
+      cart: false,
     },
   })
 
