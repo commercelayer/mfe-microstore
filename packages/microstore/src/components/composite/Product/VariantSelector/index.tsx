@@ -26,7 +26,7 @@ export const VariantSelector: FC<Props> = ({ variants, sku, setSku }) => {
     <Select
       value={value}
       onChange={onSkuChangeHandler}
-      data-test-id="quantity-selector"
+      data-test-id="variant-selector"
     >
       {variants.map((i) => (
         <option key={i.code} value={i.code}>

@@ -20,6 +20,7 @@ export class MicrostorePage {
   readonly addToCartInlineButton: Locator
   readonly cartItemsCount: Locator
   readonly quantitySelector: Locator
+  readonly variantSelector: Locator
 
   constructor(page: Page, attributes?: AttributesProps) {
     this.page = page
@@ -40,6 +41,9 @@ export class MicrostorePage {
       .first()
     this.quantitySelector = this.page
       .locator("[data-test-id=quantity-selector]")
+      .first()
+    this.variantSelector = this.page
+      .locator("[data-test-id=variant-selector]")
       .first()
   }
 
