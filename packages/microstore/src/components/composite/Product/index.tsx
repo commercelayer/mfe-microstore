@@ -30,7 +30,7 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
   const [sku, setSku] = useState(skus[0].sku)
   const { t } = useTranslation()
   const { lang } = useDataFromUrl()
-
+  const hasPrice = sku!.prices && sku!.prices.length > 0
   return (
     <>
       <Card>
@@ -55,68 +55,72 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
               <LocalizedAttribute sku={sku} attribute="description" />{" "}
             </p>
           </CardDesc>
-          <CardFooter>
-            <AvailabilityContainer skuId={sku.id} skuCode={sku.code}>
-              <AvailabilityTemplate
-                labels={{
-                  available: t("availability.available"),
-                  outOfStock: t("availability.outOfStock"),
-                }}
-              >
-                {({ quantity, text }) => {
-                  const isAvailable = !!(quantity > 0 || sku.do_not_track)
-                  return (
-                    <>
-                      <CardPrice>
-                        {sku.prices && (
-                          <CardPriceWrapper>
-                            <p className="text-xl font-bold">
-                              {sku!.prices[0].formatted_amount}
-                            </p>
-                            {sku.prices[0].compare_at_amount_float != null &&
-                              sku.prices[0].amount_float != null &&
-                              sku.prices[0].amount_float <
-                                sku.prices[0].compare_at_amount_float && (
-                                <p className="text-gray-400 line-through mr-2">
-                                  {sku.prices[0].formatted_compare_at_amount}
-                                </p>
-                              )}
-                          </CardPriceWrapper>
-                        )}
-                        <QuantityAndButtonWrapper>
-                          {skus.length > 1 && (
-                            <VariantSelector
-                              variants={skus.map((s) => s.sku)}
-                              sku={sku}
-                              setSku={setSku}
-                            />
+          {hasPrice ? (
+            <CardFooter>
+              <AvailabilityContainer skuId={sku.id} skuCode={sku.code}>
+                <AvailabilityTemplate
+                  labels={{
+                    available: t("availability.available"),
+                    outOfStock: t("availability.outOfStock"),
+                  }}
+                >
+                  {({ quantity, text }) => {
+                    const isAvailable = !!(quantity > 0 || sku.do_not_track)
+                    return (
+                      <>
+                        <CardPrice>
+                          {sku.prices && (
+                            <CardPriceWrapper>
+                              <p className="text-xl font-bold">
+                                {sku!.prices[0].formatted_amount}
+                              </p>
+                              {sku.prices[0].compare_at_amount_float != null &&
+                                sku.prices[0].amount_float != null &&
+                                sku.prices[0].amount_float <
+                                  sku.prices[0].compare_at_amount_float && (
+                                  <p className="text-gray-400 line-through mr-2">
+                                    {sku.prices[0].formatted_compare_at_amount}
+                                  </p>
+                                )}
+                            </CardPriceWrapper>
                           )}
-                          <QuantitySelector
-                            skuCode={sku.code}
-                            quantityAvailable={quantity}
-                          />
-                          <BuyButton
-                            skuCode={sku.code}
-                            name={lineItemName(sku, lang)}
-                            available={isAvailable}
-                          />
-                        </QuantityAndButtonWrapper>
-                      </CardPrice>
+                          <QuantityAndButtonWrapper>
+                            {skus.length > 1 && (
+                              <VariantSelector
+                                variants={skus.map((s) => s.sku)}
+                                sku={sku}
+                                setSku={setSku}
+                              />
+                            )}
+                            <QuantitySelector
+                              skuCode={sku.code}
+                              quantityAvailable={quantity}
+                            />
+                            <BuyButton
+                              skuCode={sku.code}
+                              name={lineItemName(sku, lang)}
+                              available={isAvailable}
+                            />
+                          </QuantityAndButtonWrapper>
+                        </CardPrice>
 
-                      <CardStock>
-                        <span
-                          className={`block w-2 h-2  ${
-                            isAvailable ? "bg-green-400" : "bg-red-400"
-                          } rounded-full`}
-                        />
-                        {text || t("availability.available")}
-                      </CardStock>
-                    </>
-                  )
-                }}
-              </AvailabilityTemplate>
-            </AvailabilityContainer>
-          </CardFooter>
+                        <CardStock>
+                          <span
+                            className={`block w-2 h-2  ${
+                              isAvailable ? "bg-green-400" : "bg-red-400"
+                            } rounded-full`}
+                          />
+                          {text || t("availability.available")}
+                        </CardStock>
+                      </>
+                    )
+                  }}
+                </AvailabilityTemplate>
+              </AvailabilityContainer>
+            </CardFooter>
+          ) : (
+            <p className="text-gray-400 mt-2">Price unavailable</p>
+          )}
         </CardBody>
       </Card>
       <CardDivider />
