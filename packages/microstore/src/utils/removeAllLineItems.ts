@@ -1,4 +1,4 @@
-import { CommerceLayerClient } from "@commercelayer/sdk"
+import type { CommerceLayerClient } from "@commercelayer/sdk"
 
 export const removeAllLineItems = async ({
   client,
@@ -15,7 +15,7 @@ export const removeAllLineItems = async ({
     await Promise.all(
       lineItems.map(async (lineItem) => {
         await client.line_items.delete(lineItem.id)
-      })
+      }),
     )
   }
 

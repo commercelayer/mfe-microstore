@@ -1,10 +1,10 @@
-import { CommerceLayerClient } from "@commercelayer/sdk"
+import type { CommerceLayerClient } from "@commercelayer/sdk"
 
 import { makePersistentOrderKey } from "./makePersistentOrderKey"
 
 export const getOrCreateOrderId = async (
   client: CommerceLayerClient,
-  slug: string
+  slug: string,
 ) => {
   const localStorageKey = makePersistentOrderKey(slug)
   let orderId = localStorage.getItem(localStorageKey)

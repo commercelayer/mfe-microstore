@@ -1,5 +1,5 @@
 import { HelmetProvider } from "react-helmet-async"
-import { Router, Route, Switch } from "wouter"
+import { Route, Router, Switch } from "wouter"
 
 import ErrorPage from "#pages/ErrorPage"
 import SkuListPage from "#pages/SkuListPage"

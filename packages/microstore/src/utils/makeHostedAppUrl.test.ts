@@ -10,7 +10,7 @@ describe("makeHostedAppUrl", () => {
     })
 
     expect(url).toBe(
-      "https://org-slug.commercelayer.app/checkout/weWdhV2zpx?accessToken=eyJhbGciOiUzUxM"
+      "https://org-slug.commercelayer.app/checkout/weWdhV2zpx?accessToken=eyJhbGciOiUzUxM",
     )
   })
 
@@ -30,7 +30,7 @@ describe("makeHostedAppUrl", () => {
     })
 
     expect(url).toBe(
-      "http://myorg.commercelayer.app/cart/weWdhV2zpx?accessToken=eyJhbGciOiUzUxM"
+      "http://myorg.commercelayer.app/cart/weWdhV2zpx?accessToken=eyJhbGciOiUzUxM",
     )
   })
 })

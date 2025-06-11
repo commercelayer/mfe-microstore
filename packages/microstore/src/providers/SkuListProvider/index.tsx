@@ -1,9 +1,20 @@
-import { CommerceLayer, Price, Sku, SkuList } from "@commercelayer/sdk"
-import { FC, ReactNode, useState, useEffect, useCallback } from "react"
+import {
+  CommerceLayer,
+  type Price,
+  type Sku,
+  type SkuList,
+} from "@commercelayer/sdk"
+import {
+  type FC,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from "react"
 
 import { getSkusWithQuantity } from "./getSkusWithQuantity"
 
-import { SkuWithQuantity } from "@typings/urlData"
+import type { SkuWithQuantity } from "@typings/urlData"
 
 export type SimpleSkuList = Pick<SkuList, "name" | "description" | "metadata">
 

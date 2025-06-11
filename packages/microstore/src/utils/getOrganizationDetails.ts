@@ -1,4 +1,4 @@
-import { CommerceLayerClient } from "@commercelayer/sdk"
+import type { CommerceLayerClient } from "@commercelayer/sdk"
 
 import { retryCall } from "./retryCall"
 
@@ -23,7 +23,7 @@ export const getOrganizationsDetails = async ({
 const getAsyncOrganization = async (client: CommerceLayerClient) => {
   return await client.organization.retrieve({
     fields: {
-      organization: ["id", "logo_url", "name", "primary_color", "favicon_url"],
+      organizations: ["id", "logo_url", "name", "primary_color", "favicon_url"],
     },
   })
 }

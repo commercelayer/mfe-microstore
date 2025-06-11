@@ -1,4 +1,4 @@
-import { CommerceLayer, Organization } from "@commercelayer/sdk"
+import { CommerceLayer, type Organization } from "@commercelayer/sdk"
 
 import { getInfoFromJwt } from "./getInfoFromJwt"
 import { getOrganizationsDetails } from "./getOrganizationDetails"
