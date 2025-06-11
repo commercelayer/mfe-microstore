@@ -1,7 +1,7 @@
 import {
+  type FC,
+  type ReactNode,
   createContext,
-  FC,
-  ReactNode,
   useContext,
   useEffect,
   useState,
@@ -63,7 +63,7 @@ export const SettingsProvider: FC<SettingsProviderProps> = ({
   config,
 }) => {
   const [settings, setSettings] = useState<Settings | InvalidSettings>(
-    defaultSettings
+    defaultSettings,
   )
   const [isLoading, setIsLoading] = useState(true)
   const accessToken = getAccessTokenFromUrl()

@@ -1,4 +1,4 @@
-import { SkuWithQuantity } from "@typings/urlData"
+import type { SkuWithQuantity } from "@typings/urlData"
 
 /**
  * @returns if an array of SKUs should be treated as products with variants
@@ -6,7 +6,7 @@ import { SkuWithQuantity } from "@typings/urlData"
  * @param skus - The fetched SKUs resource object returned from SDK
  */
 export const withVariants = (skus: SkuWithQuantity[]): boolean => {
-  const grouped = skus.reduce(function (r, a) {
+  const grouped = skus.reduce((r, a) => {
     const k = a.sku.reference || "noReference"
     r[k] = r[k] || []
     r[k].push(a)

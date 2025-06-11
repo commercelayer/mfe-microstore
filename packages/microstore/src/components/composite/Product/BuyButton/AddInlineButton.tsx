@@ -1,5 +1,5 @@
 import { useOrderContainer } from "@commercelayer/react-components/hooks/useOrderContainer"
-import { FC } from "react"
+import type { FC } from "react"
 import { useTranslation } from "react-i18next"
 
 import { StyledAddToCartButton } from "./styled"
@@ -38,7 +38,7 @@ export const AddInlineButton: FC<Props> = ({
                   quantity,
                   lineItem: { name },
                   openMiniCart: openMiniCart(),
-                })
+                }),
               )
             }
           >

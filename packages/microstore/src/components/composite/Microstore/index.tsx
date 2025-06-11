@@ -4,12 +4,12 @@ import { ButtonBuyAll } from "../ButtonBuyAll"
 
 import { Wrapper } from "./styled"
 
+import type { SkuWithQuantity } from "@typings/urlData"
 import { Hero } from "#components/composite/Hero"
 import { Product } from "#components/composite/Product"
-import { SimpleSkuList } from "#providers/SkuListProvider"
+import type { SimpleSkuList } from "#providers/SkuListProvider"
 import { withVariants } from "#providers/SkuListProvider/withVariants"
 import { openMiniCart } from "#utils/openMiniCart"
-import { SkuWithQuantity } from "@typings/urlData"
 
 interface Props {
   skus?: SkuWithQuantity[]
@@ -29,7 +29,7 @@ export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
 
   let products: Record<string, SkuWithQuantity[]> = {}
   if (withVariants(skus)) {
-    const productsWithVariants = skus.reduce(function (r, a) {
+    const productsWithVariants = skus.reduce((r, a) => {
       const k = a.sku.reference ?? "noReference"
       r[k] = r[k] || []
       r[k].push(a)
@@ -59,11 +59,9 @@ export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
 
       <Wrapper>
         {Object.keys(products).length === 0
-          ? skus.map((item) => (
-              <Product key={item.sku.code} skus={[item]}></Product>
-            ))
+          ? skus.map((item) => <Product key={item.sku.code} skus={[item]} />)
           : Object.keys(products).map((key) => (
-              <Product key={key} skus={products[key]}></Product>
+              <Product key={key} skus={products[key]} />
             ))}
       </Wrapper>
     </>

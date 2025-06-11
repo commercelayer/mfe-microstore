@@ -1,6 +1,6 @@
 import { withVariants } from "./withVariants"
 
-import { SkuWithQuantity } from "@typings/urlData"
+import type { SkuWithQuantity } from "@typings/urlData"
 
 const products: SkuWithQuantity[] = [
   {

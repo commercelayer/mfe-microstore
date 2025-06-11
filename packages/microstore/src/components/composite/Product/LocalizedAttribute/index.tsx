@@ -1,8 +1,8 @@
-import { FC } from "react"
+import type { FC } from "react"
 
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
+import type { SkuWithPrices } from "#providers/SkuListProvider"
 import { I18N_PREFIX } from "#providers/i18n"
-import { SkuWithPrices } from "#providers/SkuListProvider"
 
 type LocalizedAttributeProp = "name" | "description"
 
@@ -17,8 +17,8 @@ export const LocalizedAttribute: FC<{
   const value =
     metadata &&
     (type === "product"
-      ? metadata[`${I18N_PREFIX}_${lang}_reference_${attribute}`] ??
-        metadata[`${I18N_PREFIX}_${lang}_${attribute}`]
+      ? (metadata[`${I18N_PREFIX}_${lang}_reference_${attribute}`] ??
+        metadata[`${I18N_PREFIX}_${lang}_${attribute}`])
       : metadata[`${I18N_PREFIX}_${lang}_${attribute}`])
   return value || sku[attribute]
 }

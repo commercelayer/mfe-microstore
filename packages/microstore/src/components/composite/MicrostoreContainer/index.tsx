@@ -2,7 +2,7 @@ import { CommerceLayer } from "@commercelayer/react-components/auth/CommerceLaye
 import { OrderContainer } from "@commercelayer/react-components/orders/OrderContainer"
 import { OrderStorage } from "@commercelayer/react-components/orders/OrderStorage"
 import { GlobalStylesProvider } from "@commercelayer/react-utils"
-import { ReactNode, useEffect } from "react"
+import { type ReactNode, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 
 import { MicrostoreHead } from "#components/composite/MicrostoreHead"

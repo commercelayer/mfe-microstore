@@ -1,12 +1,13 @@
 import { AvailabilityContainer } from "@commercelayer/react-components/skus/AvailabilityContainer"
 import { AvailabilityTemplate } from "@commercelayer/react-components/skus/AvailabilityTemplate"
-import { FC, useState } from "react"
+import { type FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 import { BuyButton } from "./BuyButton"
 import { DiscountBadge } from "./DiscountBadge"
 import { LocalizedAttribute } from "./LocalizedAttribute"
 import { QuantitySelector } from "./QuantitySelector"
+import { VariantSelector } from "./VariantSelector"
 import {
   Card,
   CardBody,
@@ -20,22 +21,22 @@ import {
   CardTitle,
   QuantityAndButtonWrapper,
 } from "./styled"
-import { VariantSelector } from "./VariantSelector"
 
+import type { SkuWithQuantity } from "@typings/urlData"
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
 import { lineItemName } from "#utils/lineItemName"
-import { SkuWithQuantity } from "@typings/urlData"
 
 export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
   const [sku, setSku] = useState(skus[0].sku)
   const { t } = useTranslation()
   const { lang } = useDataFromUrl()
-  const hasPrice = sku!.prices && sku!.prices.length > 0
+  const hasPrice = sku?.prices && sku?.prices.length > 0
   return (
     <>
       <Card>
         <CardImage>
           <img
+            alt="Default product"
             className="h-48 rounded-md w-full object-scale-down self-start p-1 border border-gray-100 md:(h-36)"
             src={
               sku.image_url ||
@@ -72,7 +73,7 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
                           {sku.prices && (
                             <CardPriceWrapper>
                               <p className="text-xl font-bold">
-                                {sku!.prices[0].formatted_amount}
+                                {sku?.prices[0].formatted_amount}
                               </p>
                               {sku.prices[0].compare_at_amount_float != null &&
                                 sku.prices[0].amount_float != null &&

@@ -5,7 +5,7 @@ import { getOrCreateOrderId } from "./getOrCreateOrderId"
 import { removeAllLineItems } from "./removeAllLineItems"
 import { updateOrderAttributes } from "./updateOrderAttributes"
 
-import { SkuWithQuantity } from "@typings/urlData"
+import type { SkuWithQuantity } from "@typings/urlData"
 
 export const buyAllSkus = async ({
   skus,

@@ -1,6 +1,6 @@
-import { CommerceLayerClient, LineItem } from "@commercelayer/sdk"
+import type { CommerceLayerClient, LineItem } from "@commercelayer/sdk"
 
-import { SkuWithQuantity } from "@typings/urlData"
+import type { SkuWithQuantity } from "@typings/urlData"
 
 export const createLineItems = async ({
   client,
@@ -26,7 +26,7 @@ export const createLineItems = async ({
           return item
         })
     },
-    Promise.resolve(null) as Promise<LineItem | null>
+    Promise.resolve(null) as Promise<LineItem | null>,
   )
 
   return lineItems

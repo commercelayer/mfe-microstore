@@ -1,9 +1,9 @@
 import { LineItemsContainer } from "@commercelayer/react-components/line_items/LineItemsContainer"
 import { LineItemsCount } from "@commercelayer/react-components/line_items/LineItemsCount"
-import { FC } from "react"
+import type { FC } from "react"
 
 import { CartIcon } from "./CartIcon"
-import { Nav, Badge, CartLinkStyled } from "./styled"
+import { Badge, CartLinkStyled, Nav } from "./styled"
 
 import { Container } from "#components/ui/Container"
 import { Header } from "#components/ui/Header"

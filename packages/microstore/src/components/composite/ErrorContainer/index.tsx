@@ -1,11 +1,11 @@
 import {
-  Wrapper,
-  LogoWrapper,
-  FullLogo,
-  Main,
-  Error,
   ErrorCode,
+  ErrorDiv,
+  FullLogo,
+  LogoWrapper,
+  Main,
   Text,
+  Wrapper,
 } from "./styled"
 
 import { Base } from "#components/ui/Base"
@@ -29,10 +29,10 @@ export const ErrorContainer: React.FC<Props> = ({
             <FullLogo className="self-center text-black md:pl-4 md:self-auto" />
           </LogoWrapper>
           <Main>
-            <Error>
+            <ErrorDiv>
               <ErrorCode>{errorCode}</ErrorCode>
               <Text data-test-id="invalid-checkout">{errorMessage}</Text>
-            </Error>
+            </ErrorDiv>
           </Main>
           <Footer />
         </Wrapper>

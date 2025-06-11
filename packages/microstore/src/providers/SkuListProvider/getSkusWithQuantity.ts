@@ -1,4 +1,4 @@
-import {
+import type {
   CommerceLayerClient,
   Price,
   QueryParamsList,
@@ -6,9 +6,9 @@ import {
   SkuList,
 } from "@commercelayer/sdk"
 
-import { SkuWithPrices } from "."
+import type { SkuWithPrices } from "."
 
-import { SkuWithQuantity } from "@typings/urlData"
+import type { SkuWithQuantity } from "@typings/urlData"
 
 export const SKUS_LIMIT = 25
 

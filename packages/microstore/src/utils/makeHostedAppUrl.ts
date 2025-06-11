@@ -36,7 +36,7 @@ const makeCheckoutUrl = ({
 }): URL =>
   new URL(
     `${orderId}`,
-    `https://${subdomain}.commercelayer.app/checkout/${orderId}`
+    `https://${subdomain}.commercelayer.app/checkout/${orderId}`,
   )
 
 const makeCartUrl = ({ orderId }: { orderId: string }): URL =>

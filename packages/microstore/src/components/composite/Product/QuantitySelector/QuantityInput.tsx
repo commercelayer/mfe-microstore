@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from "react"
+import type { ChangeEvent, FC } from "react"
 
 import { createSelectOptions } from "./createSelectOptions"
 
@@ -20,14 +20,14 @@ export const QuantityInput: FC<Props> = ({ skuCode, quantityAvailable }) => {
   }
 
   const options = createSelectOptions(
-    quantityAvailable > MAX_OPTIONS ? MAX_OPTIONS : quantityAvailable
+    quantityAvailable > MAX_OPTIONS ? MAX_OPTIONS : quantityAvailable,
   )
   const onQuantityChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     const sku = skus.find((item) => item.sku.code === skuCode)?.sku
     if (sku) {
       updateQuantity({
         sku,
-        quantity: parseInt(e.currentTarget.value, 10),
+        quantity: Number.parseInt(e.currentTarget.value, 10),
       })
     }
     // handleChange(e as unknown as MouseEvent<HTMLInputElement>)

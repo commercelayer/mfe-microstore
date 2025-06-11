@@ -1,16 +1,16 @@
 import {
+  type FC,
+  type ReactNode,
   createContext,
-  FC,
-  ReactNode,
   useContext,
   useEffect,
   useState,
 } from "react"
 
+import type { SkuWithQuantity } from "@typings/urlData"
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
 import { buyAllSkus } from "#utils/buyAllSkus"
 import { makeHostedAppUrl } from "#utils/makeHostedAppUrl"
-import { SkuWithQuantity } from "@typings/urlData"
 
 type BuyAllProviderValue = {
   showBuyAllButton: boolean
@@ -67,7 +67,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
 
       if (!order) {
         setErrorMessage(
-          "Something is wrong, please check your URL or refresh the page and try again"
+          "Something is wrong, please check your URL or refresh the page and try again",
         )
         return
       }
@@ -91,7 +91,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
     } catch {
       setIsBuyingAll(false)
       setErrorMessage(
-        "Something is wrong, please check your URL or refresh the page and try again"
+        "Something is wrong, please check your URL or refresh the page and try again",
       )
     }
   }
@@ -102,8 +102,8 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
     }
     setInternalSkus((state) =>
       state.map((item) =>
-        item.sku.code === updatedSku.sku.code ? updatedSku : item
-      )
+        item.sku.code === updatedSku.sku.code ? updatedSku : item,
+      ),
     )
   }
   const value: BuyAllProviderValue = {
@@ -134,5 +134,5 @@ const setMinQuantityIfMissing = (skus: SkuWithQuantity[]) =>
           ...s,
           quantity: 1,
         }
-      : s
+      : s,
   )

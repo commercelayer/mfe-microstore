@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { UrlData } from "@typings/urlData"
+import type { UrlData } from "@typings/urlData"
 
 export const useDataFromUrl = () => {
   const [data, setData] = useState<UrlData>({})
@@ -34,7 +34,7 @@ export const useDataFromUrl = () => {
 }
 
 const parseQueryValue = (
-  value: string | string[] | undefined
+  value: string | string[] | undefined,
 ): string | undefined => {
   if (!value || Array.isArray(value)) {
     return undefined
