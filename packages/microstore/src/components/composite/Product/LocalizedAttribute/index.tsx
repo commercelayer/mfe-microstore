@@ -1,8 +1,8 @@
 import type { FC } from "react"
 
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
-import type { SkuWithPrices } from "#providers/SkuListProvider"
 import { I18N_PREFIX } from "#providers/i18n"
+import type { SkuWithPrices } from "#providers/SkuListProvider"
 
 type LocalizedAttributeProp = "name" | "description"
 

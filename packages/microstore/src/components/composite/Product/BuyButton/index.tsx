@@ -1,11 +1,9 @@
 import type { FC } from "react"
-
+import { useDataFromUrl } from "#hooks/useDataFromUrl"
+import { useBuyAll } from "#providers/BuyAllProvider"
 import { AddInlineButton } from "./AddInlineButton"
 import { AddToCartButton } from "./AddToCartButton"
 import { BuyNowButton } from "./BuyNowButton"
-
-import { useDataFromUrl } from "#hooks/useDataFromUrl"
-import { useBuyAll } from "#providers/BuyAllProvider"
 
 type Experience = "addInline" | "addToCart" | "buyNow"
 

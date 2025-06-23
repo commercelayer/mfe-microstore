@@ -5,10 +5,8 @@ import type {
   Sku,
   SkuList,
 } from "@commercelayer/sdk"
-
-import type { SkuWithPrices } from "."
-
 import type { SkuWithQuantity } from "@typings/urlData"
+import type { SkuWithPrices } from "."
 
 export const SKUS_LIMIT = 25
 

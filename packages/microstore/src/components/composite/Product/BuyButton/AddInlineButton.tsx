@@ -1,11 +1,9 @@
 import { useOrderContainer } from "@commercelayer/react-components/hooks/useOrderContainer"
 import type { FC } from "react"
 import { useTranslation } from "react-i18next"
-
+import { openMiniCart } from "#utils/openMiniCart"
 import { StyledAddToCartButton } from "./styled"
 import { useAddToCartFeedback } from "./useAddToCartFeedback"
-
-import { openMiniCart } from "#utils/openMiniCart"
 
 interface Props {
   disabled?: boolean

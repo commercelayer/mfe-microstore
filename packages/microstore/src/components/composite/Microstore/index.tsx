@@ -1,15 +1,12 @@
 import { HostedCart } from "@commercelayer/react-components/orders/HostedCart"
-
-import { ButtonBuyAll } from "../ButtonBuyAll"
-
-import { Wrapper } from "./styled"
-
 import type { SkuWithQuantity } from "@typings/urlData"
 import { Hero } from "#components/composite/Hero"
 import { Product } from "#components/composite/Product"
 import type { SimpleSkuList } from "#providers/SkuListProvider"
 import { withVariants } from "#providers/SkuListProvider/withVariants"
 import { openMiniCart } from "#utils/openMiniCart"
+import { ButtonBuyAll } from "../ButtonBuyAll"
+import { Wrapper } from "./styled"
 
 interface Props {
   skus?: SkuWithQuantity[]

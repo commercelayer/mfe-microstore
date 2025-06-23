@@ -1,10 +1,8 @@
-import { Card } from "../Product/styled"
-
-import { SkeletonAnimate, SkeletonBox, SkeletonHero } from "./styled"
-
 import { Base } from "#components/ui/Base"
 import { Container } from "#components/ui/Container"
 import { Header } from "#components/ui/Header"
+import { Card } from "../Product/styled"
+import { SkeletonAnimate, SkeletonBox, SkeletonHero } from "./styled"
 
 export const SkeletonLoader: React.FC = () => {
   return (

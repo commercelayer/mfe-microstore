@@ -1,3 +1,4 @@
+import { useId } from "react"
 import Styled from "styled-components"
 import tw from "twin.macro"
 
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export function Logo({ width, height, className }: Props): JSX.Element {
+  const clipId = useId()
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +90,7 @@ export function Logo({ width, height, className }: Props): JSX.Element {
         />
       </g>
       <defs>
-        <clipPath id="clip0">
+        <clipPath id={clipId}>
           <rect width="114" height="18.1493" fill="white" />
         </clipPath>
       </defs>

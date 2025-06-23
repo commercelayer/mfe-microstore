@@ -1,9 +1,7 @@
 import type { ChangeEvent, FC } from "react"
-
-import { createSelectOptions } from "./createSelectOptions"
-
 import { Select } from "#components/ui/Select"
 import { useBuyAll } from "#providers/BuyAllProvider"
+import { createSelectOptions } from "./createSelectOptions"
 
 interface Props {
   skuCode: string

@@ -1,3 +1,6 @@
+import { Base } from "#components/ui/Base"
+import { Container } from "#components/ui/Container"
+import { Footer } from "#components/ui/Footer"
 import {
   ErrorCode,
   ErrorDiv,
@@ -7,10 +10,6 @@ import {
   Text,
   Wrapper,
 } from "./styled"
-
-import { Base } from "#components/ui/Base"
-import { Container } from "#components/ui/Container"
-import { Footer } from "#components/ui/Footer"
 
 interface Props {
   errorCode: string | number

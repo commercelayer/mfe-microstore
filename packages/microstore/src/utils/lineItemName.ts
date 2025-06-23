@@ -1,5 +1,5 @@
-import type { SkuWithPrices } from "#providers/SkuListProvider"
 import { FALLBACK_LANGUAGE, I18N_PREFIX } from "#providers/i18n"
+import type { SkuWithPrices } from "#providers/SkuListProvider"
 
 export const lineItemName = (sku: SkuWithPrices, lang?: string) => {
   const metadata = sku.metadata

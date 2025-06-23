@@ -1,14 +1,12 @@
 import { LineItemsContainer } from "@commercelayer/react-components/line_items/LineItemsContainer"
 import { LineItemsCount } from "@commercelayer/react-components/line_items/LineItemsCount"
 import type { FC } from "react"
-
-import { CartIcon } from "./CartIcon"
-import { Badge, CartLinkStyled, Nav } from "./styled"
-
 import { Container } from "#components/ui/Container"
 import { Header } from "#components/ui/Header"
 import { Logo } from "#components/ui/Logo"
 import { openMiniCart } from "#utils/openMiniCart"
+import { CartIcon } from "./CartIcon"
+import { Badge, CartLinkStyled, Nav } from "./styled"
 
 type Props = {
   logoUrl: string | undefined | null
