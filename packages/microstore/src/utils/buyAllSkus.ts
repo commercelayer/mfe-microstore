@@ -1,11 +1,9 @@
 import { CommerceLayer } from "@commercelayer/sdk"
-
+import type { SkuWithQuantity } from "@typings/urlData"
 import { createLineItems } from "./createLineItems"
 import { getOrCreateOrderId } from "./getOrCreateOrderId"
 import { removeAllLineItems } from "./removeAllLineItems"
 import { updateOrderAttributes } from "./updateOrderAttributes"
-
-import type { SkuWithQuantity } from "@typings/urlData"
 
 export const buyAllSkus = async ({
   skus,

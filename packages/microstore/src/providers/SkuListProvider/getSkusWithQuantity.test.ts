@@ -1,6 +1,6 @@
 import type { SkuList } from "@commercelayer/sdk"
 
-import { SKUS_LIMIT, getSkusWithQuantity } from "./getSkusWithQuantity"
+import { getSkusWithQuantity, SKUS_LIMIT } from "./getSkusWithQuantity"
 
 const skuListWithRegex = {
   id: "xxxxxxxxxx",

@@ -1,13 +1,14 @@
 import { AvailabilityContainer } from "@commercelayer/react-components/skus/AvailabilityContainer"
 import { AvailabilityTemplate } from "@commercelayer/react-components/skus/AvailabilityTemplate"
+import type { SkuWithQuantity } from "@typings/urlData"
 import { type FC, useState } from "react"
 import { useTranslation } from "react-i18next"
-
+import { useDataFromUrl } from "#hooks/useDataFromUrl"
+import { lineItemName } from "#utils/lineItemName"
 import { BuyButton } from "./BuyButton"
 import { DiscountBadge } from "./DiscountBadge"
 import { LocalizedAttribute } from "./LocalizedAttribute"
 import { QuantitySelector } from "./QuantitySelector"
-import { VariantSelector } from "./VariantSelector"
 import {
   Card,
   CardBody,
@@ -21,10 +22,7 @@ import {
   CardTitle,
   QuantityAndButtonWrapper,
 } from "./styled"
-
-import type { SkuWithQuantity } from "@typings/urlData"
-import { useDataFromUrl } from "#hooks/useDataFromUrl"
-import { lineItemName } from "#utils/lineItemName"
+import { VariantSelector } from "./VariantSelector"
 
 export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
   const [sku, setSku] = useState(skus[0].sku)

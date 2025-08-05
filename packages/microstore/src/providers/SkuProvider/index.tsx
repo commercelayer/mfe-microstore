@@ -1,4 +1,5 @@
 import { CommerceLayer, type Price, type Sku } from "@commercelayer/sdk"
+import type { SkuWithQuantity } from "@typings/urlData"
 import {
   type FC,
   type ReactNode,
@@ -6,8 +7,6 @@ import {
   useEffect,
   useState,
 } from "react"
-
-import type { SkuWithQuantity } from "@typings/urlData"
 
 type OptionalExceptFor<T, TRequired extends keyof T> = Partial<T> &
   Pick<T, TRequired>

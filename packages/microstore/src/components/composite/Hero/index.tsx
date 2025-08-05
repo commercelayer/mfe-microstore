@@ -1,10 +1,9 @@
+import { useDataFromUrl } from "#hooks/useDataFromUrl"
+import { I18N_PREFIX } from "#providers/i18n"
+import type { SimpleSkuList } from "#providers/SkuListProvider"
 import { DiscountBanner } from "../DiscountBanner"
-
 import { Description, Title, Wrapper } from "./styled"
 
-import { useDataFromUrl } from "#hooks/useDataFromUrl"
-import type { SimpleSkuList } from "#providers/SkuListProvider"
-import { I18N_PREFIX } from "#providers/i18n"
 interface Props {
   couponCode?: string
   skuList?: SimpleSkuList

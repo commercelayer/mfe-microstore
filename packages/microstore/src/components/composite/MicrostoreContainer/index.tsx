@@ -11,6 +11,7 @@ import { Base } from "#components/ui/Base"
 import { Container } from "#components/ui/Container"
 import { Footer } from "#components/ui/Footer"
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
+
 interface Props {
   settings: Settings
   couponCode?: string

@@ -10,7 +10,7 @@ import { SkuListProvider } from "#providers/SkuListProvider"
 
 function SkuListPage(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [match, params] = useRoute("/list/:skuListId")
+  const [_match, params] = useRoute("/list/:skuListId")
   const skuListId = params?.skuListId as string
   const search = new URLSearchParams(window.location.search)
   const couponCode = search.get("couponCode") || undefined

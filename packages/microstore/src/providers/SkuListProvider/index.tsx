@@ -4,6 +4,7 @@ import {
   type Sku,
   type SkuList,
 } from "@commercelayer/sdk"
+import type { SkuWithQuantity } from "@typings/urlData"
 import {
   type FC,
   type ReactNode,
@@ -11,10 +12,7 @@ import {
   useEffect,
   useState,
 } from "react"
-
 import { getSkusWithQuantity } from "./getSkusWithQuantity"
-
-import type { SkuWithQuantity } from "@typings/urlData"
 
 export type SimpleSkuList = Pick<SkuList, "name" | "description" | "metadata">
 

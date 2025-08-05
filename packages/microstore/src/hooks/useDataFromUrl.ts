@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
-
 import type { UrlData } from "@typings/urlData"
+import { useEffect, useState } from "react"
 
 export const useDataFromUrl = () => {
   const [data, setData] = useState<UrlData>({})

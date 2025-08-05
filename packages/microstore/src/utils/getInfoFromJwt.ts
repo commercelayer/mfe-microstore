@@ -37,7 +37,7 @@ export const getInfoFromJwt = (accessToken: string) => {
     } = jwtDecode(accessToken) as JWTProps
 
     return { slug, kind, isTest: test }
-  } catch (e) {
+  } catch (_e) {
     return {}
   }
 }

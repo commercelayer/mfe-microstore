@@ -1,9 +1,7 @@
 import { type ChangeEvent, type FC, useState } from "react"
-
-import { LocalizedAttribute } from "../LocalizedAttribute"
-
 import { Select } from "#components/ui/Select"
 import type { SkuWithPrices } from "#providers/SkuListProvider"
+import { LocalizedAttribute } from "../LocalizedAttribute"
 
 interface Props {
   variants: SkuWithPrices[]
