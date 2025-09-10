@@ -14,6 +14,8 @@ interface Props {
   couponCode?: string
 }
 
+const MAX_SKUS_FOR_BUY_ALL = 25
+
 export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
   if (skus.length === 0) {
     return (
@@ -52,8 +54,7 @@ export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
         }}
       />
       <Hero skuList={skuList} couponCode={couponCode} />
-      <ButtonBuyAll />
-
+      {skus.length <= MAX_SKUS_FOR_BUY_ALL && <ButtonBuyAll />}
       <Wrapper>
         {Object.keys(products).length === 0
           ? skus.map((item) => <Product key={item.sku.code} skus={[item]} />)
