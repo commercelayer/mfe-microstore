@@ -8,6 +8,7 @@ import type {
 import type { SkuWithQuantity } from "@typings/urlData"
 import type { SkuWithPrices } from "."
 
+// Limit per page is 25, but we fetch 2 pages if needed
 export const SKUS_LIMIT = 25
 
 const skuFields = {
@@ -63,7 +64,25 @@ export async function getSkusWithQuantity({
       },
     })
 
-    return (items ?? []).map((item) => ({
+    const items2 =
+      items?.meta?.recordCount > SKUS_LIMIT
+        ? await cl.sku_lists.sku_list_items(skuList.id, {
+            include: ["sku", "sku.prices"],
+            fields: {
+              sku_list_items: ["sku_code", "quantity", "position", "sku"],
+              ...skuFields,
+            },
+            pageSize,
+            sort: {
+              position: "asc",
+            },
+            pageNumber: 2,
+          })
+        : undefined
+
+    const allItems = [...(items ?? []), ...(items2 ?? [])]
+
+    return allItems.map((item) => ({
       quantity: item.quantity || 1,
       sku: item.sku as SkuWithPrices,
     }))
