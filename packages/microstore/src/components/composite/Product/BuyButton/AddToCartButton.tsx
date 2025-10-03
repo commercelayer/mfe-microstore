@@ -1,7 +1,7 @@
 import type { FC } from "react"
 import { useTranslation } from "react-i18next"
 
-import { StyledAddToCartButton } from "./styled"
+import { StyledAddToCartButton } from "./button"
 
 interface Props {
   disabled?: boolean

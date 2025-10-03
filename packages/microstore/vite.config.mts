@@ -1,9 +1,8 @@
+import { resolve } from "node:path"
 import react from "@vitejs/plugin-react"
 import { visualizer } from "rollup-plugin-visualizer"
 import { loadEnv } from "vite"
 import { defineConfig } from "vitest/config"
-
-import { resolve } from "path"
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -55,11 +54,7 @@ export default defineConfig(({ mode }) => {
 
 function preparePlugins({ analyzeBundle }: { analyzeBundle: boolean }) {
   const plugins = [
-    react({
-      babel: {
-        plugins: ["babel-plugin-macros", "babel-plugin-styled-components"],
-      },
-    }),
+    react(),
     analyzeBundle &&
       visualizer({
         filename: resolve(__dirname, "./build/stats.html"),

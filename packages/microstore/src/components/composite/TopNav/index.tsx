@@ -1,12 +1,12 @@
 import { LineItemsContainer } from "@commercelayer/react-components/line_items/LineItemsContainer"
 import { LineItemsCount } from "@commercelayer/react-components/line_items/LineItemsCount"
+import { CartLink } from "@commercelayer/react-components/orders/CartLink"
 import type { FC } from "react"
 import { Container } from "#components/ui/Container"
 import { Header } from "#components/ui/Header"
 import { Logo } from "#components/ui/Logo"
 import { openMiniCart } from "#utils/openMiniCart"
 import { CartIcon } from "./CartIcon"
-import { Badge, CartLinkStyled, Nav } from "./styled"
 
 type Props = {
   logoUrl: string | undefined | null
@@ -24,10 +24,11 @@ export const TopNav: FC<Props> = ({
   return (
     <Header>
       <Container>
-        <Nav>
+        <div className="flex justify-between items-center">
           <Logo logoUrl={logoUrl} companyName={companyName} />
           {showCartIcon ? (
-            <CartLinkStyled
+            <CartLink
+              className="block relative"
               data-test-id="link-view-cart"
               {...(openMiniCart() && inline ? { type: "mini" } : {})}
               label={
@@ -37,9 +38,12 @@ export const TopNav: FC<Props> = ({
                     <LineItemsCount>
                       {({ quantity }) =>
                         quantity ? (
-                          <Badge data-test-id="cart-items-count">
+                          <div
+                            className="absolute px-2 py-1 leading-none rounded-full text-[10px] bg-primary text-contrast -bottom-1 -right-1.5"
+                            data-test-id="cart-items-count"
+                          >
                             {quantity}
-                          </Badge>
+                          </div>
                         ) : (
                           <div />
                         )
@@ -50,7 +54,7 @@ export const TopNav: FC<Props> = ({
               }
             />
           ) : null}
-        </Nav>
+        </div>
       </Container>
     </Header>
   )

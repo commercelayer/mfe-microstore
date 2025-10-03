@@ -2,7 +2,7 @@ import { useOrderContainer } from "@commercelayer/react-components/hooks/useOrde
 import type { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { openMiniCart } from "#utils/openMiniCart"
-import { StyledAddToCartButton } from "./styled"
+import { StyledAddToCartButton } from "./button"
 import { useAddToCartFeedback } from "./useAddToCartFeedback"
 
 interface Props {
