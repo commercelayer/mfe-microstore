@@ -1,4 +1,5 @@
 import { resolve } from "node:path"
+import tailwindcss from "@tailwindcss/vite"
 import react from "@vitejs/plugin-react"
 import { visualizer } from "rollup-plugin-visualizer"
 import { loadEnv } from "vite"
@@ -54,6 +55,7 @@ export default defineConfig(({ mode }) => {
 
 function preparePlugins({ analyzeBundle }: { analyzeBundle: boolean }) {
   const plugins = [
+    tailwindcss(),
     react(),
     analyzeBundle &&
       visualizer({

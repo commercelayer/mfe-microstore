@@ -1,7 +1,6 @@
 import { CommerceLayer } from "@commercelayer/react-components/auth/CommerceLayer"
 import { OrderContainer } from "@commercelayer/react-components/orders/OrderContainer"
 import { OrderStorage } from "@commercelayer/react-components/orders/OrderStorage"
-import { GlobalStylesProvider } from "@commercelayer/react-utils"
 import { type ReactNode, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 
@@ -11,6 +10,9 @@ import { Base } from "#components/ui/Base"
 import { Container } from "#components/ui/Container"
 import { Footer } from "#components/ui/Footer"
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
+
+import "../../../styles/globals.css"
+import { InjectCssCustomProperties } from "#components/InjectCssCustomProperties"
 
 interface Props {
   settings: Settings
@@ -37,7 +39,7 @@ function MicrostoreContainer({
       accessToken={settings.accessToken}
       endpoint={settings.endpoint}
     >
-      <GlobalStylesProvider primaryColor={settings.primaryColor} />
+      <InjectCssCustomProperties primaryColor={settings.primaryColor} />
       <OrderStorage persistKey={`cl:${settings.slug}:orderId`}>
         <OrderContainer
           attributes={{

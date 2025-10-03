@@ -19,10 +19,10 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
   return (
     <>
       <div className="shadow-subtle flex flex-col gap-6 p-8 bg-white relative my-8 md:p-6 md:flex-row md:rounded-lg">
-        <figure className="relative w-full md:w-32">
+        <figure className="relative w-full md:w-32 h-48">
           <img
             alt="Default product"
-            className="h-48 rounded-md w-full object-scale-down self-start p-1 border border-gray-100 md:(h-36)"
+            className="h-full rounded-md w-full object-scale-down self-start p-1 border border-gray-100"
             src={
               sku.image_url ||
               "https://data.commercelayer.app/assets/images/placeholders/img_placeholder.svg"
@@ -109,7 +109,7 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
           )}
         </div>
       </div>
-      <hr className="block border-dashed" />
+      <hr className="block border-dashed border-gray-200" />
     </>
   )
 }
