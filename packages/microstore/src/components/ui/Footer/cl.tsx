@@ -1,6 +1,4 @@
 import { useId } from "react"
-import Styled from "styled-components"
-import tw from "twin.macro"
 
 interface Props {
   width?: string
@@ -11,14 +9,15 @@ interface Props {
 export function Logo({ width, height, className }: Props): JSX.Element {
   const clipId = useId()
   return (
-    <Svg
+    <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={["text-gray-500", className].join(" ")}
       width={width}
       height={height}
       viewBox="0 0 114 19"
       fill="currentColor"
     >
+      <title>Logo</title>
       <g clipPath="url(#clip0)">
         <path
           d="M7.71125 7.25977H4.07959V10.8896H7.71125V7.25977Z"
@@ -94,10 +93,6 @@ export function Logo({ width, height, className }: Props): JSX.Element {
           <rect width="114" height="18.1493" fill="white" />
         </clipPath>
       </defs>
-    </Svg>
+    </svg>
   )
 }
-
-const Svg = Styled.svg`
-  ${tw`text-gray-500`}
-`

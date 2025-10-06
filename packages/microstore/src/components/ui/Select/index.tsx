@@ -1,14 +1,20 @@
 import type { SelectHTMLAttributes } from "react"
-import Styled from "styled-components"
-import tw from "twin.macro"
 
 type Props = SelectHTMLAttributes<HTMLSelectElement>
 
 export function Select({ children, ...rest }: Props): JSX.Element {
   return (
     <div className="relative">
-      <Wrapper>
-        <StyledSelect {...rest}>{children}</StyledSelect>
+      <div
+        className="relative inline-block w-full"
+        style={{ minWidth: "70px" }}
+      >
+        <select
+          className="appearance-none outline-hidden w-full bg-white px-4 py-3 pr-7 border border-gray-300 rounded-sm text-black text-xs disabled:text-gray-300 transition duration-500 ease-in-out focus:border-primary focus:ring focus:ring-offset-0 focus:ring-primary-light focus:ring-opacity/50"
+          {...rest}
+        >
+          {children}
+        </select>
         <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
           <svg
             className="w-4 h-4"
@@ -19,23 +25,7 @@ export function Select({ children, ...rest }: Props): JSX.Element {
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
           </svg>
         </div>
-      </Wrapper>
+      </div>
     </div>
   )
 }
-
-const Wrapper = Styled.div`
-  min-width: 70px;
-  ${tw`relative inline-block w-full`}
-`
-
-const StyledSelect = Styled.select`
-  ${tw`
-    appearance-none outline-none w-full bg-white px-4 py-3 pr-7 
-    border border-gray-300 rounded 
-    text-black text-xs 
-    disabled:text-gray-300
-    transition duration-500 ease-in-out
-    focus:border-primary focus:ring focus:ring-offset-0 focus:ring-primary-light focus:ring-opacity-50
-  `}
-`

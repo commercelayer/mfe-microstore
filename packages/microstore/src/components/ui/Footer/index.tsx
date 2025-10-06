@@ -1,23 +1,13 @@
-import Styled from "styled-components"
-import tw from "twin.macro"
-
 import { Logo } from "./cl"
 
 export function Footer(): JSX.Element {
   return (
-    <Wrapper>
+    <div className="md:flex w-full bottom-0 justify-start items-center border-t border-gray-200 p-8 text-xs text-gray-400 lg:p-0 lg:py-8 lg:mt-4">
       <a target="_blank" href="https://commercelayer.io/" rel="noreferrer">
-        <LogoWrapper>
+        <div className="flex items-center">
           Powered by <Logo width="135" height="22" className="pl-2" />
-        </LogoWrapper>
+        </div>
       </a>
-    </Wrapper>
+    </div>
   )
 }
-
-const Wrapper = Styled.div`
-  ${tw`md:flex w-full bottom-0 justify-start items-center border-t p-8 text-xs text-gray-400 lg:(p-0 py-8 mt-4)`}
-`
-const LogoWrapper = Styled.div`
-  ${tw`flex items-center`}
-`

@@ -9,19 +9,6 @@ import { BuyButton } from "./BuyButton"
 import { DiscountBadge } from "./DiscountBadge"
 import { LocalizedAttribute } from "./LocalizedAttribute"
 import { QuantitySelector } from "./QuantitySelector"
-import {
-  Card,
-  CardBody,
-  CardDesc,
-  CardDivider,
-  CardFooter,
-  CardImage,
-  CardPrice,
-  CardPriceWrapper,
-  CardStock,
-  CardTitle,
-  QuantityAndButtonWrapper,
-} from "./styled"
 import { VariantSelector } from "./VariantSelector"
 
 export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
@@ -31,31 +18,31 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
   const hasPrice = sku?.prices && sku?.prices.length > 0
   return (
     <>
-      <Card>
-        <CardImage>
+      <div className="shadow-subtle flex flex-col gap-6 p-8 bg-white relative my-8 md:p-6 md:flex-row md:rounded-lg">
+        <figure className="relative w-full md:w-32 h-48">
           <img
             alt="Default product"
-            className="h-48 rounded-md w-full object-scale-down self-start p-1 border border-gray-100 md:(h-36)"
+            className="h-full rounded-md w-full object-scale-down self-start p-1 border border-gray-100"
             src={
               sku.image_url ||
               "https://data.commercelayer.app/assets/images/placeholders/img_placeholder.svg"
             }
           />
           {sku.prices && <DiscountBadge prices={sku.prices} />}
-        </CardImage>
-        <CardBody>
-          <CardTitle>
+        </figure>
+        <div className="relative flex-1">
+          <h3 className="text-2xl">
             <p>
               <LocalizedAttribute sku={sku} attribute="name" />
             </p>
-          </CardTitle>
-          <CardDesc>
+          </h3>
+          <div className="text-sm text-gray-600 border-t border-gray-100 pt-4 mt-4">
             <p>
               <LocalizedAttribute sku={sku} attribute="description" />{" "}
             </p>
-          </CardDesc>
+          </div>
           {hasPrice ? (
-            <CardFooter>
+            <div className="flex flex-col mt-6">
               <AvailabilityContainer skuId={sku.id} skuCode={sku.code}>
                 <AvailabilityTemplate
                   labels={{
@@ -67,9 +54,9 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
                     const isAvailable = !!(quantity > 0 || sku.do_not_track)
                     return (
                       <>
-                        <CardPrice>
+                        <div className="flex flex-col gap-y-4 md:flex-row md:justify-between">
                           {sku.prices && (
-                            <CardPriceWrapper>
+                            <div className="flex flex-row-reverse items-center self-start md:self-center">
                               <p className="text-xl font-bold">
                                 {sku?.prices[0].formatted_amount}
                               </p>
@@ -81,9 +68,9 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
                                     {sku.prices[0].formatted_compare_at_amount}
                                   </p>
                                 )}
-                            </CardPriceWrapper>
+                            </div>
                           )}
-                          <QuantityAndButtonWrapper>
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                             {skus.length > 1 && (
                               <VariantSelector
                                 variants={skus.map((s) => s.sku)}
@@ -100,29 +87,29 @@ export const Product: FC<{ skus: SkuWithQuantity[] }> = ({ skus }) => {
                               name={lineItemName(sku, lang)}
                               available={isAvailable}
                             />
-                          </QuantityAndButtonWrapper>
-                        </CardPrice>
+                          </div>
+                        </div>
 
-                        <CardStock>
+                        <div className="flex text-gray-400 items-center gap-2 text-xs mt-4">
                           <span
                             className={`block w-2 h-2  ${
                               isAvailable ? "bg-green-400" : "bg-red-400"
                             } rounded-full`}
                           />
                           {text || t("availability.available")}
-                        </CardStock>
+                        </div>
                       </>
                     )
                   }}
                 </AvailabilityTemplate>
               </AvailabilityContainer>
-            </CardFooter>
+            </div>
           ) : (
             <p className="text-gray-400 mt-2">Price unavailable</p>
           )}
-        </CardBody>
-      </Card>
-      <CardDivider />
+        </div>
+      </div>
+      <hr className="block border-dashed border-gray-200" />
     </>
   )
 }

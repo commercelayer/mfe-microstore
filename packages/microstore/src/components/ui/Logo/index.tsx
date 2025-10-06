@@ -1,5 +1,3 @@
-import { Image, Label } from "./styled"
-
 interface Props {
   logoUrl?: string | null | undefined
   companyName: string
@@ -8,7 +6,22 @@ interface Props {
 
 export function Logo({ logoUrl, companyName, className }: Props): JSX.Element {
   if (logoUrl) {
-    return <Image src={logoUrl} alt={companyName} className={className} />
+    return (
+      <img
+        src={logoUrl}
+        alt={companyName}
+        className={["w-60 max-w-full", className].join(" ")}
+      />
+    )
   }
-  return <Label className={className}>{companyName}</Label>
+  return (
+    <h1
+      className={[
+        "font-extrabold uppercase tracking-wide text-xl text-black",
+        className,
+      ].join(" ")}
+    >
+      {companyName}
+    </h1>
+  )
 }

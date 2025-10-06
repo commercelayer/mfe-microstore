@@ -1,11 +1,9 @@
 import type { ReactNode } from "react"
 
-import { Frame } from "./styled"
-
 interface Props {
   children: ReactNode
 }
 
 export function Container({ children }: Props): JSX.Element {
-  return <Frame>{children}</Frame>
+  return <div className="container">{children}</div>
 }

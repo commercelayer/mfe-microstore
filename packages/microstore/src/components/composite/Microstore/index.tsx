@@ -6,7 +6,6 @@ import type { SimpleSkuList } from "#providers/SkuListProvider"
 import { withVariants } from "#providers/SkuListProvider/withVariants"
 import { openMiniCart } from "#utils/openMiniCart"
 import { ButtonBuyAll } from "../ButtonBuyAll"
-import { Wrapper } from "./styled"
 
 interface Props {
   skus?: SkuWithQuantity[]
@@ -55,13 +54,13 @@ export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
       />
       <Hero skuList={skuList} couponCode={couponCode} />
       {skus.length <= MAX_SKUS_FOR_BUY_ALL && <ButtonBuyAll />}
-      <Wrapper>
+      <div className="flex flex-col [&>hr:last-child]:hidden">
         {Object.keys(products).length === 0
           ? skus.map((item) => <Product key={item.sku.code} skus={[item]} />)
           : Object.keys(products).map((key) => (
               <Product key={key} skus={products[key]} />
             ))}
-      </Wrapper>
+      </div>
     </>
   )
 }
