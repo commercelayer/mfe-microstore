@@ -3,7 +3,10 @@ import type { SkuWithQuantity } from "@typings/urlData"
 import { Hero } from "#components/composite/Hero"
 import { Product } from "#components/composite/Product"
 import type { SimpleSkuList } from "#providers/SkuListProvider"
-import { withVariants } from "#providers/SkuListProvider/withVariants"
+import {
+  groupedSkus,
+  withVariants,
+} from "#providers/SkuListProvider/withVariants"
 import { openMiniCart } from "#utils/openMiniCart"
 import { ButtonBuyAll } from "../ButtonBuyAll"
 
@@ -27,12 +30,7 @@ export const Microstore = ({ skus = [], skuList, couponCode }: Props) => {
 
   let products: Record<string, SkuWithQuantity[]> = {}
   if (withVariants(skus)) {
-    const productsWithVariants = skus.reduce((r, a) => {
-      const k = a.sku.reference ?? "noReference"
-      r[k] = r[k] || []
-      r[k].push(a)
-      return r
-    }, Object.create(null))
+    const productsWithVariants = groupedSkus(skus)
     products = productsWithVariants
   }
 
