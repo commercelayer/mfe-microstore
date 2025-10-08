@@ -6,12 +6,7 @@ import type { SkuWithQuantity } from "@typings/urlData"
  * @param skus - The fetched SKUs resource object returned from SDK
  */
 export const withVariants = (skus: SkuWithQuantity[]): boolean => {
-  const grouped = skus.reduce((r, a) => {
-    const k = a.sku.reference || "noReference"
-    r[k] = r[k] || []
-    r[k].push(a)
-    return r
-  }, Object.create(null))
+  const grouped = groupedSkus(skus)
   if (
     Object.keys(grouped).length === 1 &&
     Object.keys(grouped)[0] === "noReference"
@@ -24,4 +19,16 @@ export const withVariants = (skus: SkuWithQuantity[]): boolean => {
   }
 
   return true
+}
+
+export const groupedSkus = (skus: SkuWithQuantity[]) => {
+  return skus.reduce((r, a) => {
+    const k =
+      a.sku.reference != null && a.sku.reference.trim().length > 0
+        ? a.sku.reference
+        : `noReference-${Math.random().toString(36).substring(2, 15)}`
+    r[k] = r[k] || []
+    r[k].push(a)
+    return r
+  }, Object.create(null))
 }
