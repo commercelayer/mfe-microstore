@@ -9,10 +9,9 @@
     "lint:fix": "pnpm -r lint:fix",
     "test": "pnpm -r test",
     "test:e2e": "pnpm -r test:e2e",
+    "clean": "pnpm dlx rimraf --glob **/node_modules **/pnpm-lock.yaml",
     "dep:upgrade:major": "pnpm -r exec npm-check-updates -u",
-    "dep:upgrade:minor": "pnpm dep:upgrade:major -t minor",
-    "dep:self-upgrade:major": "pnpm exec npm-check-updates -u",
-    "dep:self-upgrade:minor": "pnpm dep:self-upgrade:major -t minor"
+    "dep:upgrade:minor": "pnpm dep:upgrade:major -t minor"
   },
   "keywords": [],
   "author": {
@@ -37,9 +36,6 @@
     "npm-check-updates": "^19.2.0"
   },
   "resolutions": {
-    "axios": ">=1.12.0",
-    "glob": ">=11.1.0",
-    "js-yaml": ">=3.14.2",
-    "tar": ">=7.5.2"
+    "tar": ">=7.5.7"
   }
 }
