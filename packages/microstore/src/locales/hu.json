@@ -1,0 +1,12 @@
+{
+  "availability": {
+    "available": "Elérhető",
+    "outOfStock": "Elfogyott"
+  },
+  "buttons": {
+    "buyAll": "Összes vásárlása",
+    "inlineAdded": "Hozzáadva!",
+    "addToCart": "Kosárba",
+    "buyNow": "Vásárlás most"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "availability": {
+    "available": "Beschikbaar",
+    "outOfStock": "Niet op voorraad"
+  },
+  "buttons": {
+    "buyAll": "Alles kopen",
+    "inlineAdded": "Toegevoegd!",
+    "addToCart": "Toevoegen aan winkelwagen",
+    "buyNow": "Nu kopen"
+  }
+}
