@@ -31,11 +31,11 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@biomejs/biome": "^2.3.8",
-    "lerna": "^9.0.3",
-    "npm-check-updates": "^19.2.0"
+    "@biomejs/biome": "^2.4.6",
+    "lerna": "^9.0.5",
+    "npm-check-updates": "^19.6.3"
   },
   "resolutions": {
-    "tar": ">=7.5.8"
+    "tar": ">=7.5.10"
   }
 }
