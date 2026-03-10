@@ -1,0 +1,12 @@
+{
+  "availability": {
+    "available": "Na voljo",
+    "outOfStock": "Ni na zalogi"
+  },
+  "buttons": {
+    "buyAll": "Kupi vse",
+    "inlineAdded": "Dodano!",
+    "addToCart": "Dodaj v košarico",
+    "buyNow": "Kupi zdaj"
+  }
+}
