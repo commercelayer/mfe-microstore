@@ -1,15 +1,8 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "types": [
-      "vitest/globals",
-      "vite/client",
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["vitest/globals", "vite/client"],
     "downlevelIteration": true,
     "allowJs": true,
     "skipLibCheck": true,
@@ -24,37 +17,16 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "#components/*": [
-        "src/components/*"
-      ],
-      "#hooks/*": [
-        "src/hooks/*"
-      ],
-      "#locales/*": [
-        "src/locales/*"
-      ],
-      "#providers/*": [
-        "src/providers/*"
-      ],
-      "#utils/*": [
-        "src/utils/*"
-      ],
-      "#pages/*": [
-        "src/pages/*"
-      ],
-      "#styles/*": [
-        "src/styles/*"
-      ]
+      "#components/*": ["src/components/*"],
+      "#hooks/*": ["src/hooks/*"],
+      "#locales/*": ["src/locales/*"],
+      "#providers/*": ["src/providers/*"],
+      "#utils/*": ["src/utils/*"],
+      "#pages/*": ["src/pages/*"],
+      "#styles/*": ["src/styles/*"]
     },
     "incremental": true
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "public/config*.js",
-    ".eslintrc.cjs",
-    "vite.config.mts"],
-  "exclude": [
-    "node_modules",
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "public/config*.js", "vite.config.mts"],
+  "exclude": ["node_modules"]
 }
