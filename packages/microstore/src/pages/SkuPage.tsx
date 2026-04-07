@@ -9,7 +9,6 @@ import { useSettings } from "#providers/SettingsProvider"
 import { SkuProvider } from "#providers/SkuProvider"
 
 function SkuListPage(): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_match, params] = useRoute("/sku/:skuId")
   const skuId = params?.skuId as string
   const search = new URLSearchParams(window.location.search)

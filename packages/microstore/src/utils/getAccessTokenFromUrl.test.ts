@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getAccessTokenFromUrl } from "./getAccessTokenFromUrl"
 
 describe("Read JWT from URL", () => {
