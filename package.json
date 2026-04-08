@@ -31,9 +31,9 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@biomejs/biome": "^2.4.6",
-    "lerna": "^9.0.5",
-    "npm-check-updates": "^19.6.3"
+    "@biomejs/biome": "^2.4.10",
+    "lerna": "^9.0.7",
+    "npm-check-updates": "^19.6.6"
   },
   "resolutions": {
     "tar": ">=7.5.10"
