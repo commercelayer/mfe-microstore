@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  tar: '>=7.5.10'
-
 importers:
 
   .:
@@ -18,8 +15,8 @@ importers:
         specifier: ^9.0.7
         version: 9.0.7(@types/node@24.12.2)
       npm-check-updates:
-        specifier: ^19.6.6
-        version: 19.6.6
+        specifier: ^20.0.0
+        version: 20.0.0
 
   packages/microstore:
     dependencies:
@@ -27,8 +24,8 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0
       '@commercelayer/react-components':
-        specifier: 4.29.4
-        version: 4.29.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^4.29.6
+        version: 4.29.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@commercelayer/sdk':
         specifier: ^6.56.0
         version: 6.56.0
@@ -63,8 +60,8 @@ importers:
         specifier: ^10.4.27
         version: 10.4.27(postcss@8.5.9)
       i18next:
-        specifier: ^25.10.10
-        version: 25.10.10(typescript@5.9.3)
+        specifier: ^26.0.3
+        version: 26.0.3(typescript@5.9.3)
       jsdom:
         specifier: ^27.4.0
         version: 27.4.0
@@ -84,8 +81,8 @@ importers:
         specifier: ^2.0.5
         version: 2.0.5(react@18.3.1)
       react-i18next:
-        specifier: ^16.6.6
-        version: 16.6.6(i18next@25.10.10(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)
+        specifier: ^17.0.2
+        version: 17.0.2(i18next@26.0.3(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)
       rollup-plugin-visualizer:
         specifier: ^5.14.0
         version: 5.14.0(rollup@4.60.1)
@@ -321,8 +318,8 @@ packages:
     resolution: {integrity: sha512-NEGHVSb9S0x8LhGzOzW5wPfKiGvC6YPYtQtCxKbDUpjgkhlc1kHyuT02h0L6VSH7xWkJOVNccIHb7EXg4yDRxA==}
     engines: {node: '>=18', pnpm: '>=7'}
 
-  '@commercelayer/react-components@4.29.4':
-    resolution: {integrity: sha512-O1ExrDXPL5OyH7MFnBT+kvjyInWtglmZA1lEOtMA+79wHwiXCEzsLWvNl2C+Dv/GTYG16mohFc6juuJHj1Rv2g==}
+  '@commercelayer/react-components@4.29.6':
+    resolution: {integrity: sha512-F+sxIcAnSRZJ5VlsI+H8kr3o/F4q6Enr5fiB+I9VvdyauQgRZrDLbPvr/jsML71DtniGKZMtPOwPjhLyiLoVsQ==}
     peerDependencies:
       react: '>=18.0.0'
 
@@ -2075,8 +2072,8 @@ packages:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
 
-  i18next@25.10.10:
-    resolution: {integrity: sha512-cqUW2Z3EkRx7NqSyywjkgCLK7KLCL6IFVFcONG7nVYIJ3ekZ1/N5jUsihHV6Bq37NfhgtczxJcxduELtjTwkuQ==}
+  i18next@26.0.3:
+    resolution: {integrity: sha512-1571kXINxHKY7LksWp8wP+zP0YqHSSpl/OW0Y0owFEf2H3s8gCAffWaZivcz14rMkOvn3R/psiQxVsR9t2Nafg==}
     peerDependencies:
       typescript: ^5 || ^6
     peerDependenciesMeta:
@@ -2647,8 +2644,8 @@ packages:
     resolution: {integrity: sha512-JLSpbzh6UUXIEoqPsYBvVNVmyrjVZ1fzEFbqxKkTJQkWBO3xFzFT+KDnSKQWwOQNbuWRwt5LSD6HOTLGIWzfrw==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  npm-check-updates@19.6.6:
-    resolution: {integrity: sha512-AvlRcnlUEyBEJfblUSjYMJwYKvCIWDRuCDa6x3hyUMTMkI3kslmFm0LDqwgzQfshfNh0Z3ouKiA4fLjRN7HejQ==}
+  npm-check-updates@20.0.0:
+    resolution: {integrity: sha512-qCs02x51irGf0okCttwv8lHEO2NxT903IJ2bKpG82kIzkm6pfT3CoWB5YIvqY/wi/DdnYRfI7eVfCYYymQgvCg==}
     engines: {node: '>=20.0.0', npm: '>=8.12.1'}
     hasBin: true
 
@@ -2966,10 +2963,10 @@ packages:
     peerDependencies:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
 
-  react-i18next@16.6.6:
-    resolution: {integrity: sha512-ZgL2HUoW34UKUkOV7uSQFE1CDnRPD+tCR3ywSuWH7u2iapnz86U8Bi3Vrs620qNDzCf1F47NxglCEkchCTDOHw==}
+  react-i18next@17.0.2:
+    resolution: {integrity: sha512-shBftH2vaTWK2Bsp7FiL+cevx3xFJlvFxmsDFQSrJc+6twHkP0tv/bGa01VVWzpreUVVwU+3Hev5iFqRg65RwA==}
     peerDependencies:
-      i18next: '>= 25.10.9'
+      i18next: '>= 26.0.1'
       react: '>= 16.8.0'
       react-dom: '*'
       react-native: '*'
@@ -3277,8 +3274,8 @@ packages:
     resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
     engines: {node: '>=6'}
 
-  tar@7.5.13:
-    resolution: {integrity: sha512-tOG/7GyXpFevhXVh8jOPJrmtRpOTsYqUIkVdVooZYJS/z8WhfQUX8RJILmeuJNinGAMSu1veBr4asSHFt5/hng==}
+  tar@7.5.11:
+    resolution: {integrity: sha512-ChjMH33/KetonMTAtpYdgUFr0tbz69Fp2v7zWxQfYZX4g5ZN2nOBXm1R2xyA+lMIKrLKIoKAwFj93jE/avX9cQ==}
     engines: {node: '>=18'}
 
   text-extensions@1.9.0:
@@ -3855,7 +3852,7 @@ snapshots:
       '@commercelayer/js-auth': 7.3.0
       merge-anything: 5.1.7
 
-  '@commercelayer/react-components@4.29.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@commercelayer/react-components@4.29.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@adyen/adyen-web': 6.33.0
       '@commercelayer/organization-config': 2.8.0
@@ -5527,7 +5524,7 @@ snapshots:
 
   human-signals@2.1.0: {}
 
-  i18next@25.10.10(typescript@5.9.3):
+  i18next@26.0.3(typescript@5.9.3):
     dependencies:
       '@babel/runtime': 7.29.2
     optionalDependencies:
@@ -5807,7 +5804,7 @@ snapshots:
       slash: 3.0.0
       ssri: 12.0.0
       string-width: 4.2.3
-      tar: 7.5.13
+      tar: 7.5.11
       through: 2.3.8
       tinyglobby: 0.2.12
       typescript: 5.9.3
@@ -6117,7 +6114,7 @@ snapshots:
       nopt: 9.0.0
       proc-log: 6.1.0
       semver: 7.7.2
-      tar: 7.5.13
+      tar: 7.5.11
       tinyglobby: 0.2.12
       which: 6.0.1
     transitivePeerDependencies:
@@ -6155,7 +6152,7 @@ snapshots:
     dependencies:
       npm-normalize-package-bin: 5.0.0
 
-  npm-check-updates@19.6.6: {}
+  npm-check-updates@20.0.0: {}
 
   npm-install-checks@7.1.2:
     dependencies:
@@ -6367,7 +6364,7 @@ snapshots:
       promise-retry: 2.0.1
       sigstore: 4.1.0
       ssri: 12.0.0
-      tar: 7.5.13
+      tar: 7.5.11
     transitivePeerDependencies:
       - supports-color
 
@@ -6389,7 +6386,7 @@ snapshots:
       proc-log: 6.1.0
       sigstore: 4.1.0
       ssri: 13.0.1
-      tar: 7.5.13
+      tar: 7.5.11
     transitivePeerDependencies:
       - supports-color
 
@@ -6541,11 +6538,11 @@ snapshots:
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 
-  react-i18next@16.6.6(i18next@25.10.10(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3):
+  react-i18next@17.0.2(i18next@26.0.3(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3):
     dependencies:
       '@babel/runtime': 7.29.2
       html-parse-stringify: 3.0.1
-      i18next: 25.10.10(typescript@5.9.3)
+      i18next: 26.0.3(typescript@5.9.3)
       react: 18.3.1
       use-sync-external-store: 1.6.0(react@18.3.1)
     optionalDependencies:
@@ -6848,7 +6845,7 @@ snapshots:
       inherits: 2.0.4
       readable-stream: 3.6.2
 
-  tar@7.5.13:
+  tar@7.5.11:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
