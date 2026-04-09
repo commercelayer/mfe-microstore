@@ -39,7 +39,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
   settings,
   skus,
 }) => {
-  const { all, cart } = useDataFromUrl()
+  const { all, cart, linkId } = useDataFromUrl()
   const [internalSkus, setInternalSkus] = useState<SkuWithQuantity[]>([])
   const [isBuyingAll, setIsBuyingAll] = useState(false)
   const [showBuyAllButton, setShowBuyAllButton] = useState(false)
@@ -62,6 +62,7 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
         accessToken: settings.accessToken,
         domain: settings.domain,
         slug: settings.slug,
+        linkId,
       })
 
       if (!order) {

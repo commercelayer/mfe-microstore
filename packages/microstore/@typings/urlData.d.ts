@@ -14,4 +14,5 @@ type UrlData = {
   inline?: boolean
   lang?: string
   all?: boolean // buy all
+  linkId?: string
 }

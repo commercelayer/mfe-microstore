@@ -25,7 +25,7 @@ function MicrostoreContainer({
   couponCode,
   children,
 }: Props): JSX.Element {
-  const { cart, lang, inline } = useDataFromUrl()
+  const { cart, lang, inline, linkId } = useDataFromUrl()
   const { i18n } = useTranslation()
 
   useEffect(() => {
@@ -46,6 +46,9 @@ function MicrostoreContainer({
             language_code: lang,
             coupon_code: couponCode,
             return_url: returnUrl,
+            ...(linkId != null && {
+              metadata: { links_api: { link_id: linkId } },
+            }),
           }}
         >
           <Base>
