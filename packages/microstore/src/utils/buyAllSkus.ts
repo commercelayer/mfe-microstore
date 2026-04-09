@@ -10,11 +10,13 @@ export const buyAllSkus = async ({
   accessToken,
   slug,
   domain,
+  linkId,
 }: {
   skus: SkuWithQuantity[]
   accessToken: string
   slug: string
   domain: string
+  linkId?: string
 }) => {
   const client = CommerceLayer({
     organization: slug,
@@ -24,7 +26,7 @@ export const buyAllSkus = async ({
 
   const orderId = await getOrCreateOrderId(client, slug)
 
-  await updateOrderAttributes({ client, orderId, autorefresh: false })
+  await updateOrderAttributes({ client, orderId, autorefresh: false, linkId })
   await removeAllLineItems({ client, orderId })
   await createLineItems({ client, skus, orderId })
   const updatedOrder = await updateOrderAttributes({

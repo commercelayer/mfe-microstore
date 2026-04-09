@@ -15,6 +15,7 @@ export const useDataFromUrl = () => {
       const inline = search.get("inline") || "true"
       const all = search.get("all") || undefined
       const lang = search.get("lang") || "en"
+      const linkId = search.get("linkId") || undefined
 
       setData({
         description: parseQueryValue(description),
@@ -25,6 +26,7 @@ export const useDataFromUrl = () => {
         inline: parseBooleanValue(inline),
         all: parseBooleanValue(all),
         lang: parseQueryValue(lang),
+        linkId: parseQueryValue(linkId),
       })
     }
   }, [])

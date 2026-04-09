@@ -4,6 +4,9 @@ interface GoToProps {
   accessToken?: string
   cart?: boolean
   skuListId?: string
+  all?: boolean
+  inline?: boolean
+  linkId?: string
 }
 
 interface AttributesProps {
