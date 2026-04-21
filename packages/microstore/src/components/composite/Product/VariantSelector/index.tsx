@@ -1,4 +1,5 @@
 import { type ChangeEvent, type FC, useState } from "react"
+import { Label } from "#components/ui/Label"
 import { Select } from "#components/ui/Select"
 import type { SkuWithPrices } from "#providers/SkuListProvider"
 import { LocalizedAttribute } from "../LocalizedAttribute"
@@ -21,16 +22,19 @@ export const VariantSelector: FC<Props> = ({ variants, sku, setSku }) => {
   }
 
   return options.length > 0 ? (
-    <Select
-      value={value}
-      onChange={onSkuChangeHandler}
-      data-test-id="variant-selector"
-    >
-      {variants.map((i) => (
-        <option key={i.code} value={i.code}>
-          {<LocalizedAttribute sku={i} attribute="name" type="variant" />}
-        </option>
-      ))}
-    </Select>
+    <div>
+      <Label>Colore</Label>
+      <Select
+        value={value}
+        onChange={onSkuChangeHandler}
+        data-test-id="variant-selector"
+      >
+        {variants.map((i) => (
+          <option key={i.code} value={i.code}>
+            {<LocalizedAttribute sku={i} attribute="name" type="variant" />}
+          </option>
+        ))}
+      </Select>
+    </div>
   ) : null
 }

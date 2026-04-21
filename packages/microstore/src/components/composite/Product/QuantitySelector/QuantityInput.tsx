@@ -1,4 +1,6 @@
 import type { ChangeEvent, FC } from "react"
+import { useTranslation } from "react-i18next"
+import { Label } from "#components/ui/Label"
 import { Select } from "#components/ui/Select"
 import { useBuyAll } from "#providers/BuyAllProvider"
 import { createSelectOptions } from "./createSelectOptions"
@@ -11,6 +13,7 @@ interface Props {
 const MAX_OPTIONS = 10
 
 export const QuantityInput: FC<Props> = ({ skuCode, quantityAvailable }) => {
+  const { t } = useTranslation()
   const { updateQuantity, skus } = useBuyAll()
   const quantityValue = skus.find((o) => skuCode === o.sku.code)?.quantity || 0
   if (!quantityValue) {
@@ -32,21 +35,24 @@ export const QuantityInput: FC<Props> = ({ skuCode, quantityAvailable }) => {
   }
 
   return (
-    <Select
-      value={quantityValue}
-      disabled={quantityAvailable <= 0}
-      onChange={onQuantityChangeHandler}
-      data-test-id="quantity-selector"
-    >
-      {options.map((i) => (
-        <option key={i} value={i}>
-          {i}
-        </option>
-      ))}
-      {/* appending default value if not in options range */}
-      {!options.includes(quantityValue) ? (
-        <option value={quantityValue}>{quantityValue}</option>
-      ) : null}
-    </Select>
+    <div>
+      <Label>{t("labels.qty")}</Label>
+      <Select
+        value={quantityValue}
+        disabled={quantityAvailable <= 0}
+        onChange={onQuantityChangeHandler}
+        data-test-id="quantity-selector"
+      >
+        {options.map((i) => (
+          <option key={i} value={i}>
+            {i}
+          </option>
+        ))}
+        {/* appending default value if not in options range */}
+        {!options.includes(quantityValue) ? (
+          <option value={quantityValue}>{quantityValue}</option>
+        ) : null}
+      </Select>
+    </div>
   )
 }
