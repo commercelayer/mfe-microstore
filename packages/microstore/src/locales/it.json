@@ -10,6 +10,7 @@
     "buyNow": "Compra subito"
   },
   "labels": {
-    "qty": "Quantità"
+    "qty": "Quantità",
+    "variant": "Variante"
   }
 }

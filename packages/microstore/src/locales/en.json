@@ -10,6 +10,7 @@
     "buyNow": "Buy now"
   },
   "labels": {
-    "qty": "Quantity"
+    "qty": "Quantity",
+    "variant": "Variant"
   }
 }
