@@ -8,5 +8,9 @@
     "inlineAdded": "Ajouté !",
     "addToCart": "Ajouter au panier",
     "buyNow": "Acheter maintenant"
+  },
+  "labels": {
+    "qty": "Quantité",
+    "variant": "Variante"
   }
 }

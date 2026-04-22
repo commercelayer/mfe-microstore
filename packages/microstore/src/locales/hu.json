@@ -8,5 +8,9 @@
     "inlineAdded": "Hozzáadva!",
     "addToCart": "Kosárba",
     "buyNow": "Vásárlás most"
+  },
+  "labels": {
+    "qty": "Mennyiség",
+    "variant": "Variáns"
   }
 }
