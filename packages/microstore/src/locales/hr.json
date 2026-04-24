@@ -8,5 +8,9 @@
     "inlineAdded": "Dodano!",
     "addToCart": "Dodaj u košaricu",
     "buyNow": "Kupi sada"
+  },
+  "labels": {
+    "qty": "Količina",
+    "variant": "Varijanta"
   }
 }
