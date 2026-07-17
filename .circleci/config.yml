@@ -6,7 +6,7 @@ orbs:
 
 image: &image
   docker:
-    - image: cimg/node:24.13.0
+    - image: cimg/node:24.18.0
   resource_class: medium+
 
 setup: &setup
