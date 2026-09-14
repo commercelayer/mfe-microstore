@@ -31,7 +31,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@biomejs/biome": "^2.5.4",
-    "lerna": "^9.0.7"
+    "@biomejs/biome": "^2.5.13",
+    "lerna": "^10.0.1"
   }
 }
