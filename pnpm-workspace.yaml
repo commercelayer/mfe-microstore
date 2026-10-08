@@ -4,4 +4,7 @@ packages:
 allowBuilds:
   esbuild: true
   iframe-resizer: true
+  lefthook: false
   nx: true
+minimumReleaseAgeExclude:
+  - '@commercelayer/sdk@8.0.2'

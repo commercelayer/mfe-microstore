@@ -1,3 +1,4 @@
+import type { JSX } from "react"
 import { Logo } from "./cl"
 
 export function Footer(): JSX.Element {

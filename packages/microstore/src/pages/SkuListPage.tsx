@@ -1,3 +1,4 @@
+import type { JSX } from "react"
 import { useRoute } from "wouter"
 
 import { ErrorContainer } from "#components/composite/ErrorContainer"

@@ -1,8 +1,9 @@
-import { CommerceLayer, type Organization } from "@commercelayer/sdk"
+import type { Organization } from "@commercelayer/sdk"
 
 import { getInfoFromJwt } from "./getInfoFromJwt"
 import { getOrganizationsDetails } from "./getOrganizationDetails"
 import { isValidHost } from "./isValidHost"
+import { makeClient } from "./makeClient"
 
 // default settings are by their nature not valid to show a full cart
 // they will be used as fallback for errors or 404 page
@@ -47,7 +48,7 @@ export const getSettings = async ({
   config: CommerceLayerAppConfig
 }): Promise<Settings | InvalidSettings> => {
   const { slug } = getInfoFromJwt(accessToken)
-  const { domain = "commercelayer.io", selfHostedSlug } = config
+  const { selfHostedSlug } = config
 
   if (!slug) {
     return makeInvalidSettings({})
@@ -65,11 +66,7 @@ export const getSettings = async ({
     return makeInvalidSettings({})
   }
 
-  const client = CommerceLayer({
-    organization: slug,
-    accessToken,
-    domain,
-  })
+  const client = makeClient(accessToken)
 
   const organizationResponse = await getOrganizationsDetails({
     client,
@@ -85,9 +82,7 @@ export const getSettings = async ({
 
   return {
     accessToken,
-    endpoint: `https://${slug}.${domain}`,
     slug,
-    domain,
     logoUrl: organization.logo_url,
     companyName: organization.name || defaultSettings.companyName,
     primaryColor: organization.primary_color || defaultSettings.primaryColor,

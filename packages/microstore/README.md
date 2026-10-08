@@ -26,7 +26,6 @@ The Commerce Layer Microstore application (React) provides you with a production
 
 ```
 window.clAppConfig = {
-  domain: "commercelayer.io",
   selfHostedSlug: "<your-org-slug>",
 }
 ```

@@ -1,6 +1,8 @@
-import { LineItemsContainer } from "@commercelayer/react-components/line_items/LineItemsContainer"
-import { LineItemsCount } from "@commercelayer/react-components/line_items/LineItemsCount"
-import { CartLink } from "@commercelayer/react-components/orders/CartLink"
+import {
+  CartLink,
+  LineItemsContainer,
+  LineItemsCount,
+} from "@commercelayer/react-components"
 import type { FC } from "react"
 import { Container } from "#components/ui/Container"
 import { Header } from "#components/ui/Header"

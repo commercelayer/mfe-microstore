@@ -1,5 +1,7 @@
-import { AvailabilityContainer } from "@commercelayer/react-components/skus/AvailabilityContainer"
-import { AvailabilityTemplate } from "@commercelayer/react-components/skus/AvailabilityTemplate"
+import {
+  AvailabilityContainer,
+  AvailabilityTemplate,
+} from "@commercelayer/react-components"
 import type { SkuWithQuantity } from "@typings/urlData"
 import { type FC, useState } from "react"
 import { useTranslation } from "react-i18next"

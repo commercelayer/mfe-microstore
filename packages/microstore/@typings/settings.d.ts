@@ -5,12 +5,6 @@ interface Settings {
    */
   accessToken: string
   /**
-   * Base endpoint URL to be used for API requests by `@commercelayer/react-components` library.
-   * Example: `https://yourdomain.commercelayer.io`
-   * Read more at {@link https://docs.commercelayer.io/developers/api-specification#base-endpoint}.
-   */
-  endpoint: string
-  /**
    * This flag allows TypeScript to discriminate between `Settings` and `InvalidSettings` union type.
    */
   isValid: true
@@ -39,7 +33,6 @@ interface Settings {
    * Read more at {@link https://docs.commercelayer.io/developers/v/api-reference/organization/object}.
    */
   faviconUrl: string
-  domain: string
 }
 
 type InvalidSettings = Pick<
@@ -62,7 +55,6 @@ type MicrostorePageContextProps = Pick<
   | "accessToken"
   | "logoUrl"
   | "companyName"
-  | "endpoint"
   | "language"
   | "primaryColor"
   | "favicon"
