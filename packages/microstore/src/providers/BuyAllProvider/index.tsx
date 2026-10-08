@@ -60,7 +60,6 @@ export const BuyAllProvider: FC<BuyAllProviderProps> = ({
       const order = await buyAllSkus({
         skus: setMinQuantityIfMissing(internalSkus),
         accessToken: settings.accessToken,
-        domain: settings.domain,
         slug: settings.slug,
         linkId,
       })

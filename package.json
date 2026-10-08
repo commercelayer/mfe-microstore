@@ -2,16 +2,19 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "prepare": "lefthook install",
     "dev": "pnpm -r dev",
     "build": "pnpm -r build",
     "preview": "pnpm -r preview",
     "check": "pnpm -r check",
     "check:fix": "pnpm -r check:fix",
+    "ts:check": "pnpm -r ts:check",
     "test": "pnpm -r test",
     "test:e2e": "pnpm -r test:e2e",
     "clean": "pnpm dlx rimraf --glob **/node_modules **/pnpm-lock.yaml",
     "dep:major": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u",
-    "dep:semver": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u -t semver"
+    "dep:semver": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u -t semver",
+    "lerna": "pnpm dlx --allow-build=nx lerna@10.0.1"
   },
   "keywords": [],
   "author": {
@@ -24,14 +27,14 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=20",
+    "node": ">=22.12",
     "pnpm": ">=7"
   },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
-    "@biomejs/biome": "^2.5.13",
-    "lerna": "^10.0.1"
+    "@biomejs/biome": "^2.5.15",
+    "lefthook": "^2.1.17"
   }
 }

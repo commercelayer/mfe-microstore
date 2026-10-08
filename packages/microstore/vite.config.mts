@@ -22,13 +22,18 @@ export default defineConfig(({ mode }) => {
     build: {
       target: "esnext",
       outDir: "build",
-      rollupOptions: {
+      rolldownOptions: {
         output: {
-          manualChunks: {
-            vendor: ["react", "react-dom", "wouter"],
-            commercelayer: [
-              "@commercelayer/sdk",
-              "@commercelayer/react-components",
+          codeSplitting: {
+            groups: [
+              {
+                name: "vendor",
+                test: /[\\/]node_modules[\\/](react|react-dom|scheduler|wouter)[\\/]/,
+              },
+              {
+                name: "commercelayer",
+                test: /[\\/]node_modules[\\/]@commercelayer[\\/]/,
+              },
             ],
           },
         },
@@ -36,13 +41,13 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        "#components": resolve(__dirname, "./src/components"),
-        "#hooks": resolve(__dirname, "./src/hooks"),
-        "#locales": resolve(__dirname, "./src/locales"),
-        "#providers": resolve(__dirname, "./src/providers"),
-        "#utils": resolve(__dirname, "./src/utils"),
-        "#pages": resolve(__dirname, "./src/pages"),
-        "#styles": resolve(__dirname, "./src/styles"),
+        "#components": resolve(import.meta.dirname, "./src/components"),
+        "#hooks": resolve(import.meta.dirname, "./src/hooks"),
+        "#locales": resolve(import.meta.dirname, "./src/locales"),
+        "#providers": resolve(import.meta.dirname, "./src/providers"),
+        "#utils": resolve(import.meta.dirname, "./src/utils"),
+        "#pages": resolve(import.meta.dirname, "./src/pages"),
+        "#styles": resolve(import.meta.dirname, "./src/styles"),
       },
     },
     test: {
@@ -59,7 +64,7 @@ function preparePlugins({ analyzeBundle }: { analyzeBundle: boolean }) {
     react(),
     analyzeBundle &&
       visualizer({
-        filename: resolve(__dirname, "./build/stats.html"),
+        filename: resolve(import.meta.dirname, "./build/stats.html"),
         open: true,
         title: "Bundle Stats",
       }),

@@ -1,4 +1,4 @@
-import { HostedCart } from "@commercelayer/react-components/orders/HostedCart"
+import { HostedCart } from "@commercelayer/react-components"
 import type { SkuWithQuantity } from "@typings/urlData"
 import { Hero } from "#components/composite/Hero"
 import { Product } from "#components/composite/Product"

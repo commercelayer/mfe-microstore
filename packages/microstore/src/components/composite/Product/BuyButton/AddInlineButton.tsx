@@ -1,4 +1,4 @@
-import { useOrderContainer } from "@commercelayer/react-components/hooks/useOrderContainer"
+import { useOrderContainer } from "@commercelayer/react-components"
 import type { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { openMiniCart } from "#utils/openMiniCart"
