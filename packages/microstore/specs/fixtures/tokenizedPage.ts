@@ -1,5 +1,6 @@
 import { authenticate } from "@commercelayer/js-auth"
 import { test as base } from "@playwright/test"
+import { ENV } from "varlock/env"
 
 import { MicrostorePage } from "./MicrostorePage"
 
@@ -19,13 +20,13 @@ type FixtureType = {
 }
 
 const getToken = async (market?: string) => {
-  const clientId = process.env.E2E_CLIENT_ID as string
-  const scope = market || (process.env.E2E_MARKET_ID as string)
+  const clientId = ENV.E2E_CLIENT_ID
+  const scope = market || ENV.E2E_MARKET_ID
 
   const data = await authenticate("client_credentials", {
     clientId,
     scope,
-    domain: process.env.E2E_DOMAIN,
+    domain: ENV.E2E_DOMAIN,
   })
 
   return data?.accessToken as string

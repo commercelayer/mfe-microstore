@@ -1,9 +1,10 @@
+import { ENV } from "varlock/env"
 import { expect, test } from "../fixtures/tokenizedPage"
 
 test.describe("With variants grouped by sku.reference", () => {
   test.use({
     defaultParams: {
-      skuListId: process.env.E2E_SKU_LIST_ID_WITH_GROUPED_VARIANTS,
+      skuListId: ENV.E2E_SKU_LIST_ID_WITH_GROUPED_VARIANTS,
     },
   })
 

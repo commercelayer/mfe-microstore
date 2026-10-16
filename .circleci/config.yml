@@ -84,7 +84,6 @@ workflows:
             tags:
               ignore: /v.*/
       - e2e:
-          context: commercelayer
           filters:
             tags:
               ignore: /v.*/
@@ -99,7 +98,6 @@ workflows:
             branches:
               ignore: /.*/
       - e2e:
-          context: commercelayer
           filters:
             tags:
               only: /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*).*/

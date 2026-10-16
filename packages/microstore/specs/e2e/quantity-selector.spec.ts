@@ -1,9 +1,10 @@
+import { ENV } from "varlock/env"
 import { test } from "../fixtures/tokenizedPage"
 
 test.describe("With quantity selector, for specific sku", () => {
   test.use({
     defaultParams: {
-      skuListId: process.env.E2E_SKU_LIST_ID,
+      skuListId: ENV.E2E_SKU_LIST_ID,
       cart: true,
       inline: true,
     },

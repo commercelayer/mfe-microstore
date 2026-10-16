@@ -1,13 +1,14 @@
 import { authenticate } from "@commercelayer/js-auth"
 import { expect, test } from "@playwright/test"
+import { ENV } from "varlock/env"
 
 import { MicrostorePage } from "../fixtures/MicrostorePage"
 
 const getToken = async () => {
   const data = await authenticate("client_credentials", {
-    clientId: process.env.E2E_CLIENT_ID as string,
-    scope: process.env.E2E_MARKET_ID as string,
-    domain: process.env.E2E_DOMAIN,
+    clientId: ENV.E2E_CLIENT_ID,
+    scope: ENV.E2E_MARKET_ID,
+    domain: ENV.E2E_DOMAIN,
   })
   return data?.accessToken as string
 }
@@ -43,7 +44,7 @@ test.describe("linkId URL param is propagated to the order metadata", () => {
     const accessToken = await getToken()
     await microstorePage.goto({
       accessToken,
-      skuListId: process.env.E2E_SKU_LIST_ID,
+      skuListId: ENV.E2E_SKU_LIST_ID,
       cart: true,
       inline: true,
       linkId: "test-link-id-cart",
@@ -70,7 +71,7 @@ test.describe("linkId URL param is propagated to the order metadata", () => {
     const accessToken = await getToken()
     await microstorePage.goto({
       accessToken,
-      skuListId: process.env.E2E_SKU_LIST_ID,
+      skuListId: ENV.E2E_SKU_LIST_ID,
       all: true,
       linkId: "test-link-id-buyall",
     })

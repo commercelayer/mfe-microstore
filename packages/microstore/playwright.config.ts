@@ -1,13 +1,17 @@
 import type { PlaywrightTestConfig } from "@playwright/test"
-import * as dotenv from "dotenv"
 
-import path from "path"
-
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-dotenv.config({ path: path.resolve(__dirname, ".env.local") })
+// Resolve the env once here, in the main process: workers and the dev server
+// started by `webServer` inherit the result instead of each fetching from AWS.
+// varlock looks for `.env.schema` in the current working directory, so switch
+// to this package while loading it: otherwise running Playwright from the
+// repository root (e.g. from an editor extension) loads an empty env.
+const cwd = process.cwd()
+process.chdir(__dirname)
+try {
+  require("varlock/auto-load")
+} finally {
+  process.chdir(cwd)
+}
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
