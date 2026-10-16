@@ -21,8 +21,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1
       '@commercelayer/react-components':
-        specifier: ^5.0.6
-        version: 5.0.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: ^5.0.10
+        version: 5.0.10(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@commercelayer/sdk':
         specifier: ^8.0.2
         version: 8.0.2
@@ -221,8 +221,8 @@ packages:
     resolution: {integrity: sha512-0GEz8qJWokkUVYQYRukmkSHIFNoBH8QTreeHrAFbvz1XFYc3Y+puhMs8PQ5x8GNugiC2l5jvDBXKLbBIByeSBw==}
     hasBin: true
 
-  '@commercelayer/core-components@5.0.6':
-    resolution: {integrity: sha512-GyEZAQWO9gxYEGY4QBQiBN0mr3gAXbuBVa5u1EFoli+VFrA6EwJDsXSulM9Oqhnj7oNoKjqOfNKkM1x9pHdJaQ==}
+  '@commercelayer/core-components@5.0.10':
+    resolution: {integrity: sha512-Un2TZ4/ixnLguJbpezlCaV8MXLgD2W9tvcp2FxRlxm8gk0GTyjuGVqoMGGRKVtBcHp5cJzm6OstBSWhCv22xxQ==}
 
   '@commercelayer/js-auth@7.4.2':
     resolution: {integrity: sha512-ifRcoAL1R7o5AU5w4bgmSnNMEWXDc11A+yZwAAZMEkAYrrsaud1X/3xmgY1e0yIXK8AAdIiqfW/Rm/4DdWwAQA==}
@@ -236,19 +236,15 @@ packages:
     resolution: {integrity: sha512-qGdC9JnxLdris2ux/HFRL+yl4uZlXGN0cdclZnU5OeLkCydqrZx/ld4zR4xqyhznq/QSfnXcTN6YOeXe7eIHFA==}
     engines: {node: '>=18', pnpm: '>=7'}
 
-  '@commercelayer/react-components@5.0.6':
-    resolution: {integrity: sha512-+TY23Xn8lF6kfSPvO2N9hNiZzhE8sGUFFDauUfeBeqg9TbRNxrixxkcLHcazDxMqcrkjDMozaEkHEho+4i+oaQ==}
+  '@commercelayer/react-components@5.0.10':
+    resolution: {integrity: sha512-ItWQ8/irPIxx38Lkli7LGs18p4NWG3DmTS0Ngy7mwuR3cBAMUQvIaMYGt585xjwM0rlW4Jg10asX/GMjwL7QXA==}
     peerDependencies:
       react: '>=19.0.0'
 
-  '@commercelayer/react-hooks-components@5.0.6':
-    resolution: {integrity: sha512-nE+z2yKdX6F/9OSP5yOCnzT6DWuJfGgtVvcnr1znTMsCPuwKIgEUnNr4oUqVmGaQHdY4dDsAf2Qh8mKZOi/vVw==}
+  '@commercelayer/react-hooks-components@5.0.10':
+    resolution: {integrity: sha512-pQg7ujAJnQIz/0xifVO/EfCxaOcPiargVazbdzi0FkPQufSN+sRicX1qhgcA0MVVObihZa5n2ol2D5VJimfKwA==}
     peerDependencies:
       react: '>=19.0.0'
-
-  '@commercelayer/sdk@8.0.0-beta.11':
-    resolution: {integrity: sha512-EhbpwW8GOsty1H3/YiEDzPZDKuvoXW9nMbrnkFQ5+sSgEiSkFXDM/tFxImkwagX7PbHKyHHaEBn5SoAPiNBwtw==}
-    engines: {node: '>=20'}
 
   '@commercelayer/sdk@8.0.2':
     resolution: {integrity: sha512-OdKFC4qDUvQDeNpYRi+wChQFqktc74sFaQxK8NpaEeGx8mkepribmP+pOI0d7Xy1GdeExv5D5es9ZxRenLY0vA==}
@@ -1829,10 +1825,10 @@ snapshots:
     dependencies:
       css-tree: 3.2.1
 
-  '@commercelayer/core-components@5.0.6':
+  '@commercelayer/core-components@5.0.10':
     dependencies:
       '@commercelayer/js-auth': 8.0.1
-      '@commercelayer/sdk': 8.0.0-beta.11
+      '@commercelayer/sdk': 8.0.2
 
   '@commercelayer/js-auth@7.4.2': {}
 
@@ -1843,13 +1839,13 @@ snapshots:
       '@commercelayer/js-auth': 7.4.2
       merge-anything: 5.1.7
 
-  '@commercelayer/react-components@5.0.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@commercelayer/react-components@5.0.10(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@adyen/adyen-web': 6.46.0
-      '@commercelayer/core-components': 5.0.6
+      '@commercelayer/core-components': 5.0.10
       '@commercelayer/organization-config': 2.8.5
-      '@commercelayer/react-hooks-components': 5.0.6(react@19.3.0)
-      '@commercelayer/sdk': 8.0.0-beta.11
+      '@commercelayer/react-hooks-components': 5.0.10(react@19.3.0)
+      '@commercelayer/sdk': 8.0.2
       '@stripe/react-stripe-js': 6.12.0(@stripe/stripe-js@9.17.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@stripe/stripe-js': 9.17.0
       '@tanstack/react-table': 8.21.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -1863,13 +1859,11 @@ snapshots:
       - preact-render-to-string
       - react-dom
 
-  '@commercelayer/react-hooks-components@5.0.6(react@19.3.0)':
+  '@commercelayer/react-hooks-components@5.0.10(react@19.3.0)':
     dependencies:
-      '@commercelayer/core-components': 5.0.6
+      '@commercelayer/core-components': 5.0.10
       react: 19.3.0
       swr: 2.5.1(react@19.3.0)
-
-  '@commercelayer/sdk@8.0.0-beta.11': {}
 
   '@commercelayer/sdk@8.0.2': {}
 

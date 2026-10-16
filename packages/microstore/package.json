@@ -45,7 +45,7 @@
   "license": "MIT",
   "dependencies": {
     "@commercelayer/js-auth": "^8.0.1",
-    "@commercelayer/react-components": "^5.0.6",
+    "@commercelayer/react-components": "^5.0.10",
     "@commercelayer/sdk": "^8.0.2",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/postcss": "^4.3.3",

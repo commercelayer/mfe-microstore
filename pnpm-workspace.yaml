@@ -7,4 +7,4 @@ allowBuilds:
   lefthook: false
   nx: true
 minimumReleaseAgeExclude:
-  - '@commercelayer/sdk@8.0.2'
+  - '@commercelayer/*'
