@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig } from "@playwright/test"
+import type { PlaywrightTestConfig } from "@playwright/test"
 import * as dotenv from "dotenv"
 
 import path from "path"
@@ -21,6 +21,15 @@ const config: PlaywrightTestConfig = {
   outputDir: "test-results/",
   workers: 1,
   maxFailures: 2,
+  // Fail on CI if `test.only` was left in the source code
+  forbidOnly: !!process.env.CI,
+  reporter: process.env.CI
+    ? [
+        ["line"],
+        ["junit", { outputFile: "test-results/junit.xml" }],
+        ["html", { open: "never" }],
+      ]
+    : "list",
 
   // Run your local dev server before starting the tests:
   // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
@@ -35,7 +44,7 @@ const config: PlaywrightTestConfig = {
     // Retry a test if its failing with enabled tracing. This allows you to analyse the DOM, console logs, network traffic etc.
     // More information: https://playwright.dev/docs/trace-viewer
     trace: "retry-with-trace",
-    headless: false,
+    headless: true,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     // Artifacts

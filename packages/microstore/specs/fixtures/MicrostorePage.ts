@@ -1,4 +1,4 @@
-import { Page, expect, Locator } from "@playwright/test"
+import { expect, type Locator, type Page } from "@playwright/test"
 
 interface GoToProps {
   accessToken?: string
@@ -101,13 +101,13 @@ export class MicrostorePage {
 
   async expectCartLinkOnTop() {
     await expect(
-      this.page.locator(`[data-test-id=link-view-cart]`)
+      this.page.locator("[data-test-id=link-view-cart]"),
     ).toBeVisible()
   }
 
   async expectErrorPage() {
     await expect(
-      this.page.locator("text=This page could not be found")
+      this.page.locator("text=This page could not be found"),
     ).toBeVisible()
   }
 }

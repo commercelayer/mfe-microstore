@@ -25,6 +25,7 @@ const getToken = async (market?: string) => {
   const data = await authenticate("client_credentials", {
     clientId,
     scope,
+    domain: process.env.E2E_DOMAIN,
   })
 
   return data?.accessToken as string

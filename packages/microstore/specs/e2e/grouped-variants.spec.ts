@@ -13,8 +13,8 @@ test.describe("With variants grouped by sku.reference", () => {
     // first variant pre-selected
     expect(
       await microstorePage.page.getByText(
-        "White Men Long Sleeve Shirt with Black Logo"
-      )
+        "White Men Long Sleeve Shirt with Black Logo",
+      ),
     ).toBeDefined()
 
     // change variant
@@ -25,8 +25,8 @@ test.describe("With variants grouped by sku.reference", () => {
 
     expect(
       await microstorePage.page.getByText(
-        "Black Unisex 3/4 Sleeve Shirt with White Logo"
-      )
+        "Black Unisex 3/4 Sleeve Shirt with White Logo",
+      ),
     ).toBeDefined()
   })
 })

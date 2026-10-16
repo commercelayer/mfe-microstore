@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/tokenizedPage"
+import { expect, test } from "../fixtures/tokenizedPage"
 
 test("should navigate to 404", async ({ page }) => {
   await page.goto("/")
@@ -32,7 +32,7 @@ test.describe("empty sku list", () => {
   })
   test("should navigate to empty sku list", async ({ microstorePage }) => {
     await expect(
-      microstorePage.page.locator("data-test-id=no-skus-found")
+      microstorePage.page.locator("data-test-id=no-skus-found"),
     ).toBeVisible()
   })
 })

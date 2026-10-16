@@ -31,6 +31,33 @@ jobs:
       - run:
           name: Test
           command: pnpm test
+  e2e:
+    docker:
+      # keep the tag in sync with the installed @playwright/test version
+      - image: mcr.microsoft.com/playwright:v1.63.0-noble
+    resource_class: medium+
+    environment:
+      PUBLIC_PROJECT_PATH: microstore
+    steps:
+      - checkout
+      - run:
+          name: Setup
+          # Playwright noble image runs as root and ships without sudo
+          command: |
+            npm install -g pnpm
+            pnpm install
+      - run:
+          name: E2E tests
+          working_directory: packages/microstore
+          command: pnpm test:e2e
+      - store_test_results:
+          path: packages/microstore/test-results/junit.xml
+      - store_artifacts:
+          path: packages/microstore/playwright-report
+          destination: playwright-report
+      - store_artifacts:
+          path: packages/microstore/test-results
+          destination: test-results
   build:
     <<: *image
     environment:
@@ -56,6 +83,11 @@ workflows:
           filters:
             tags:
               ignore: /v.*/
+      - e2e:
+          context: commercelayer
+          filters:
+            tags:
+              ignore: /v.*/
 
   test-build-and-push:
     jobs:
@@ -66,9 +98,17 @@ workflows:
               only: /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*).*/
             branches:
               ignore: /.*/
+      - e2e:
+          context: commercelayer
+          filters:
+            tags:
+              only: /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*).*/
+            branches:
+              ignore: /.*/
       - build:
           requires:
             - test
+            - e2e
           context: commercelayer
           filters:
             tags:
