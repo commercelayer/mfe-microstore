@@ -1,13 +1,17 @@
-import { PlaywrightTestConfig } from "@playwright/test"
-import * as dotenv from "dotenv"
+import type { PlaywrightTestConfig } from "@playwright/test"
 
-import path from "path"
-
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-dotenv.config({ path: path.resolve(__dirname, ".env.local") })
+// Resolve the env once here, in the main process: workers and the dev server
+// started by `webServer` inherit the result instead of each fetching from AWS.
+// varlock looks for `.env.schema` in the current working directory, so switch
+// to this package while loading it: otherwise running Playwright from the
+// repository root (e.g. from an editor extension) loads an empty env.
+const cwd = process.cwd()
+process.chdir(__dirname)
+try {
+  require("varlock/auto-load")
+} finally {
+  process.chdir(cwd)
+}
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
@@ -21,6 +25,15 @@ const config: PlaywrightTestConfig = {
   outputDir: "test-results/",
   workers: 1,
   maxFailures: 2,
+  // Fail on CI if `test.only` was left in the source code
+  forbidOnly: !!process.env.CI,
+  reporter: process.env.CI
+    ? [
+        ["line"],
+        ["junit", { outputFile: "test-results/junit.xml" }],
+        ["html", { open: "never" }],
+      ]
+    : "list",
 
   // Run your local dev server before starting the tests:
   // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
@@ -35,7 +48,7 @@ const config: PlaywrightTestConfig = {
     // Retry a test if its failing with enabled tracing. This allows you to analyse the DOM, console logs, network traffic etc.
     // More information: https://playwright.dev/docs/trace-viewer
     trace: "retry-with-trace",
-    headless: false,
+    headless: true,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     // Artifacts

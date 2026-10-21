@@ -1,7 +1,9 @@
-import { CommerceLayer } from "@commercelayer/react-components/auth/CommerceLayer"
-import { OrderContainer } from "@commercelayer/react-components/orders/OrderContainer"
-import { OrderStorage } from "@commercelayer/react-components/orders/OrderStorage"
-import { type ReactNode, useEffect } from "react"
+import {
+  CommerceLayer,
+  OrderContainer,
+  OrderStorage,
+} from "@commercelayer/react-components"
+import { type JSX, type ReactNode, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 
 import { MicrostoreHead } from "#components/composite/MicrostoreHead"
@@ -35,10 +37,7 @@ function MicrostoreContainer({
   const returnUrl = window.location.href
 
   return (
-    <CommerceLayer
-      accessToken={settings.accessToken}
-      endpoint={settings.endpoint}
-    >
+    <CommerceLayer accessToken={settings.accessToken}>
       <InjectCssCustomProperties primaryColor={settings.primaryColor} />
       <OrderStorage persistKey={`cl:${settings.slug}:orderId`}>
         <OrderContainer

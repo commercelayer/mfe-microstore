@@ -1,9 +1,10 @@
+import { ENV } from "varlock/env"
 import { test } from "../fixtures/tokenizedPage"
 
 test.describe("Param `all=true` is found in url params without cart", () => {
   test.use({
     defaultParams: {
-      skuListId: process.env.E2E_SKU_LIST_ID,
+      skuListId: ENV.E2E_SKU_LIST_ID,
       all: true,
     },
   })
@@ -16,7 +17,7 @@ test.describe("Param `all=true` is found in url params without cart", () => {
 test.describe("Param `all=true` is found in url params when cart is enabled", () => {
   test.use({
     defaultParams: {
-      skuListId: process.env.E2E_SKU_LIST_ID,
+      skuListId: ENV.E2E_SKU_LIST_ID,
       all: true,
       cart: true,
     },

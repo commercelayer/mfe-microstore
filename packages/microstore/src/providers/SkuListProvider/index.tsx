@@ -1,9 +1,4 @@
-import {
-  CommerceLayer,
-  type Price,
-  type Sku,
-  type SkuList,
-} from "@commercelayer/sdk"
+import type { Price, Sku, SkuList } from "@commercelayer/sdk"
 import type { SkuWithQuantity } from "@typings/urlData"
 import {
   type FC,
@@ -12,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react"
+import { makeClient } from "#utils/makeClient"
 import { getSkusWithQuantity } from "./getSkusWithQuantity"
 
 export type SimpleSkuList = Pick<SkuList, "name" | "description" | "metadata">
@@ -74,11 +70,7 @@ export const SkuListProvider: FC<SkuListProviderProps> = ({
 
   const fetchSkuListInfo = useCallback(async () => {
     setIsLoading(true)
-    const cl = CommerceLayer({
-      organization: settings.slug,
-      accessToken: settings.accessToken,
-      domain: settings.domain,
-    })
+    const cl = makeClient(settings.accessToken)
 
     try {
       const skuList = await cl.sku_lists.retrieve(skuListId, {

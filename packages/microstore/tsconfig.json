@@ -3,7 +3,6 @@
     "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["vitest/globals", "vite/client"],
-    "downlevelIteration": true,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,15 +14,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
     "paths": {
-      "#components/*": ["src/components/*"],
-      "#hooks/*": ["src/hooks/*"],
-      "#locales/*": ["src/locales/*"],
-      "#providers/*": ["src/providers/*"],
-      "#utils/*": ["src/utils/*"],
-      "#pages/*": ["src/pages/*"],
-      "#styles/*": ["src/styles/*"]
+      "#components/*": ["./src/components/*"],
+      "#hooks/*": ["./src/hooks/*"],
+      "#locales/*": ["./src/locales/*"],
+      "#providers/*": ["./src/providers/*"],
+      "#utils/*": ["./src/utils/*"],
+      "#pages/*": ["./src/pages/*"],
+      "#styles/*": ["./src/styles/*"],
+      "@typings/*": ["./@typings/*"]
     },
     "incremental": true
   },

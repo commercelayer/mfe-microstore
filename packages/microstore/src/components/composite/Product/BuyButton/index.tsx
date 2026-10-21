@@ -1,4 +1,4 @@
-import type { FC } from "react"
+import type { FC, JSX } from "react"
 import { useDataFromUrl } from "#hooks/useDataFromUrl"
 import { useBuyAll } from "#providers/BuyAllProvider"
 import { AddInlineButton } from "./AddInlineButton"

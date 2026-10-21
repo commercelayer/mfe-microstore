@@ -1,4 +1,5 @@
-import { test, expect } from "../fixtures/tokenizedPage"
+import { ENV } from "varlock/env"
+import { expect, test } from "../fixtures/tokenizedPage"
 
 test("should navigate to 404", async ({ page }) => {
   await page.goto("/")
@@ -13,7 +14,7 @@ test("should navigate to the 404 page with wrong url", async ({ page }) => {
 test.describe("sku list with items", () => {
   test.use({
     defaultParams: {
-      skuListId: process.env.E2E_SKU_LIST_ID,
+      skuListId: ENV.E2E_SKU_LIST_ID,
       cart: false,
     },
   })
@@ -27,12 +28,12 @@ test.describe("sku list with items", () => {
 test.describe("empty sku list", () => {
   test.use({
     defaultParams: {
-      skuListId: process.env.E2E_EMPTY_SKU_LIST_ID,
+      skuListId: ENV.E2E_EMPTY_SKU_LIST_ID,
     },
   })
   test("should navigate to empty sku list", async ({ microstorePage }) => {
     await expect(
-      microstorePage.page.locator("data-test-id=no-skus-found")
+      microstorePage.page.locator("data-test-id=no-skus-found"),
     ).toBeVisible()
   })
 })

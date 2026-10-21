@@ -1,4 +1,4 @@
-import { AddToCartButton as AddToCartButtonComponent } from "@commercelayer/react-components/orders/AddToCartButton"
+import { AddToCartButton as AddToCartButtonComponent } from "@commercelayer/react-components"
 import type { ComponentProps, FC } from "react"
 
 import { buttonClasses } from "#components/ui/Button"

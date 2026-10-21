@@ -52,4 +52,5 @@ const setCssProperties = (values: PropertySet[]): void => {
 }
 
 InjectCssCustomProperties.displayName = "InjectCssCustomProperties"
+
 export { InjectCssCustomProperties }

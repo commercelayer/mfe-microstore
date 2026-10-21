@@ -1,7 +1,7 @@
-import { CommerceLayer } from "@commercelayer/sdk"
 import type { SkuWithQuantity } from "@typings/urlData"
 import { createLineItems } from "./createLineItems"
 import { getOrCreateOrderId } from "./getOrCreateOrderId"
+import { makeClient } from "./makeClient"
 import { removeAllLineItems } from "./removeAllLineItems"
 import { updateOrderAttributes } from "./updateOrderAttributes"
 
@@ -9,20 +9,14 @@ export const buyAllSkus = async ({
   skus,
   accessToken,
   slug,
-  domain,
   linkId,
 }: {
   skus: SkuWithQuantity[]
   accessToken: string
   slug: string
-  domain: string
   linkId?: string
 }) => {
-  const client = CommerceLayer({
-    organization: slug,
-    accessToken,
-    domain,
-  })
+  const client = makeClient(accessToken)
 
   const orderId = await getOrCreateOrderId(client, slug)
 

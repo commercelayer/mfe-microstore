@@ -1,4 +1,4 @@
-import type { SelectHTMLAttributes } from "react"
+import type { JSX, SelectHTMLAttributes } from "react"
 
 type Props = SelectHTMLAttributes<HTMLSelectElement>
 

@@ -1,3 +1,4 @@
+import type { JSX } from "react"
 import { Helmet } from "react-helmet-async"
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 export function MicrostoreHead(props: Props): JSX.Element {
   return (
     <Helmet>
-      <title>Microstore - {props.title}</title>
+      <title>{`Microstore - ${props.title}`}</title>
       <link rel="icon" href={props.favicon} />
     </Helmet>
   )

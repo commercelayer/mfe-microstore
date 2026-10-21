@@ -1,4 +1,4 @@
-import { CommerceLayer, type Price, type Sku } from "@commercelayer/sdk"
+import type { Price, Sku } from "@commercelayer/sdk"
 import type { SkuWithQuantity } from "@typings/urlData"
 import {
   type FC,
@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react"
+import { makeClient } from "#utils/makeClient"
 
 type OptionalExceptFor<T, TRequired extends keyof T> = Partial<T> &
   Pick<T, TRequired>
@@ -59,11 +60,7 @@ export const SkuProvider: FC<SkuProviderProps> = ({
 
   const fetchSkuInfo = useCallback(async () => {
     setIsLoading(true)
-    const cl = CommerceLayer({
-      organization: settings.slug,
-      accessToken: settings.accessToken,
-      domain: settings.domain,
-    })
+    const cl = makeClient(settings.accessToken)
 
     try {
       const skuFetched = (await cl.skus.retrieve(skuId, {
